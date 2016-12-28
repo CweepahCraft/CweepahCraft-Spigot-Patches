@@ -1,0 +1,27 @@
+From 6669d4311efbb8ec30cf59ed8033bcd19f88da68 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Tue, 27 Dec 2016 18:54:39 -0600
+Subject: [PATCH 6/9] Optimize boats to improve collision performance.
+
+---
+ src/main/java/net/minecraft/server/EntityBoat.java | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/java/net/minecraft/server/EntityBoat.java b/src/main/java/net/minecraft/server/EntityBoat.java
+index 94b5219..d2d04ca 100644
+--- a/src/main/java/net/minecraft/server/EntityBoat.java
++++ b/src/main/java/net/minecraft/server/EntityBoat.java
+@@ -251,7 +251,9 @@ public class EntityBoat extends Entity {
+                 this.world.a((Packet) (new PacketPlayInBoatMove(this.a(0), this.a(1))));
+             }
+ 
+-            this.move(EnumMoveType.SELF, this.motX, this.motY, this.motZ);
++            if (Math.abs(this.motX) > 0.05 || Math.abs(this.motY) > 0.05 || Math.abs(this.motZ) > 0.05) {
++                this.move(EnumMoveType.SELF, this.motX, this.motY, this.motZ);
++            }
+         } else {
+             this.motX = 0.0D;
+             this.motY = 0.0D;
+-- 
+2.9.3
+

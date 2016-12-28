@@ -1,0 +1,65 @@
+From b88fd9766a4386c52efbc0aec42231310fec6f58 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Tue, 27 Dec 2016 18:48:49 -0600
+Subject: [PATCH 3/9] Implement hopper toggling API.
+
+---
+ src/main/java/net/minecraft/server/TileEntityHopper.java |  5 +++++
+ src/main/java/org/bukkit/craftbukkit/CraftServer.java    | 11 +++++++++++
+ 2 files changed, 16 insertions(+)
+
+diff --git a/src/main/java/net/minecraft/server/TileEntityHopper.java b/src/main/java/net/minecraft/server/TileEntityHopper.java
+index f12bc70..91cbb8e 100644
+--- a/src/main/java/net/minecraft/server/TileEntityHopper.java
++++ b/src/main/java/net/minecraft/server/TileEntityHopper.java
+@@ -5,6 +5,7 @@ import java.util.List;
+ import javax.annotation.Nullable;
+ 
+ // CraftBukkit start
++import org.bukkit.Bukkit;
+ import org.bukkit.craftbukkit.entity.CraftHumanEntity;
+ import org.bukkit.craftbukkit.inventory.CraftItemStack;
+ import org.bukkit.entity.HumanEntity;
+@@ -110,6 +111,10 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper, ITi
+     }
+ 
+     public void F_() {
++        if (!Bukkit.isHopperEnabled()) {
++            return;
++        }
++
+         if (this.world != null && !this.world.isClientSide) {
+             --this.f;
+             this.g = this.world.getTime();
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index 5079995..11f3553 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -172,6 +172,7 @@ public final class CraftServer implements Server {
+     private final UUID invalidUserUUID = UUID.nameUUIDFromBytes("InvalidUsername".getBytes(Charsets.UTF_8));
+     private final List<CraftPlayer> playerView;
+     public int reloadCount;
++    private boolean hopperEnabled = true;
+ 
+     private final class BooleanWrapper {
+         private boolean value = true;
+@@ -1717,6 +1718,16 @@ public final class CraftServer implements Server {
+         return new CraftBossBar(title, color, style, flags);
+     }
+ 
++    @Override
++    public boolean isHopperEnabled() {
++        return hopperEnabled;
++    }
++
++    @Override
++    public void setHopperEnabled(boolean enabled) {
++        this.hopperEnabled = enabled;
++    }
++
+     @Deprecated
+     @Override
+     public UnsafeValues getUnsafe() {
+-- 
+2.9.3
+

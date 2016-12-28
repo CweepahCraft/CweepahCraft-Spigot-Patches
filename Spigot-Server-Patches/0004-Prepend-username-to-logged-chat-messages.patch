@@ -1,0 +1,34 @@
+From fc715eafc9b12ffcd5d3ed3f0b03b34e06345554 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Tue, 27 Dec 2016 18:50:33 -0600
+Subject: [PATCH 4/9] Prepend username to logged chat messages.
+
+---
+ src/main/java/net/minecraft/server/PlayerConnection.java | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 01f8343..5785a09 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -1279,7 +1279,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                         }
+ 
+                         String message = String.format(queueEvent.getFormat(), queueEvent.getPlayer().getDisplayName(), queueEvent.getMessage());
+-                        PlayerConnection.this.minecraftServer.console.sendMessage(message);
++                        PlayerConnection.this.minecraftServer.console.sendMessage(queueEvent.getPlayer() + ": " + message);
+                         if (((LazyPlayerSet) queueEvent.getRecipients()).isLazy()) {
+                             for (Object player : PlayerConnection.this.minecraftServer.getPlayerList().players) {
+                                 ((EntityPlayer) player).sendMessage(CraftChatMessage.fromString(message));
+@@ -1309,7 +1309,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 }
+ 
+                 s = String.format(event.getFormat(), event.getPlayer().getDisplayName(), event.getMessage());
+-                minecraftServer.console.sendMessage(s);
++                minecraftServer.console.sendMessage(event.getPlayer().getName() + ": " + s);
+                 if (((LazyPlayerSet) event.getRecipients()).isLazy()) {
+                     for (Object recipient : minecraftServer.getPlayerList().players) {
+                         ((EntityPlayer) recipient).sendMessage(CraftChatMessage.fromString(s));
+-- 
+2.9.3
+

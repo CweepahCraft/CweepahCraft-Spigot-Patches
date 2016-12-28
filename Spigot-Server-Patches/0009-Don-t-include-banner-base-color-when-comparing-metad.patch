@@ -1,0 +1,41 @@
+From 343259bf7a826b8850862ab18f7fbdf19cda367b Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Tue, 27 Dec 2016 19:00:26 -0600
+Subject: [PATCH 9/9] Don't include banner base color when comparing metadata.
+
+1.11 introduced base colors being stored by item damage value.
+---
+ src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java
+index 80f9ffa..21356f7 100644
+--- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java
++++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java
+@@ -180,20 +180,20 @@ public class CraftMetaBanner extends CraftMetaItem implements BannerMeta {
+         if (meta instanceof CraftMetaBanner) {
+             CraftMetaBanner that = (CraftMetaBanner) meta;
+ 
+-            return base == that.base && patterns.equals(that.patterns);
++            return patterns.equals(that.patterns);
+         }
+         return true;
+     }
+ 
+     @Override
+     boolean notUncommon(CraftMetaItem meta) {
+-        return super.notUncommon(meta) && (meta instanceof CraftMetaBanner || (patterns.isEmpty() && base == null));
++        return super.notUncommon(meta) && (meta instanceof CraftMetaBanner || patterns.isEmpty());
+     }
+     
+     
+     @Override
+     boolean isEmpty() {
+-        return super.isEmpty() && patterns.isEmpty() && base == null;
++        return super.isEmpty() && patterns.isEmpty();
+     }
+     
+     
+-- 
+2.9.3
+

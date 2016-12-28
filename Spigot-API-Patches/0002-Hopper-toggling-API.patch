@@ -1,0 +1,47 @@
+From 8ef5840888fafa156179743de9aaf7cdc386f2b6 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Tue, 27 Dec 2016 12:31:46 -0600
+Subject: [PATCH 2/2] Hopper toggling API
+
+---
+ src/main/java/org/bukkit/Bukkit.java | 8 ++++++++
+ src/main/java/org/bukkit/Server.java | 4 ++++
+ 2 files changed, 12 insertions(+)
+
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index 07b44eb..2043063 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -1133,6 +1133,14 @@ public final class Bukkit {
+         return server.createBossBar(title, color, style, flags);
+     }
+ 
++    public static boolean isHopperEnabled() {
++        return server.isHopperEnabled();
++    }
++
++    public static void setHopperEnabled(boolean enabled) {
++        server.setHopperEnabled(enabled);
++    }
++
+     /**
+      * @see UnsafeValues
+      * @return the unsafe values instance
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 2a9c860..f04692a 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -926,6 +926,10 @@ public interface Server extends PluginMessageRecipient {
+      */
+     BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag ...flags);
+ 
++    boolean isHopperEnabled();
++
++    void setHopperEnabled(boolean enabled);
++
+     /**
+      * @see UnsafeValues
+      * @return the unsafe values instance
+-- 
+2.9.3
+
