@@ -1,14 +1,14 @@
-From f531d5a814d4221a578bda0c84b11387c25eb007 Mon Sep 17 00:00:00 2001
+From f1290d5133bd80046f2c065abe945caa951681bc Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
 Subject: [PATCH 1/9] POM Changes
 
 ---
- pom.xml | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+ pom.xml | 31 +++++++++++++++++++++----------
+ 1 file changed, 21 insertions(+), 10 deletions(-)
 
 diff --git a/pom.xml b/pom.xml
-index 6d019d1..76994b7 100644
+index 6d019d1..c3c4a87 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@
@@ -57,6 +57,34 @@ index 6d019d1..76994b7 100644
                              <descriptionProperty>spigot.desc</descriptionProperty>
                          </configuration>
                          <phase>initialize</phase>
+@@ -124,6 +123,18 @@
+                             <goal>describe</goal>
+                         </goals>
+                     </execution>
++                    <execution>
++                        <id>ex-cweepahcraft</id>
++                        <configuration>
++                            <format>-%s</format>
++                            <scmDirectory>../</scmDirectory>
++                            <descriptionProperty>cweepahcraft.desc</descriptionProperty>
++                        </configuration>
++                        <phase>initialize</phase>
++                        <goals>
++                            <goal>describe</goal>
++                        </goals>
++                    </execution>
+                 </executions>
+             </plugin>  
+             <plugin>
+@@ -135,7 +146,7 @@
+                         <manifestEntries>
+                             <Main-Class>org.bukkit.craftbukkit.Main</Main-Class>
+                             <Implementation-Title>CraftBukkit</Implementation-Title>
+-                            <Implementation-Version>${spigot.desc}${craftbukkit.desc}</Implementation-Version>
++                            <Implementation-Version>${spigot.desc}${craftbukkit.desc}${cweepahcraft.desc}</Implementation-Version>
+                             <Implementation-Vendor>${maven.build.timestamp}</Implementation-Vendor>
+                             <Specification-Title>Bukkit</Specification-Title>
+                             <Specification-Version>${api.version}</Specification-Version>
 -- 
 2.9.3
 

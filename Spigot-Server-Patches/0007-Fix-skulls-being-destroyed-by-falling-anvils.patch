@@ -1,4 +1,4 @@
-From ac958ab1c8752378c42a1c8c0e7e002b6fe9adca Mon Sep 17 00:00:00 2001
+From 9e9e8ce28f1b936fc5a4c1e1863d5ee9bfe1614d Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:57:27 -0600
 Subject: [PATCH 7/9] Fix skulls being destroyed by falling anvils.
