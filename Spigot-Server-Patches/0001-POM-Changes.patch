@@ -1,14 +1,14 @@
-From f1290d5133bd80046f2c065abe945caa951681bc Mon Sep 17 00:00:00 2001
+From f315880d18a5df6bacbd61bd359e165bd5021db1 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
 Subject: [PATCH 1/9] POM Changes
 
 ---
- pom.xml | 31 +++++++++++++++++++++----------
- 1 file changed, 21 insertions(+), 10 deletions(-)
+ pom.xml | 33 ++++++++++++++++++++++-----------
+ 1 file changed, 22 insertions(+), 11 deletions(-)
 
 diff --git a/pom.xml b/pom.xml
-index 6d019d1..c3c4a87 100644
+index 6d019d1..584ad1e 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@
@@ -48,11 +48,13 @@ index 6d019d1..c3c4a87 100644
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -104,7 +103,7 @@
+@@ -103,8 +102,8 @@
+                     <execution>
                          <id>ex-spigot</id>
                          <configuration>
-                             <format>git-Spigot-%s</format>
+-                            <format>git-Spigot-%s</format>
 -                            <scmDirectory>../</scmDirectory>
++                            <format>git-CweepahCraft-%s</format>
 +                            <scmDirectory>../../Spigot</scmDirectory>
                              <descriptionProperty>spigot.desc</descriptionProperty>
                          </configuration>

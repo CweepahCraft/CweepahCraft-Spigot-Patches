@@ -1,4 +1,4 @@
-From d18548c5754dcfae80bb4f885e1364fc74b60631 Mon Sep 17 00:00:00 2001
+From 8f711a84005dd7140145c6e3f95545f08e733f1a Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:58:19 -0600
 Subject: [PATCH 8/9] Rollback MySQL connector version.
@@ -8,7 +8,7 @@ Subject: [PATCH 8/9] Rollback MySQL connector version.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/pom.xml b/pom.xml
-index c3c4a87..8d1c82c 100644
+index 584ad1e..6d299b0 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -60,7 +60,7 @@
