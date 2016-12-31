@@ -47,5 +47,8 @@ cd ../CweepahCraft-Server/
 git fetch -a
 git reset --hard origin/master
 git am ../Spigot-Server-Patches/*.patch
+cd ../../CraftBukkit/ 
+git checkout master
+cd ../CweepahCraft/CweepahCraft-Server/
 mvn clean install
 cp ./target/cweepahcraft*.jar ../
