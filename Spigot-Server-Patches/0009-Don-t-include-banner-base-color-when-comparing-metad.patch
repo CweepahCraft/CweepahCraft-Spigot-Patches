@@ -1,7 +1,8 @@
-From b07917fdd36484f0ca9cad98f50021d6d9b50c88 Mon Sep 17 00:00:00 2001
+From 64e23208590fc047600e5c2e92ef98419c1488ad Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 19:00:26 -0600
-Subject: [PATCH 9/9] Don't include banner base color when comparing metadata.
+Subject: [PATCH 09/10] Don't include banner base color when comparing
+ metadata.
 
 1.11 introduced base colors being stored by item damage value.
 ---
