@@ -1,0 +1,27 @@
+From 07eaf23b11bffa96cdda3baa748727f58a1127e5 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Mon, 23 Jan 2017 18:00:17 -0600
+Subject: [PATCH 11/11] Fix brewing stands not accepting new bottles after
+ having items previously removed from the bottom slots by a hopper.
+
+https://bugs.mojang.com/browse/MC-111753
+---
+ src/main/java/net/minecraft/server/TileEntityBrewingStand.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/net/minecraft/server/TileEntityBrewingStand.java b/src/main/java/net/minecraft/server/TileEntityBrewingStand.java
+index ff36397..de93b79 100644
+--- a/src/main/java/net/minecraft/server/TileEntityBrewingStand.java
++++ b/src/main/java/net/minecraft/server/TileEntityBrewingStand.java
+@@ -286,7 +286,7 @@ public class TileEntityBrewingStand extends TileEntityContainer implements ITick
+         } else {
+             Item item = itemstack.getItem();
+ 
+-            return i == 4 ? item == Items.BLAZE_POWDER : (item == Items.POTION || item == Items.SPLASH_POTION || item == Items.LINGERING_POTION || item == Items.GLASS_BOTTLE) && this.getItem(i) == ItemStack.a;
++            return i == 4 ? item == Items.BLAZE_POWDER : (item == Items.POTION || item == Items.SPLASH_POTION || item == Items.LINGERING_POTION || item == Items.GLASS_BOTTLE) && this.getItem(i).isEmpty();
+         }
+     }
+ 
+-- 
+2.9.3
+
