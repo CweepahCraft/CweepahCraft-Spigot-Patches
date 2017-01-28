@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+rm -f cweepahcraft-*.jar
+
 cd ../Bukkit/
 git fetch -a
 git checkout master
@@ -51,4 +53,6 @@ cd ../../CraftBukkit/
 git checkout master
 cd ../CweepahCraft/CweepahCraft-Server/
 mvn clean install
-cp ./target/cweepahcraft*.jar ../
+cp ./target/cweepahcraft-*.jar ../
+cd ../
+rename -v 's/.*(cweepahcraft-[0-9,\.]+).*(jar)/$1.$2/' cweepahcraft-*.jar
