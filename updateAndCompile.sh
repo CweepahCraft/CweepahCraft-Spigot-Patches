@@ -3,7 +3,10 @@ set -e
 
 rm -f cweepahcraft-*.jar
 
-cd ../Bukkit/
+cd ../
+root=`pwd`
+
+cd "$root/Bukkit/"
 git fetch -a
 git checkout master
 git reset --hard origin/master
@@ -11,7 +14,7 @@ git checkout spigot
 git reset --hard origin/master
 mvn clean install
 
-cd ../CraftBukkit/
+cd "$root/CraftBukkit/"
 git fetch -a
 git checkout master
 git reset --hard origin/master
@@ -22,36 +25,44 @@ git add .
 git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
 mvn clean install
 
-cd ../Spigot/
+cd "$root/Spigot/"
 git checkout master
 git fetch -a
 git reset --hard origin/master
 ./upstreamMerge.sh || true
 ./applyPatches.sh
 
-cd ../CweepahCraft/Spigot-API/
-git fetch -a
-git reset --hard origin/master
+cd "$root/Spigot/Spigot-API/"
 mvn clean install
 
-cd ../Spigot-Server/
-git fetch -a
-git reset --hard origin/master
+cd "$root/Spigot/Spigot-Server/"
 mvn clean install
 
-cd ../CweepahCraft-API/
-git fetch -a
+if [ ! -d "$root/CweepahCraft/CweepahCraft-API/" ]; then
+	cp -r "$root/Spigot/Spigot-API" "$root/CweepahCraft/"
+	mv "$root/CweepahCraft/Spigot-API" "$root/CweepahCraft/CweepahCraft-API"
+	cd "$root/CweepahCraft/CweepahCraft-API/"
+	git remote set-url origin ../../Spigot/Spigot-API/
+fi
+
+cd "$root/CweepahCraft/CweepahCraft-API/"
+git fetch -a origin
 git reset --hard origin/master
-git am ../Spigot-API-Patches/*.patch
+git am -3 ../Spigot-API-Patches/*.patch
 mvn clean install
 
-cd ../CweepahCraft-Server/
-git fetch -a
-git reset --hard origin/master
-git am ../Spigot-Server-Patches/*.patch
-cd ../../CraftBukkit/ 
-git checkout master
-cd ../CweepahCraft/CweepahCraft-Server/
+if [ ! -d "$root/CweepahCraft/CweepahCraft-Server/" ]; then
+	cp -r "$root/Spigot/Spigot-Server" "$root/CweepahCraft/"
+	mv "$root/CweepahCraft/Spigot-Server" "$root/CweepahCraft/CweepahCraft-Server"
+	cd "$root/CweepahCraft/CweepahCraft-Server/"
+	git remote set-url upstream ../../Spigot/Spigot-Server/
+fi
+
+cd "$root/CweepahCraft/CweepahCraft-Server/"
+git fetch -a upstream
+git reset --hard upstream/master
+git am -3 ../Spigot-Server-Patches/*.patch
+cd "$root/CweepahCraft/CweepahCraft-Server/"
 mvn clean install
 cp ./target/cweepahcraft-*.jar ../
 cd ../
