@@ -8,17 +8,17 @@ root=`pwd`
 
 cd "$root/Bukkit/"
 git fetch -a
-git checkout master
+git checkout -f master
 git reset --hard origin/master
-git checkout spigot
+git checkout -f spigot
 git reset --hard origin/master
 mvn clean install
 
 cd "$root/CraftBukkit/"
 git fetch -a
-git checkout master
+git checkout -f master
 git reset --hard origin/master
-git checkout patched
+git checkout -f patched
 git reset --hard origin/master
 ./applyPatches.sh ../work/decompile-22de4839/
 git add .
@@ -26,7 +26,7 @@ git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
 mvn clean install
 
 cd "$root/Spigot/"
-git checkout master
+git checkout -f master
 git fetch -a
 git reset --hard origin/master
 ./upstreamMerge.sh || true
