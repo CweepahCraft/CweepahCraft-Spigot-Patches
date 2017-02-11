@@ -1,14 +1,14 @@
-From 9cdafc77a2a600a4695e4e5de6a16145f23b25ef Mon Sep 17 00:00:00 2001
+From 0a777e7556383c631df262fa2156c5872c08ace3 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
-Subject: [PATCH 01/10] POM Changes
+Subject: [PATCH 01/11] POM Changes
 
 ---
  pom.xml | 33 ++++++++++++++++++++++-----------
  1 file changed, 22 insertions(+), 11 deletions(-)
 
 diff --git a/pom.xml b/pom.xml
-index 6d019d1..584ad1e 100644
+index 41ba4dc..31c7dce 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@
@@ -76,7 +76,7 @@ index 6d019d1..584ad1e 100644
 +                        </goals>
 +                    </execution>
                  </executions>
-             </plugin>  
+             </plugin>
              <plugin>
 @@ -135,7 +146,7 @@
                          <manifestEntries>

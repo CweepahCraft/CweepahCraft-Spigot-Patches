@@ -1,7 +1,7 @@
-From 969175cc388e39dee9760c1add31408146bed4ea Mon Sep 17 00:00:00 2001
+From 7e73fd5714420b46598cb7085c1bc07eb4ce7168 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 7 Jan 2017 14:19:08 -0600
-Subject: [PATCH 10/10] Use SecondaryWorldServer to ensure DimensionData in
+Subject: [PATCH 10/11] Use SecondaryWorldServer to ensure DimensionData in
  level.dat is saved.
 
 ---

@@ -1,14 +1,14 @@
-From bfc691ea1fff4691389139f0e95b94d0f1cfa465 Mon Sep 17 00:00:00 2001
+From dd6f9c616fa4b0838908c40f28a90c5e89e8c551 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:50:33 -0600
-Subject: [PATCH 04/10] Prepend username to logged chat messages.
+Subject: [PATCH 04/11] Prepend username to logged chat messages.
 
 ---
  src/main/java/net/minecraft/server/PlayerConnection.java | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 027baa6..a558b0a 100644
+index dc630c5..dee6120 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -1279,7 +1279,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {

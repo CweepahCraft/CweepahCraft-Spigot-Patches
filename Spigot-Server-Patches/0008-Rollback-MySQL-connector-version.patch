@@ -1,21 +1,21 @@
-From 35b66c851310880326b5bedde75035949cfbeb45 Mon Sep 17 00:00:00 2001
+From 905c5f038a12fb2f71cf320030bbe9bcdc49da1b Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:58:19 -0600
-Subject: [PATCH 08/10] Rollback MySQL connector version.
+Subject: [PATCH 08/11] Rollback MySQL connector version.
 
 ---
  pom.xml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/pom.xml b/pom.xml
-index 584ad1e..6d299b0 100644
+index 31c7dce..5027f81 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -60,7 +60,7 @@
          <dependency>
              <groupId>mysql</groupId>
              <artifactId>mysql-connector-java</artifactId>
--            <version>5.1.39</version>
+-            <version>5.1.40</version>
 +            <version>5.1.37</version>
              <scope>compile</scope>
          </dependency>

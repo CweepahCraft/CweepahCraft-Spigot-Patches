@@ -1,7 +1,7 @@
-From 34449223ce2280349afd5a8897032ad8e4233adc Mon Sep 17 00:00:00 2001
+From d6561c4c2a3f0c7e9b1f1d38af97f43d631588d5 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:48:49 -0600
-Subject: [PATCH 03/10] Implement hopper toggling API.
+Subject: [PATCH 03/11] Implement hopper toggling API.
 
 ---
  src/main/java/net/minecraft/server/TileEntityHopper.java |  3 ++-

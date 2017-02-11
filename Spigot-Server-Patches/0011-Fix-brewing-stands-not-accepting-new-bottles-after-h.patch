@@ -1,4 +1,4 @@
-From 07eaf23b11bffa96cdda3baa748727f58a1127e5 Mon Sep 17 00:00:00 2001
+From 53ee42059396e8446fbc9a255279fb4bd030eb32 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 23 Jan 2017 18:00:17 -0600
 Subject: [PATCH 11/11] Fix brewing stands not accepting new bottles after
