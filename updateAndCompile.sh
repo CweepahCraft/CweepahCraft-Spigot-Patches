@@ -29,7 +29,16 @@ cd "$root/Spigot/"
 git checkout -f master
 git fetch -a
 git reset --hard origin/master
-./upstreamMerge.sh || true
+
+cd "$root/Spigot/Bukkit/"
+git fetch -a
+git reset --hard origin/master
+
+cd "$root/Spigot/CraftBukkit/"
+git fetch -a
+git reset --hard origin/patched
+
+cd "$root/Spigot/"
 ./applyPatches.sh
 
 cd "$root/Spigot/Spigot-API/"
