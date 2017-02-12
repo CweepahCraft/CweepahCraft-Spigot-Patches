@@ -1,0 +1,46 @@
+From 9b42dd12d667971256f81f5ced2aded6f8bb0125 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sat, 7 Jan 2017 14:19:08 -0600
+Subject: [PATCH 10/11] Save level.dat in plugin-created worlds.
+
+---
+ src/main/java/net/minecraft/server/WorldServer.java | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
+index 391a09c..ede8973 100644
+--- a/src/main/java/net/minecraft/server/WorldServer.java
++++ b/src/main/java/net/minecraft/server/WorldServer.java
+@@ -1034,15 +1034,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+         for (int j = 0; j < i; ++j) {
+             WorldServer worldserver = aworldserver[j];
+ 
+-            if (worldserver instanceof SecondaryWorldServer) {
+-                ((SecondaryWorldServer) worldserver).c();
++            if (worldserver != null) {
++                worldserver.saveLevelData();
+             }
+         }
+ 
+         // CraftBukkit start - Save secondary data for nether/end
+-        if (this instanceof SecondaryWorldServer) {
+-            ((SecondaryWorldServer) this).c();
+-        }
++        saveLevelData();
+         // CraftBukkit end
+ 
+         this.worldData.a(this.getWorldBorder().getSize());
+@@ -1377,6 +1375,10 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+         return this.getChunkProviderServer();
+     }
+ 
++    private void saveLevelData() {
++        this.worldProvider.r();
++    }
++
+     static class BlockActionDataList extends ArrayList<BlockActionData> {
+ 
+         private BlockActionDataList() {}
+-- 
+2.9.3.windows.1
+

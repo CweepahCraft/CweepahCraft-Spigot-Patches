@@ -1,4 +1,4 @@
-From 0a777e7556383c631df262fa2156c5872c08ace3 Mon Sep 17 00:00:00 2001
+From 3421d48c8d3c5064313411c6642199bb36340d78 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
 Subject: [PATCH 01/11] POM Changes
@@ -88,5 +88,5 @@ index 41ba4dc..31c7dce 100644
                              <Specification-Title>Bukkit</Specification-Title>
                              <Specification-Version>${api.version}</Specification-Version>
 -- 
-2.9.3
+2.9.3.windows.1
 

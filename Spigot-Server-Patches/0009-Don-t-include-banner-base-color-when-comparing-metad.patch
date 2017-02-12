@@ -1,4 +1,4 @@
-From 68d9550728453fe465054bd68daa1588628add41 Mon Sep 17 00:00:00 2001
+From 1473e3dcecf654254ef1cda1b69a87baf5938c1a Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 19:00:26 -0600
 Subject: [PATCH 09/11] Don't include banner base color when comparing
@@ -38,5 +38,5 @@ index 80f9ffa..21356f7 100644
      
      
 -- 
-2.9.3
+2.9.3.windows.1
 
