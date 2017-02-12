@@ -62,6 +62,8 @@ cd "$root/CweepahCraft/CweepahCraft-Server/"
 git fetch -a upstream
 git reset --hard upstream/master
 git am -3 ../Spigot-Server-Patches/*.patch
+cd "$root/CraftBukkit/"
+git checkout -f master
 cd "$root/CweepahCraft/CweepahCraft-Server/"
 mvn clean install
 cp ./target/cweepahcraft-*.jar ../
