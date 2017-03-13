@@ -1,7 +1,7 @@
-From ec62987320bcf635e2519b20e40f09098e808773 Mon Sep 17 00:00:00 2001
+From 08afc122cb64516f79e638c0308df9f1a79b2991 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:52:30 -0600
-Subject: [PATCH 05/10] Fix piston dupe glitch.
+Subject: [PATCH 05/11] Fix piston dupe glitch.
 
 ---
  src/main/java/net/minecraft/server/BlockPiston.java | 10 +---------

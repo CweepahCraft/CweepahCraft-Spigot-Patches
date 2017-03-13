@@ -1,0 +1,44 @@
+From aac6f898972132c9f242b08773b3c428bc9446bb Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Mon, 13 Mar 2017 15:52:08 -0500
+Subject: [PATCH 3/3] Add time sync API
+
+---
+ src/main/java/org/bukkit/World.java | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index e9b1b0a..6627aaf 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -529,6 +529,27 @@ public interface World extends PluginMessageRecipient, Metadatable {
+     public void setFullTime(long time);
+ 
+     /**
++     * Ensure this world's time is synchronized with the specified world's time. Set to null to disable.
++     *
++     * @param timeSync Whether or not this world's time should be in sync with the main world.
++     */
++    public void setTimeSync(World timeSync);
++
++    /**
++     * Returns the world that this world's time is synchronized with. Null if none.
++     *
++     * @return World this world's time is synchronized with.
++     */
++    public World getTimeSync();
++
++    /**
++     * Returns whether or not this world's time is synchronized with another's.
++     *
++     * @return Whether or not this world's time is synchronized with another's.
++     */
++    public boolean hasTimeSync();
++
++    /**
+      * Returns whether the world has an ongoing storm.
+      *
+      * @return Whether there is an ongoing storm
+-- 
+1.9.1
+

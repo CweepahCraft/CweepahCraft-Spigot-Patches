@@ -1,7 +1,7 @@
-From 27730fb6cf9a25a41379ccff554c517d3bd4ba55 Mon Sep 17 00:00:00 2001
+From f05c00a917239f994292b26614fce8f1683de676 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:31:46 -0600
-Subject: [PATCH 2/2] Hopper toggling API
+Subject: [PATCH 2/3] Hopper toggling API
 
 ---
  src/main/java/org/bukkit/Bukkit.java | 8 ++++++++
@@ -43,5 +43,5 @@ index 120dba2..29f67bd 100644
       * Gets an entity on the server by its UUID
       *
 -- 
-2.9.3.windows.1
+1.9.1
 

@@ -1,7 +1,7 @@
-From 15592f8ec3c721b3d52bb51288fb116fe8312425 Mon Sep 17 00:00:00 2001
+From 203346aa8b170adb0e0999ae021f3c1f55abc690 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 7 Jan 2017 14:19:08 -0600
-Subject: [PATCH 10/10] Save level.dat in plugin-created worlds.
+Subject: [PATCH 10/11] Save level.dat in plugin-created worlds.
 
 ---
  src/main/java/net/minecraft/server/WorldServer.java | 12 +++++++-----

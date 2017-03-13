@@ -1,0 +1,59 @@
+From b9d4a5cfe08ebf844214f06952c1fd3fcbc3eed4 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Mon, 13 Mar 2017 15:51:38 -0500
+Subject: [PATCH 11/11] Implement time sync API
+
+---
+ src/main/java/net/minecraft/server/WorldServer.java  |  8 +++++++-
+ src/main/java/org/bukkit/craftbukkit/CraftWorld.java | 16 ++++++++++++++++
+ 2 files changed, 23 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
+index ede8973..72c2cdc 100644
+--- a/src/main/java/net/minecraft/server/WorldServer.java
++++ b/src/main/java/net/minecraft/server/WorldServer.java
+@@ -242,7 +242,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+ 
+         this.worldData.setTime(this.worldData.getTime() + 1L);
+         if (this.getGameRules().getBoolean("doDaylightCycle")) {
+-            this.worldData.setDayTime(this.worldData.getDayTime() + 1L);
++            long newTime;
++            if (this.getWorld().hasTimeSync()) {
++                newTime = this.getWorld().getTimeSync().getTime();
++            } else {
++                newTime = this.worldData.getDayTime() + 1L;
++            }
++            this.worldData.setDayTime(newTime);
+         }
+ 
+         timings.doChunkUnload.stopTiming(); // Spigot
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
+index 822d73b..1365a8e 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
+@@ -516,6 +516,22 @@ public class CraftWorld implements World {
+         }
+     }
+ 
++    // CweepahCraft start
++    private World timeSync;
++
++    public void setTimeSync(World timeSync) {
++        this.timeSync = timeSync;
++    }
++
++    public World getTimeSync() {
++        return this.timeSync;
++    }
++
++    public boolean hasTimeSync() {
++        return this.timeSync != null;
++    }
++    // CweepahCraft end
++
+     public boolean createExplosion(double x, double y, double z, float power) {
+         return createExplosion(x, y, z, power, false, true);
+     }
+-- 
+1.9.1
+
