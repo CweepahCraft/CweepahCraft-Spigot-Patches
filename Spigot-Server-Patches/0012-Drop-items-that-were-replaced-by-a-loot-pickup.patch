@@ -1,0 +1,26 @@
+From c2e2cffe42edf4de02748dc806f10fa4dd305ef9 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sat, 8 Apr 2017 14:12:48 -0500
+Subject: [PATCH 12/13] Drop items that were replaced by a loot pickup
+
+---
+ src/main/java/net/minecraft/server/EntityInsentient.java | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/main/java/net/minecraft/server/EntityInsentient.java b/src/main/java/net/minecraft/server/EntityInsentient.java
+index 7430fe4..8c35b22 100644
+--- a/src/main/java/net/minecraft/server/EntityInsentient.java
++++ b/src/main/java/net/minecraft/server/EntityInsentient.java
+@@ -573,7 +573,9 @@ public abstract class EntityInsentient extends EntityLiving {
+             }
+ 
+             if (!itemstack1.isEmpty() && (double) (this.random.nextFloat() - 0.1F) < d0) {
++                this.forceDrops = true; // CraftBukkit
+                 this.a(itemstack1, 0.0F);
++                this.forceDrops = false; // CraftBukkit
+             }
+ 
+             if (itemstack.getItem() == Items.DIAMOND && entityitem.n() != null) {
+-- 
+1.9.1
+
