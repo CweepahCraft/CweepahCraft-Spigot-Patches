@@ -1,7 +1,7 @@
-From 4f04e6b819cba53e44043e80b28726630dee1ccc Mon Sep 17 00:00:00 2001
+From 8d326469b08ac5fe85a71e1cc24ec6d20909a67a Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:52:08 -0500
-Subject: [PATCH 3/3] Add time sync API
+Subject: [PATCH 3/4] Add time sync API
 
 ---
  src/main/java/org/bukkit/World.java | 21 +++++++++++++++++++++

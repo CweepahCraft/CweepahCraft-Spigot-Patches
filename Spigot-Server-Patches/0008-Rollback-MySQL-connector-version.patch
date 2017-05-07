@@ -1,7 +1,7 @@
-From 37fcf6395bf90294935098cdae23c2fa075a8bf7 Mon Sep 17 00:00:00 2001
+From 9e583c94000ca5d205b2c67dee3860e6c52d4374 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:58:19 -0600
-Subject: [PATCH 08/11] Rollback MySQL connector version.
+Subject: [PATCH 08/12] Rollback MySQL connector version.
 
 ---
  pom.xml | 2 +-

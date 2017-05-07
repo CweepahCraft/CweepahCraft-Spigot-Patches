@@ -1,0 +1,40 @@
+From ec6fb1395eff7789e3a073bba0dae4cbb75c63ff Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sun, 7 May 2017 10:29:46 -0500
+Subject: [PATCH 12/12] Implement action bar support for title API
+
+---
+ src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+index 0c82954..7034541 100644
+--- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
++++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+@@ -1379,6 +1379,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+ 
+     @Override
+     public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
++        sendTitle(title, subtitle, null, fadeIn, stay, fadeOut);
++    }
++
++    @Override
++    public void sendTitle(String title, String subtitle, String actionBar, int fadeIn, int stay, int fadeOut) {
+         if (title != null) {
+             PacketPlayOutTitle packetTitle = new PacketPlayOutTitle(EnumTitleAction.TITLE, CraftChatMessage.fromString(title)[0]);
+             getHandle().playerConnection.sendPacket(packetTitle);
+@@ -1389,6 +1394,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+             getHandle().playerConnection.sendPacket(packetSubtitle);
+         }
+ 
++        if (actionBar != null) {
++            PacketPlayOutTitle packetActionBar = new PacketPlayOutTitle(EnumTitleAction.ACTIONBAR, CraftChatMessage.fromString(actionBar)[0]);
++            getHandle().playerConnection.sendPacket(packetActionBar);
++        }
++
+         PacketPlayOutTitle times = new PacketPlayOutTitle(fadeIn, stay, fadeOut);
+         getHandle().playerConnection.sendPacket(times);
+     }
+-- 
+1.9.1
+

@@ -1,0 +1,40 @@
+From 5ea1fcf45cff1f16a99e792a75e54a118a7ed37e Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sun, 7 May 2017 10:30:01 -0500
+Subject: [PATCH 4/4] Add action bar support for title API
+
+---
+ src/main/java/org/bukkit/entity/Player.java | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 0794688..f248b45 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1188,6 +1188,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+     public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
+ 
+     /**
++     * Sends a title, subtitle, and action bar message to the player. If any of these
++     * values are null, they will not be sent and the display will remain
++     * unchanged. If they are empty strings, the display will be updated as
++     * such. If the strings contain a new line, only the first line will be
++     * sent. All timings values may take a value of -1 to indicate that they
++     * will use the last value sent (or the defaults if no title has been
++     * displayed).
++     *
++     * @param title Title text
++     * @param subtitle Subtitle text
++     * @param fadeIn time in ticks for titles to fade in. Defaults to 10.
++     * @param stay time in ticks for titles to stay. Defaults to 70.
++     * @param fadeOut time in ticks for titles to fade out. Defaults to 20.
++     */
++    public void sendTitle(String title, String subtitle, String actionBar, int fadeIn, int stay, int fadeOut);
++
++    /**
+      * Resets the title displayed to the player. This will clear the displayed
+      * title / subtitle and reset timings to their default values.
+      */
+-- 
+1.9.1
+

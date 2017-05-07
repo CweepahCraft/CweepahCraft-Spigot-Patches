@@ -1,7 +1,7 @@
-From b36017d46d9a0f8bc4fd4c7a2036007196c5c67c Mon Sep 17 00:00:00 2001
+From 7d37aea0e53d3bacf2e33eeb469e28bad8cc6acb Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:48:49 -0600
-Subject: [PATCH 03/11] Implement hopper toggling API.
+Subject: [PATCH 03/12] Implement hopper toggling API.
 
 ---
  src/main/java/net/minecraft/server/TileEntityHopper.java |  3 ++-
@@ -30,7 +30,7 @@ index 6acce15..8f99d57 100644
              this.g = this.world.getTime();
              if (!this.J()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 3122607..3f78a6e 100644
+index b7e1f18..5977ac4 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -173,6 +173,7 @@ public final class CraftServer implements Server {
@@ -41,7 +41,7 @@ index 3122607..3f78a6e 100644
  
      private final class BooleanWrapper {
          private boolean value = true;
-@@ -1719,6 +1720,16 @@ public final class CraftServer implements Server {
+@@ -1723,6 +1724,16 @@ public final class CraftServer implements Server {
      }
  
      @Override
