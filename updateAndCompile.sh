@@ -20,7 +20,7 @@ git checkout -f master
 git reset --hard origin/master
 git checkout -f patched
 git reset --hard origin/master
-./applyPatches.sh ../work/decompile-22de4839/
+./applyPatches.sh ../work/decompile-a1cd2fc9
 git add .
 git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
 mvn clean install

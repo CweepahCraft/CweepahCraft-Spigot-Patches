@@ -1,17 +1,17 @@
-From 2275a5718f570d32f49a71b10e01702567cca5c9 Mon Sep 17 00:00:00 2001
+From c543e622691b29200f2be5d2830e022b101e3cda Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:52:30 -0600
-Subject: [PATCH 05/12] Fix piston dupe glitch.
+Subject: [PATCH 05/11] Fix piston dupe glitch.
 
 ---
  src/main/java/net/minecraft/server/BlockPiston.java | 10 +---------
  1 file changed, 1 insertion(+), 9 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/BlockPiston.java b/src/main/java/net/minecraft/server/BlockPiston.java
-index 6a4c806..c647b46 100644
+index cc5c24e..9636193 100644
 --- a/src/main/java/net/minecraft/server/BlockPiston.java
 +++ b/src/main/java/net/minecraft/server/BlockPiston.java
-@@ -286,14 +286,6 @@ public class BlockPiston extends BlockDirectional {
+@@ -289,14 +289,6 @@ public class BlockPiston extends BlockDirectional {
              return false;
          } else {
              List list = pistonextendschecker.getMovedBlocks();
@@ -26,7 +26,7 @@ index 6a4c806..c647b46 100644
              List list1 = pistonextendschecker.getBrokenBlocks();
              int j = list.size() + list1.size();
              IBlockData[] aiblockdata = new IBlockData[j];
-@@ -360,7 +352,7 @@ public class BlockPiston extends BlockDirectional {
+@@ -363,7 +355,7 @@ public class BlockPiston extends BlockDirectional {
                  world.setTypeAndData(blockposition2, Blocks.AIR.getBlockData(), 2);
                  blockposition2 = blockposition2.shift(enumdirection1);
                  world.setTypeAndData(blockposition2, Blocks.PISTON_EXTENSION.getBlockData().set(BlockPiston.FACING, enumdirection), 4);

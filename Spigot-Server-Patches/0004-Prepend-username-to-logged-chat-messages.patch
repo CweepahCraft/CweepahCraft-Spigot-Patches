@@ -1,17 +1,17 @@
-From 8edcd9fdcc087764e4b34d2271191ac4bb215801 Mon Sep 17 00:00:00 2001
+From 75e3616b0b134dbfce22b10b09a0b1e035119c15 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:50:33 -0600
-Subject: [PATCH 04/12] Prepend username to logged chat messages.
+Subject: [PATCH 04/11] Prepend username to logged chat messages.
 
 ---
  src/main/java/net/minecraft/server/PlayerConnection.java | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 9897bad..82ae302 100644
+index 1dbdcfa..683fe5f 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
-@@ -1289,7 +1289,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1300,7 +1300,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
                          }
  
                          String message = String.format(queueEvent.getFormat(), queueEvent.getPlayer().getDisplayName(), queueEvent.getMessage());
@@ -20,7 +20,7 @@ index 9897bad..82ae302 100644
                          if (((LazyPlayerSet) queueEvent.getRecipients()).isLazy()) {
                              for (Object player : PlayerConnection.this.minecraftServer.getPlayerList().players) {
                                  ((EntityPlayer) player).sendMessage(CraftChatMessage.fromString(message));
-@@ -1319,7 +1319,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1330,7 +1330,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
                  }
  
                  s = String.format(event.getFormat(), event.getPlayer().getDisplayName(), event.getMessage());

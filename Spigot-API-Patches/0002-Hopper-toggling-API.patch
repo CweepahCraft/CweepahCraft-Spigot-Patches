@@ -1,4 +1,4 @@
-From f7c1b073df7c9cad638e4c279c70d4f91d67192a Mon Sep 17 00:00:00 2001
+From 94ff30a5d7993053170c4db8e7d064a6fdbedc7c Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:31:46 -0600
 Subject: [PATCH 2/4] Hopper toggling API
@@ -9,10 +9,10 @@ Subject: [PATCH 2/4] Hopper toggling API
  2 files changed, 12 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 5b6413b..6b39b6f 100644
+index ab3f6c0..85adb13 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1133,6 +1133,14 @@ public final class Bukkit {
+@@ -1116,6 +1116,14 @@ public final class Bukkit {
          return server.createBossBar(title, color, style, flags);
      }
  
@@ -28,10 +28,10 @@ index 5b6413b..6b39b6f 100644
       * Gets an entity on the server by its UUID
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 120dba2..29f67bd 100644
+index d3fdd63..0e12767 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -926,6 +926,10 @@ public interface Server extends PluginMessageRecipient {
+@@ -911,6 +911,10 @@ public interface Server extends PluginMessageRecipient {
       */
      BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag ...flags);
  

@@ -1,4 +1,4 @@
-From 5ea1fcf45cff1f16a99e792a75e54a118a7ed37e Mon Sep 17 00:00:00 2001
+From a731a6cf8a56793e385e55c6ed66c22dae3d0098 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:30:01 -0500
 Subject: [PATCH 4/4] Add action bar support for title API
@@ -8,10 +8,10 @@ Subject: [PATCH 4/4] Add action bar support for title API
  1 file changed, 17 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 0794688..f248b45 100644
+index b57c81c..6e25153 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1188,6 +1188,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+@@ -1190,6 +1190,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
  
      /**

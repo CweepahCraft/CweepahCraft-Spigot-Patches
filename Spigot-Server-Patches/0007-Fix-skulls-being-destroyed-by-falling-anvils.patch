@@ -1,14 +1,14 @@
-From 098074b1385e4ad7ad0bb997d34f1d0e8f1f4b0f Mon Sep 17 00:00:00 2001
+From 645aa558d30531ad2b0cbe6782ed376a332fa1ca Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:57:27 -0600
-Subject: [PATCH 07/12] Fix skulls being destroyed by falling anvils.
+Subject: [PATCH 07/11] Fix skulls being destroyed by falling anvils.
 
 ---
  src/main/java/net/minecraft/server/BlockSkull.java | 5 +++++
  1 file changed, 5 insertions(+)
 
 diff --git a/src/main/java/net/minecraft/server/BlockSkull.java b/src/main/java/net/minecraft/server/BlockSkull.java
-index f091392..957a243 100644
+index 0ae0885..e4fce7d 100644
 --- a/src/main/java/net/minecraft/server/BlockSkull.java
 +++ b/src/main/java/net/minecraft/server/BlockSkull.java
 @@ -144,6 +144,11 @@ public class BlockSkull extends BlockTileEntity {
