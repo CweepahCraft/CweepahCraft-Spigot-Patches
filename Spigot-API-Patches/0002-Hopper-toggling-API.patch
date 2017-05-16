@@ -1,7 +1,7 @@
-From 94ff30a5d7993053170c4db8e7d064a6fdbedc7c Mon Sep 17 00:00:00 2001
+From 5a35c6f3b280a3cb3afc99c366c922ae15f1d118 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:31:46 -0600
-Subject: [PATCH 2/4] Hopper toggling API
+Subject: [PATCH 2/5] Hopper toggling API
 
 ---
  src/main/java/org/bukkit/Bukkit.java | 8 ++++++++
@@ -9,7 +9,7 @@ Subject: [PATCH 2/4] Hopper toggling API
  2 files changed, 12 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index ab3f6c0..85adb13 100644
+index 5649aaf..9538ad8 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -1116,6 +1116,14 @@ public final class Bukkit {
@@ -28,7 +28,7 @@ index ab3f6c0..85adb13 100644
       * Gets an entity on the server by its UUID
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index d3fdd63..0e12767 100644
+index 7a08fd1..5a9e10e 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -911,6 +911,10 @@ public interface Server extends PluginMessageRecipient {

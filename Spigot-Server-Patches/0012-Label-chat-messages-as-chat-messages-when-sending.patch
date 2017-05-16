@@ -1,0 +1,86 @@
+From 3e7cc7427cc98c0cecc7b6354117a29f0ab5b3db Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Mon, 15 May 2017 19:25:21 -0500
+Subject: [PATCH 12/12] Label chat messages as chat messages when sending
+
+Also implements API method for players to be sent this type of chat message.
+---
+ src/main/java/net/minecraft/server/EntityPlayer.java         | 10 ++++++++++
+ src/main/java/net/minecraft/server/PlayerConnection.java     |  8 ++++----
+ src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java |  7 +++++++
+ 3 files changed, 21 insertions(+), 4 deletions(-)
+
+diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
+index 063da32..ce62689 100644
+--- a/src/main/java/net/minecraft/server/EntityPlayer.java
++++ b/src/main/java/net/minecraft/server/EntityPlayer.java
+@@ -1167,6 +1167,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
+         this.playerConnection.sendPacket(new PacketPlayOutChat(ichatbasecomponent));
+     }
+ 
++    public void sendChatMessage(IChatBaseComponent[] components) {
++        for (IChatBaseComponent component : components) {
++            this.sendChatMessage(component);
++        }
++    }
++
++    public void sendChatMessage(IChatBaseComponent component) {
++        this.playerConnection.sendPacket(new PacketPlayOutChat(component, ChatMessageType.CHAT));
++    }
++
+     public boolean a(int i, String s) {
+         /* CraftBukkit start
+         if ("seed".equals(s) && !this.server.aa()) {
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 683fe5f..8d9e26c 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -1303,11 +1303,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                         PlayerConnection.this.minecraftServer.console.sendMessage(queueEvent.getPlayer() + ": " + message);
+                         if (((LazyPlayerSet) queueEvent.getRecipients()).isLazy()) {
+                             for (Object player : PlayerConnection.this.minecraftServer.getPlayerList().players) {
+-                                ((EntityPlayer) player).sendMessage(CraftChatMessage.fromString(message));
++                                ((EntityPlayer) player).sendChatMessage(CraftChatMessage.fromString(message));
+                             }
+                         } else {
+                             for (Player player : queueEvent.getRecipients()) {
+-                                player.sendMessage(message);
++                                player.sendChatMessage(message);
+                             }
+                         }
+                         return null;
+@@ -1333,11 +1333,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 minecraftServer.console.sendMessage(event.getPlayer().getName() + ": " + s);
+                 if (((LazyPlayerSet) event.getRecipients()).isLazy()) {
+                     for (Object recipient : minecraftServer.getPlayerList().players) {
+-                        ((EntityPlayer) recipient).sendMessage(CraftChatMessage.fromString(s));
++                        ((EntityPlayer) recipient).sendChatMessage(CraftChatMessage.fromString(s));
+                     }
+                 } else {
+                     for (Player recipient : event.getRecipients()) {
+-                        recipient.sendMessage(s);
++                        recipient.sendChatMessage(s);
+                     }
+                 }
+             }
+diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+index c307215..e3b7600 100644
+--- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
++++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+@@ -1466,6 +1466,13 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+         return new CraftAdvancementProgress(craft, data, progress);
+     }
+ 
++    @Override
++    public void sendChatMessage(String message) {
++        if ( getHandle().playerConnection == null ) return;
++
++        getHandle().sendChatMessage(CraftChatMessage.fromString(message));
++    }
++
+     // Spigot start
+     private final Player.Spigot spigot = new Player.Spigot()
+     {
+-- 
+1.9.1
+

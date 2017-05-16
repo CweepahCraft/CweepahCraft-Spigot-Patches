@@ -1,7 +1,7 @@
-From 58d2b05487cb058df4563c01ac89eeca23e30594 Mon Sep 17 00:00:00 2001
+From 0e7f9018dc62904430d39eedb750767c8baea3a3 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:48:49 -0600
-Subject: [PATCH 03/11] Implement hopper toggling API.
+Subject: [PATCH 03/12] Implement hopper toggling API.
 
 ---
  src/main/java/net/minecraft/server/TileEntityHopper.java |  3 ++-
@@ -30,10 +30,10 @@ index e38411f..3b9221e 100644
              this.g = this.world.getTime();
              if (!this.J()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 8a0043d..28c15aa 100644
+index d2c2f83..d8cc9e8 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -172,6 +172,7 @@ public final class CraftServer implements Server {
+@@ -173,6 +173,7 @@ public final class CraftServer implements Server {
      private final UUID invalidUserUUID = UUID.nameUUIDFromBytes("InvalidUsername".getBytes(Charsets.UTF_8));
      private final List<CraftPlayer> playerView;
      public int reloadCount;
@@ -41,7 +41,7 @@ index 8a0043d..28c15aa 100644
  
      private final class BooleanWrapper {
          private boolean value = true;
-@@ -1701,6 +1702,16 @@ public final class CraftServer implements Server {
+@@ -1706,6 +1707,16 @@ public final class CraftServer implements Server {
      }
  
      @Override

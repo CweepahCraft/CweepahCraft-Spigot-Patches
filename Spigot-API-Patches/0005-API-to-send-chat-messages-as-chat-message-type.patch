@@ -1,0 +1,30 @@
+From ad144c4f724433ddffc989192e4f671d5bfd035a Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Mon, 15 May 2017 19:25:42 -0500
+Subject: [PATCH 5/5] API to send chat messages as chat message type
+
+---
+ src/main/java/org/bukkit/entity/Player.java | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 1957f6a..a477681 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1413,6 +1413,13 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+      */
+     public AdvancementProgress getAdvancementProgress(Advancement advancement);
+ 
++    /**
++     * Sends this sender a message deemed a chat message
++     *
++     * @param message Message to be displayed
++     */
++    public void sendChatMessage(String message);
++
+     // Spigot start
+     public class Spigot extends Entity.Spigot
+     {
+-- 
+1.9.1
+

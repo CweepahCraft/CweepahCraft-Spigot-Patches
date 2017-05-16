@@ -1,14 +1,14 @@
-From a731a6cf8a56793e385e55c6ed66c22dae3d0098 Mon Sep 17 00:00:00 2001
+From 0541e9edba86789e6fc141f43836de93736cd6a2 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:30:01 -0500
-Subject: [PATCH 4/4] Add action bar support for title API
+Subject: [PATCH 4/5] Add action bar support for title API
 
 ---
  src/main/java/org/bukkit/entity/Player.java | 17 +++++++++++++++++
  1 file changed, 17 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index b57c81c..6e25153 100644
+index 9764caa..1957f6a 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1190,6 +1190,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
