@@ -1,4 +1,4 @@
-From d1b94655c9bec6eefde09824b2904914b7ea4b00 Mon Sep 17 00:00:00 2001
+From 093237d6544cf97355c62d06662de3e2d3f33773 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 7 Jan 2017 14:19:08 -0600
 Subject: [PATCH 09/12] Save level.dat in plugin-created worlds.
@@ -8,7 +8,7 @@ Subject: [PATCH 09/12] Save level.dat in plugin-created worlds.
  1 file changed, 7 insertions(+), 5 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index d91de89..c48436f 100644
+index b924dad..b3f5c8b 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -1033,15 +1033,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {

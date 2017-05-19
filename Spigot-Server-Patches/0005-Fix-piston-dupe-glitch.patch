@@ -1,4 +1,4 @@
-From 2e004f3a309a95c0a61fb8dba7b8759c4016736c Mon Sep 17 00:00:00 2001
+From ca74c790ea3885f98f817d7e5d7a244ef7595123 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:52:30 -0600
 Subject: [PATCH 05/12] Fix piston dupe glitch.
@@ -8,7 +8,7 @@ Subject: [PATCH 05/12] Fix piston dupe glitch.
  1 file changed, 1 insertion(+), 9 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/BlockPiston.java b/src/main/java/net/minecraft/server/BlockPiston.java
-index cc5c24e..9636193 100644
+index b9e647e..53e1d42 100644
 --- a/src/main/java/net/minecraft/server/BlockPiston.java
 +++ b/src/main/java/net/minecraft/server/BlockPiston.java
 @@ -289,14 +289,6 @@ public class BlockPiston extends BlockDirectional {
@@ -20,7 +20,7 @@ index cc5c24e..9636193 100644
 -            for (int i = 0; i < list.size(); ++i) {
 -                BlockPosition blockposition1 = (BlockPosition) list.get(i);
 -
--                arraylist.add(world.getType(blockposition1).b((IBlockAccess) world, blockposition1));
+-                arraylist.add(world.getType(blockposition1).c(world, blockposition1));
 -            }
 -
              List list1 = pistonextendschecker.getBrokenBlocks();
