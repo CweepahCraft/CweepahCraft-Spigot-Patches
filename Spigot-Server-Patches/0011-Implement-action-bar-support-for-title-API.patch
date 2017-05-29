@@ -1,4 +1,4 @@
-From 3b62cbf872b9d6f421bb6fc02eb0e7dfc117f7d7 Mon Sep 17 00:00:00 2001
+From ee9ab038cd943c34647b11a8f645feacb7137e08 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:29:46 -0500
 Subject: [PATCH 11/12] Implement action bar support for title API
@@ -8,10 +8,10 @@ Subject: [PATCH 11/12] Implement action bar support for title API
  1 file changed, 10 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 39a6bc2..c307215 100644
+index c019e52..4b31b46 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1360,6 +1360,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1359,6 +1359,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
  
      @Override
      public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
@@ -23,7 +23,7 @@ index 39a6bc2..c307215 100644
          if (title != null) {
              PacketPlayOutTitle packetTitle = new PacketPlayOutTitle(EnumTitleAction.TITLE, CraftChatMessage.fromString(title)[0]);
              getHandle().playerConnection.sendPacket(packetTitle);
-@@ -1370,6 +1375,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1369,6 +1374,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
              getHandle().playerConnection.sendPacket(packetSubtitle);
          }
  

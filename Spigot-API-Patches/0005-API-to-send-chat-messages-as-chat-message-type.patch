@@ -1,4 +1,4 @@
-From fa5b7513a432819396125c4721313eac497c4b30 Mon Sep 17 00:00:00 2001
+From e4fa0e6b7d5b142ce7929ad7c7e0ff72ad0d451d Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:42 -0500
 Subject: [PATCH 5/5] API to send chat messages as chat message type
@@ -8,12 +8,12 @@ Subject: [PATCH 5/5] API to send chat messages as chat message type
  1 file changed, 7 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 1957f6a..a477681 100644
+index fc780f6..e5023e3 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1413,6 +1413,13 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+@@ -1432,6 +1432,13 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
       */
-     public AdvancementProgress getAdvancementProgress(Advancement advancement);
+     public String getLocale();
  
 +    /**
 +     * Sends this sender a message deemed a chat message
