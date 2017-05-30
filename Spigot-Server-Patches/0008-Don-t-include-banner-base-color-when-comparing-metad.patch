@@ -1,4 +1,4 @@
-From a7f31c843ec2eed4c5a63679775e2f20ff552244 Mon Sep 17 00:00:00 2001
+From 0ab952a316325d329525856aeed8aa3a3a7619e9 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 19:00:26 -0600
 Subject: [PATCH 08/12] Don't include banner base color when comparing
