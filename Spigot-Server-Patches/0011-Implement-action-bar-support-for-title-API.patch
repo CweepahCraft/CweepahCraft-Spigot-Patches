@@ -1,4 +1,4 @@
-From 507e11cfb8ce542d1d4077f49ba3e56dc6064f17 Mon Sep 17 00:00:00 2001
+From cb887fa9daf1662ea948398d094001855da29e67 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:29:46 -0500
 Subject: [PATCH 11/12] Implement action bar support for title API
@@ -8,7 +8,7 @@ Subject: [PATCH 11/12] Implement action bar support for title API
  1 file changed, 10 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index c019e52..4b31b46 100644
+index 001b604..a9b3d98 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 @@ -1359,6 +1359,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {

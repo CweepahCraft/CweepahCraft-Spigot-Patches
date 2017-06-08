@@ -1,4 +1,4 @@
-From 8243737f5d1ec66af8bc0c437251edf46580b93c Mon Sep 17 00:00:00 2001
+From 7ec0718091cfc2f861c61aa49a3a0be5bb9452bd Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:42 -0500
 Subject: [PATCH 5/5] API to send chat messages as chat message type

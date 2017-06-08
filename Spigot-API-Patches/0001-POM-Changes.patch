@@ -1,4 +1,4 @@
-From 4e6bb8ed8e693e72434de876b3f8b2299a7eca4c Mon Sep 17 00:00:00 2001
+From 364f690294e712b13f1a47ccdd8bcc773976f24c Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:29:42 -0600
 Subject: [PATCH 1/5] POM Changes
@@ -8,7 +8,7 @@ Subject: [PATCH 1/5] POM Changes
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/pom.xml b/pom.xml
-index df62fbd..1b60d23 100644
+index cad5589..9b7649f 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -9,14 +9,14 @@
@@ -19,7 +19,7 @@ index df62fbd..1b60d23 100644
 -    <artifactId>spigot-api</artifactId>
 +    <groupId>net.cweepahcraft</groupId>
 +    <artifactId>cweepahcraft-api</artifactId>
-     <version>1.12-pre6-SNAPSHOT</version>
+     <version>1.12-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Spigot-API</name>

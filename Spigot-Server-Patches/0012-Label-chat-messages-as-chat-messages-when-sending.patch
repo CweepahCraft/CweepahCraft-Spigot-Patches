@@ -1,4 +1,4 @@
-From 1c5d97ea45f7de8e3de786e610e9b33eff25e410 Mon Sep 17 00:00:00 2001
+From 0c3ee22658e1225c0867ae00352a064f11006d57 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:21 -0500
 Subject: [PATCH 12/12] Label chat messages as chat messages when sending
@@ -11,7 +11,7 @@ Also implements API method for players to be sent this type of chat message.
  3 files changed, 21 insertions(+), 4 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index e2369e7..fe29825 100644
+index f318b01..6c4f158 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -1167,6 +1167,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -32,7 +32,7 @@ index e2369e7..fe29825 100644
          /* CraftBukkit start
          if ("seed".equals(s) && !this.server.aa()) {
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index ff317eb..59d8d56 100644
+index 284b31b..f513c9e 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -1323,11 +1323,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
@@ -64,7 +64,7 @@ index ff317eb..59d8d56 100644
                  }
              }
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 4b31b46..d423fd2 100644
+index a9b3d98..3253694 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 @@ -1470,6 +1470,13 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
