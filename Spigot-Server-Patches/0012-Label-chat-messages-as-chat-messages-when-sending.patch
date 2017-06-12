@@ -1,4 +1,4 @@
-From 71cbcbe7f954e8e2b50a2694760781503e711c80 Mon Sep 17 00:00:00 2001
+From fc6eb476f3639152e635f64670613beec2de1ce6 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:21 -0500
 Subject: [PATCH 12/13] Label chat messages as chat messages when sending
@@ -11,10 +11,10 @@ Also implements API method for players to be sent this type of chat message.
  3 files changed, 21 insertions(+), 4 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index f318b01..6c4f158 100644
+index f7c3896..fe5138d 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
-@@ -1167,6 +1167,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
+@@ -1173,6 +1173,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
          this.playerConnection.sendPacket(new PacketPlayOutChat(ichatbasecomponent));
      }
  

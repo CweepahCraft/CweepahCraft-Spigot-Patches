@@ -1,4 +1,4 @@
-From 3b5a51876449623435cdb5750e08889cae5254f0 Mon Sep 17 00:00:00 2001
+From 37afcf53649d38245f04ccdde89d55f0fe39d666 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:51:38 -0500
 Subject: [PATCH 10/13] Implement time sync API
@@ -9,10 +9,10 @@ Subject: [PATCH 10/13] Implement time sync API
  2 files changed, 23 insertions(+), 1 deletion(-)
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 798f87d..7a8e3f8 100644
+index 1781e56..e21cd43 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -251,7 +251,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+@@ -299,7 +299,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
  
          this.worldData.setTime(this.worldData.getTime() + 1L);
          if (this.getGameRules().getBoolean("doDaylightCycle")) {
@@ -28,7 +28,7 @@ index 798f87d..7a8e3f8 100644
  
          timings.doChunkUnload.stopTiming(); // Spigot
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 0a2d6f3..cc89e47 100644
+index 44a3dc9..d107188 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 @@ -516,6 +516,22 @@ public class CraftWorld implements World {

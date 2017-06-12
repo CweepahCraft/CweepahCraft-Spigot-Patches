@@ -1,4 +1,4 @@
-From dfdc6ec672052bcb5ef2f69d8236da662a404494 Mon Sep 17 00:00:00 2001
+From 58dcd5ddbc8cfa6b5175ba14bc74f72bdce2a436 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:50:33 -0600
 Subject: [PATCH 04/13] Prepend username to logged chat messages.
