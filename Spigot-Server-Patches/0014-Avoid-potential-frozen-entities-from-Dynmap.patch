@@ -1,0 +1,44 @@
+From 0d3430d98c75cf74f89b5bc0a4734ec183873584 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Fri, 16 Jun 2017 13:29:45 -0500
+Subject: [PATCH 14/14] Avoid potential frozen entities from Dynmap
+
+---
+ src/main/java/net/minecraft/server/World.java | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
+index f52515e..d00e354 100644
+--- a/src/main/java/net/minecraft/server/World.java
++++ b/src/main/java/net/minecraft/server/World.java
+@@ -1082,6 +1082,13 @@ public abstract class World implements IBlockAccess {
+             }
+ 
+             this.getChunkAt(i, j).a(entity);
++
++            // CweepahCraft start - Remove matching entity from removal queue (if present)
++            if (this.f.remove(entity)) {
++                getServer().getLogger().warning("Removed an entity from removal queue with an ID that matches one being added to the world.");
++            }
++            // CweepahCraft end
++
+             this.entityList.add(entity);
+             this.b(entity);
+             return true;
+@@ -2565,6 +2572,13 @@ public abstract class World implements IBlockAccess {
+         org.spigotmc.AsyncCatcher.catchOp( "entity world add"); // Spigot
+         // CraftBukkit start
+         // this.entityList.addAll(collection);
++
++        // CweepahCraft start - Remove any matching entities from the removal queue (if present)
++        if (this.f.removeAll(collection)) {
++            getServer().getLogger().warning("Removed entities from removal queue with IDs that match ones being added to the world.");
++        }
++        // CweepahCraft end
++
+         Iterator iterator = collection.iterator();
+ 
+         while (iterator.hasNext()) {
+-- 
+1.9.1
+
