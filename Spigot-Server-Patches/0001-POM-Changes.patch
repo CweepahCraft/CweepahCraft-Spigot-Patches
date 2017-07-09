@@ -1,14 +1,14 @@
-From b1c95ecf93116a70f868b9737e60625e1567f282 Mon Sep 17 00:00:00 2001
+From a84842d51cc399d86c1940b529f9b96c5601afc9 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
-Subject: [PATCH 01/14] POM Changes
+Subject: [PATCH 01/15] POM Changes
 
 ---
  pom.xml | 33 ++++++++++++++++++++++-----------
  1 file changed, 22 insertions(+), 11 deletions(-)
 
 diff --git a/pom.xml b/pom.xml
-index d677e79..b7e869b 100644
+index def25dd..8e846fa 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@
@@ -48,7 +48,7 @@ index d677e79..b7e869b 100644
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -103,8 +102,8 @@
+@@ -111,8 +110,8 @@
                      <execution>
                          <id>ex-spigot</id>
                          <configuration>
@@ -59,7 +59,7 @@ index d677e79..b7e869b 100644
                              <descriptionProperty>spigot.desc</descriptionProperty>
                          </configuration>
                          <phase>initialize</phase>
-@@ -124,6 +123,18 @@
+@@ -132,6 +131,18 @@
                              <goal>describe</goal>
                          </goals>
                      </execution>
@@ -78,7 +78,7 @@ index d677e79..b7e869b 100644
                  </executions>
              </plugin>
              <plugin>
-@@ -135,7 +146,7 @@
+@@ -143,7 +154,7 @@
                          <manifestEntries>
                              <Main-Class>org.bukkit.craftbukkit.Main</Main-Class>
                              <Implementation-Title>CraftBukkit</Implementation-Title>

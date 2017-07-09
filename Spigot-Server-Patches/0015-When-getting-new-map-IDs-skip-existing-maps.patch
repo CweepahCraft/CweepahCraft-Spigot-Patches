@@ -1,0 +1,50 @@
+From 63568245f3b95798559bd7423389e3060593884b Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sun, 9 Jul 2017 08:55:35 -0500
+Subject: [PATCH 15/15] When getting new map IDs, skip existing maps
+
+---
+ .../java/net/minecraft/server/PersistentCollection.java  | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/main/java/net/minecraft/server/PersistentCollection.java b/src/main/java/net/minecraft/server/PersistentCollection.java
+index 936d6c6..5f2e3a6 100644
+--- a/src/main/java/net/minecraft/server/PersistentCollection.java
++++ b/src/main/java/net/minecraft/server/PersistentCollection.java
+@@ -142,17 +142,17 @@ public class PersistentCollection {
+     }
+ 
+     public int a(String s) {
+-        Short oshort = (Short) this.d.get(s);
++        short nextId = this.d.get(s) == null ? 0 : (short) (this.d.get(s) + 1);
+ 
+-        if (oshort == null) {
+-            oshort = Short.valueOf((short) 0);
+-        } else {
+-            oshort = Short.valueOf((short) (oshort.shortValue() + 1));
++        if (s.equals("map")) {
++            while (nextId >= 0 && nextId < Short.MAX_VALUE && org.bukkit.Bukkit.getMap(nextId) != null) {
++                nextId++;
++            }
+         }
+ 
+-        this.d.put(s, oshort);
++        this.d.put(s, nextId);
+         if (this.b == null) {
+-            return oshort.shortValue();
++            return nextId;
+         } else {
+             try {
+                 File file = this.b.getDataFile("idcounts");
+@@ -176,7 +176,7 @@ public class PersistentCollection {
+                 exception.printStackTrace();
+             }
+ 
+-            return oshort.shortValue();
++            return nextId;
+         }
+     }
+ }
+-- 
+1.9.1
+
