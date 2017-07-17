@@ -1,7 +1,7 @@
-From 2b6c0afe984a39755d4228acf68f02af5ad7c2c3 Mon Sep 17 00:00:00 2001
+From de26f7ad2f77416d56e29b268abace2053a6f4e4 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:29:46 -0500
-Subject: [PATCH 11/15] Implement action bar support for title API
+Subject: [PATCH 11/16] Implement action bar support for title API
 
 ---
  src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java | 10 ++++++++++

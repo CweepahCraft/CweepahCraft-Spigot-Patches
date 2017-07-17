@@ -1,7 +1,7 @@
-From 50d3cd23e74426c5b632cc54cd77802854596558 Mon Sep 17 00:00:00 2001
+From b35bc3ee8dc12abfbde8b8fb0dafc54a05424dbe Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:21 -0500
-Subject: [PATCH 12/15] Label chat messages as chat messages when sending
+Subject: [PATCH 12/16] Label chat messages as chat messages when sending
 
 Also implements API method for players to be sent this type of chat message.
 ---

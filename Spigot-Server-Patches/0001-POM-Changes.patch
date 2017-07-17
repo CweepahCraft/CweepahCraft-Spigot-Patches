@@ -1,14 +1,14 @@
-From a84842d51cc399d86c1940b529f9b96c5601afc9 Mon Sep 17 00:00:00 2001
+From 0a24e4d0e9e03cb37a117e07a37f82b7fc2ee86f Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
-Subject: [PATCH 01/15] POM Changes
+Subject: [PATCH 01/16] POM Changes
 
 ---
  pom.xml | 33 ++++++++++++++++++++++-----------
  1 file changed, 22 insertions(+), 11 deletions(-)
 
 diff --git a/pom.xml b/pom.xml
-index def25dd..8e846fa 100644
+index e5f1721..85b0c53 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@
@@ -27,7 +27,7 @@ index def25dd..8e846fa 100644
  
      <properties>
          <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-@@ -21,16 +20,16 @@
+@@ -21,8 +20,8 @@
      </properties>
  
      <parent>
@@ -38,8 +38,9 @@ index def25dd..8e846fa 100644
          <version>dev-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
- 
-     <dependencies>
+@@ -36,8 +35,8 @@
+             <scope>compile</scope>
+         </dependency>
          <dependency>
 -            <groupId>org.spigotmc</groupId>
 -            <artifactId>spigot-api</artifactId>

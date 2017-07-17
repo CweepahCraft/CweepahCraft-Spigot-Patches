@@ -1,7 +1,7 @@
-From 640ab334e57393da6c0753b58506b7cac34dce61 Mon Sep 17 00:00:00 2001
+From 8d1961adb4ef9d15e48d04ee0060b6ada20d98a6 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Fri, 16 Jun 2017 13:29:45 -0500
-Subject: [PATCH 14/15] Avoid potential frozen entities from Dynmap
+Subject: [PATCH 14/16] Avoid potential frozen entities from Dynmap
 
 ---
  src/main/java/net/minecraft/server/World.java | 14 ++++++++++++++

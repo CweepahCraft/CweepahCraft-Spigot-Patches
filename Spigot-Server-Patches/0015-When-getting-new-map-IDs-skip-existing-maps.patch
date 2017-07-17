@@ -1,7 +1,7 @@
-From 63568245f3b95798559bd7423389e3060593884b Mon Sep 17 00:00:00 2001
+From 17375d85c6625d1c843fb945e339d483563c130a Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 9 Jul 2017 08:55:35 -0500
-Subject: [PATCH 15/15] When getting new map IDs, skip existing maps
+Subject: [PATCH 15/16] When getting new map IDs, skip existing maps
 
 ---
  .../java/net/minecraft/server/PersistentCollection.java  | 16 ++++++++--------

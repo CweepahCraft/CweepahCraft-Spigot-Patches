@@ -1,0 +1,27 @@
+From 15c3f523c6e78c4d45c7bb94ca87be02a8ce3f66 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Mon, 17 Jul 2017 17:28:41 -0500
+Subject: [PATCH 16/16] Fix invisible blocks
+
+Fix taken from the description here: https://www.youtube.com/watch?v=lu2Dgpf2yRM
+Imgur link to fix: http://i.imgur.com/AdvUzmE.png
+---
+ src/main/java/net/minecraft/server/PlayerInteractManager.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/net/minecraft/server/PlayerInteractManager.java b/src/main/java/net/minecraft/server/PlayerInteractManager.java
+index 7aab710..0aadf87 100644
+--- a/src/main/java/net/minecraft/server/PlayerInteractManager.java
++++ b/src/main/java/net/minecraft/server/PlayerInteractManager.java
+@@ -194,7 +194,7 @@ public class PlayerInteractManager {
+                 this.f = blockposition;
+                 int i = (int) (f * 10.0F);
+ 
+-                this.world.c(this.player.getId(), blockposition, i);
++                this.world.notify(blockposition, iblockdata, iblockdata, 0);
+                 this.k = i;
+             }
+ 
+-- 
+1.9.1
+
