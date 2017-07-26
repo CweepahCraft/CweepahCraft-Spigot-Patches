@@ -1,0 +1,35 @@
+From 8c538207e2bfa19ca27dab4aa8807c688e523621 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Wed, 26 Jul 2017 08:45:10 -0500
+Subject: [PATCH 17/17] Implement whole-inventory containsAtLeast
+
+---
+ src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java
+index 4866d1a..a37dec7 100644
+--- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java
++++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java
+@@ -157,13 +157,17 @@ public class CraftInventory implements Inventory {
+     }
+ 
+     public boolean containsAtLeast(ItemStack item, int amount) {
++        return containsAtLeast(item, amount, false);
++    }
++
++    public boolean containsAtLeast(ItemStack item, int amount, boolean includeAll) {
+         if (item == null) {
+             return false;
+         }
+         if (amount <= 0) {
+             return true;
+         }
+-        for (ItemStack i : getStorageContents()) {
++        for (ItemStack i : includeAll ? getContents() : getStorageContents()) {
+             if (item.isSimilar(i) && (amount -= i.getAmount()) <= 0) {
+                 return true;
+             }
+-- 
+1.9.1
+

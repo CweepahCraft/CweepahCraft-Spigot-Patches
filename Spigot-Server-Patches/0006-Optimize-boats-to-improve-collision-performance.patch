@@ -1,7 +1,7 @@
-From 7d55fe927b6788b54b3c83a44fa587eb90fa3010 Mon Sep 17 00:00:00 2001
+From 8db2a5ff499ea15c543949500fc8b72b99663a5e Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:54:39 -0600
-Subject: [PATCH 06/16] Optimize boats to improve collision performance.
+Subject: [PATCH 06/17] Optimize boats to improve collision performance.
 
 ---
  src/main/java/net/minecraft/server/EntityBoat.java | 4 +++-

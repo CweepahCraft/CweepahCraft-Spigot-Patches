@@ -1,7 +1,7 @@
-From 248b818ebd2161a446db5a2d5009ca47b48a9197 Mon Sep 17 00:00:00 2001
+From 603fce6d32c48343d8209cded4300578e851720e Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 10 Jun 2017 10:52:56 -0500
-Subject: [PATCH 13/16] Parrot improvements
+Subject: [PATCH 13/17] Parrot improvements
 
 ---
  src/main/java/net/minecraft/server/EntityHuman.java  | 2 +-

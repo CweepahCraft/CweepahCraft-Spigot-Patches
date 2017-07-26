@@ -1,7 +1,7 @@
-From 155f53cd81bec4031d6a82f11cd6955766645cb6 Mon Sep 17 00:00:00 2001
+From c7fc0671d60eaf6425247b23c74b84dc2c14ae19 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:30:01 -0500
-Subject: [PATCH 4/5] Add action bar support for title API
+Subject: [PATCH 4/6] Add action bar support for title API
 
 ---
  src/main/java/org/bukkit/entity/Player.java | 17 +++++++++++++++++

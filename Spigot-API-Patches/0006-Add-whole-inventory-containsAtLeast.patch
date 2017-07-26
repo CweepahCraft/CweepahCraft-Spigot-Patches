@@ -1,0 +1,35 @@
+From adbad12dc62cc023b628e1efdecf24df7ae835a9 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Wed, 26 Jul 2017 08:46:08 -0500
+Subject: [PATCH 6/6] Add whole-inventory containsAtLeast
+
+---
+ src/main/java/org/bukkit/inventory/Inventory.java | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/src/main/java/org/bukkit/inventory/Inventory.java b/src/main/java/org/bukkit/inventory/Inventory.java
+index 3275e17..268c1d5 100644
+--- a/src/main/java/org/bukkit/inventory/Inventory.java
++++ b/src/main/java/org/bukkit/inventory/Inventory.java
+@@ -243,6 +243,18 @@ public interface Inventory extends Iterable<ItemStack> {
+     public boolean containsAtLeast(ItemStack item, int amount);
+ 
+     /**
++     * Checks if the inventory contains ItemStacks matching the given
++     * ItemStack whose amounts sum to at least the minimum amount specified.
++     *
++     * @param item the ItemStack to match against
++     * @param amount the minimum amount
++     * @param includeAll set true to include all contents, not just storage contents
++     * @return false if item is null, true if amount less than 1, true if
++     *     enough ItemStacks were found to add to the given amount
++     */
++    public boolean containsAtLeast(ItemStack item, int amount, boolean includeAll);
++
++    /**
+      * Returns a HashMap with all slots and ItemStacks in the inventory with
+      * given materialId.
+      * <p>
+-- 
+1.9.1
+

@@ -1,7 +1,7 @@
-From da97d01879f9b0517ef406d1960f48d91949928b Mon Sep 17 00:00:00 2001
+From 0d3319145d5b63264b8f03cd5ed8b1e5516ffaef Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:42 -0500
-Subject: [PATCH 5/5] API to send chat messages as chat message type
+Subject: [PATCH 5/6] API to send chat messages as chat message type
 
 ---
  src/main/java/org/bukkit/entity/Player.java | 7 +++++++

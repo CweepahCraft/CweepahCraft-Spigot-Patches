@@ -1,7 +1,7 @@
-From b35bc3ee8dc12abfbde8b8fb0dafc54a05424dbe Mon Sep 17 00:00:00 2001
+From c144743579edf1240d4ac6e29d29b9cd607fc32e Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:21 -0500
-Subject: [PATCH 12/16] Label chat messages as chat messages when sending
+Subject: [PATCH 12/17] Label chat messages as chat messages when sending
 
 Also implements API method for players to be sent this type of chat message.
 ---
@@ -11,7 +11,7 @@ Also implements API method for players to be sent this type of chat message.
  3 files changed, 21 insertions(+), 4 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index 48bf1a5..ee01c4d 100644
+index a648a9c..a6bba0c 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -1173,6 +1173,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -32,7 +32,7 @@ index 48bf1a5..ee01c4d 100644
          /* CraftBukkit start
          if ("seed".equals(s) && !this.server.aa()) {
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 284b31b..f513c9e 100644
+index c1c59d1..c4d09bf 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -1323,11 +1323,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
@@ -64,10 +64,10 @@ index 284b31b..f513c9e 100644
                  }
              }
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index a9b3d98..3253694 100644
+index 1c1492c..fd7b69a 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1470,6 +1470,13 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1500,6 +1500,13 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
          return getHandle().locale;
      }
  
