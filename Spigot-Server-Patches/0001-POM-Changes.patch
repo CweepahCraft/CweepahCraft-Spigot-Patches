@@ -1,7 +1,7 @@
-From d53e5e458014dff346862af5e0db807327875396 Mon Sep 17 00:00:00 2001
+From d557bb95d62ab5f298b5f76aa380f0122c76bc04 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
-Subject: [PATCH 01/17] POM Changes
+Subject: [PATCH 01/18] POM Changes
 
 ---
  pom.xml | 33 ++++++++++++++++++++++-----------

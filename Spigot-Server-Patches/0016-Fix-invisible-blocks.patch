@@ -1,7 +1,7 @@
-From 31858a3d51d4f72711d6330087478852d8b40e78 Mon Sep 17 00:00:00 2001
+From d3d6d455fec178aa19cd4f565d118e83a4c4f5c9 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 17 Jul 2017 17:28:41 -0500
-Subject: [PATCH 16/17] Fix invisible blocks
+Subject: [PATCH 16/18] Fix invisible blocks
 
 Fix taken from the description here: https://www.youtube.com/watch?v=lu2Dgpf2yRM
 Imgur link to fix: http://i.imgur.com/AdvUzmE.png
@@ -10,10 +10,10 @@ Imgur link to fix: http://i.imgur.com/AdvUzmE.png
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/main/java/net/minecraft/server/PlayerInteractManager.java b/src/main/java/net/minecraft/server/PlayerInteractManager.java
-index 7aab710..0aadf87 100644
+index a1689c0..38b3512 100644
 --- a/src/main/java/net/minecraft/server/PlayerInteractManager.java
 +++ b/src/main/java/net/minecraft/server/PlayerInteractManager.java
-@@ -194,7 +194,7 @@ public class PlayerInteractManager {
+@@ -195,7 +195,7 @@ public class PlayerInteractManager {
                  this.f = blockposition;
                  int i = (int) (f * 10.0F);
  

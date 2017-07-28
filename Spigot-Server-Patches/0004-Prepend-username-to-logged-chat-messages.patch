@@ -1,7 +1,7 @@
-From 0e39c619713db4edf865f8232ac73a01a6a97bc9 Mon Sep 17 00:00:00 2001
+From f59d7dfb4098989e377087eecaa629639b63c696 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:50:33 -0600
-Subject: [PATCH 04/17] Prepend username to logged chat messages.
+Subject: [PATCH 04/18] Prepend username to logged chat messages.
 
 ---
  src/main/java/net/minecraft/server/PlayerConnection.java | 4 ++--
