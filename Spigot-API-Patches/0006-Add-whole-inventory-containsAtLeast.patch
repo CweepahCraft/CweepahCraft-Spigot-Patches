@@ -1,4 +1,4 @@
-From 7cc7284e1de0dc49f74ba681d5f649424fa36ca5 Mon Sep 17 00:00:00 2001
+From f384a9cdb5993daf58f29ccc3f3e3781b4a8bcb9 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 26 Jul 2017 08:46:08 -0500
 Subject: [PATCH 6/6] Add whole-inventory containsAtLeast

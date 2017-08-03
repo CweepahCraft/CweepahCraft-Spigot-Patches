@@ -1,7 +1,7 @@
-From a58fad5a55a83b260796f4d62f2e40cc055b1b8b Mon Sep 17 00:00:00 2001
+From beeb24bb87e1c81bcae39c7c8e2f248b3cb4a8c1 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:21 -0500
-Subject: [PATCH 12/18] Label chat messages as chat messages when sending
+Subject: [PATCH 12/17] Label chat messages as chat messages when sending
 
 Also implements API method for players to be sent this type of chat message.
 ---
@@ -11,7 +11,7 @@ Also implements API method for players to be sent this type of chat message.
  3 files changed, 21 insertions(+), 4 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index a648a9c..a6bba0c 100644
+index 14281bc..c160eaa 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -1173,6 +1173,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -32,10 +32,10 @@ index a648a9c..a6bba0c 100644
          /* CraftBukkit start
          if ("seed".equals(s) && !this.server.aa()) {
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index c1c59d1..c4d09bf 100644
+index 36f0ee9..61bfd51 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
-@@ -1323,11 +1323,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1324,11 +1324,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
                          PlayerConnection.this.minecraftServer.console.sendMessage(queueEvent.getPlayer() + ": " + message);
                          if (((LazyPlayerSet) queueEvent.getRecipients()).isLazy()) {
                              for (Object player : PlayerConnection.this.minecraftServer.getPlayerList().players) {
@@ -49,7 +49,7 @@ index c1c59d1..c4d09bf 100644
                              }
                          }
                          return null;
-@@ -1353,11 +1353,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1354,11 +1354,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
                  minecraftServer.console.sendMessage(event.getPlayer().getName() + ": " + s);
                  if (((LazyPlayerSet) event.getRecipients()).isLazy()) {
                      for (Object recipient : minecraftServer.getPlayerList().players) {

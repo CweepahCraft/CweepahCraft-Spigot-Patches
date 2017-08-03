@@ -1,17 +1,17 @@
-From 276acb8ae289d81a2facbe9fe4abbd9a21b95855 Mon Sep 17 00:00:00 2001
+From 87cff03fd9fee8e8642bbce1b6087af2eb5c23e9 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Fri, 16 Jun 2017 13:29:45 -0500
-Subject: [PATCH 14/18] Avoid potential frozen entities from Dynmap
+Subject: [PATCH 14/17] Avoid potential frozen entities from Dynmap
 
 ---
  src/main/java/net/minecraft/server/World.java | 14 ++++++++++++++
  1 file changed, 14 insertions(+)
 
 diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
-index ecd6765..2d1cd3d 100644
+index e1833f3..0abfe0d 100644
 --- a/src/main/java/net/minecraft/server/World.java
 +++ b/src/main/java/net/minecraft/server/World.java
-@@ -1083,6 +1083,13 @@ public abstract class World implements IBlockAccess {
+@@ -1084,6 +1084,13 @@ public abstract class World implements IBlockAccess {
              }
  
              this.getChunkAt(i, j).a(entity);
@@ -25,7 +25,7 @@ index ecd6765..2d1cd3d 100644
              this.entityList.add(entity);
              this.b(entity);
              return true;
-@@ -2567,6 +2574,13 @@ public abstract class World implements IBlockAccess {
+@@ -2570,6 +2577,13 @@ public abstract class World implements IBlockAccess {
          org.spigotmc.AsyncCatcher.catchOp( "entity world add"); // Spigot
          // CraftBukkit start
          // this.entityList.addAll(collection);
