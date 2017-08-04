@@ -1,4 +1,4 @@
-From cd0533f84e3f24589a6e55150eedbf9f72fee610 Mon Sep 17 00:00:00 2001
+From bac390bfb166625c770cf64e47edb42d8eeb388b Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:31:46 -0600
 Subject: [PATCH 2/6] Hopper toggling API

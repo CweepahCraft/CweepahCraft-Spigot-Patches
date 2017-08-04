@@ -1,7 +1,7 @@
-From ae347832575139c2ad9ba00458097aaf6f232e0f Mon Sep 17 00:00:00 2001
+From 2b288d550b147bf0707c20144ac306db0dbc1a3c Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 26 Jul 2017 08:45:10 -0500
-Subject: [PATCH 17/17] Implement whole-inventory containsAtLeast
+Subject: [PATCH 17/18] Implement whole-inventory containsAtLeast
 
 ---
  src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java | 6 +++++-
