@@ -1,0 +1,74 @@
+From 5fdc16c2c98627c1dd561e6a3796263d98850dc7 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Wed, 9 Aug 2017 13:38:14 -0500
+Subject: [PATCH 19/19] Implement performCommandAsChat method
+
+---
+ .../java/net/minecraft/server/PlayerConnection.java  | 20 ++++++++++++--------
+ .../org/bukkit/craftbukkit/entity/CraftPlayer.java   |  5 +++++
+ 2 files changed, 17 insertions(+), 8 deletions(-)
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index e841463..67b2430 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -1218,12 +1218,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+ 
+             // CraftBukkit start
+             if (isSync) {
+-                try {
+-                    this.minecraftServer.server.playerCommandState = true;
+-                    this.handleCommand(s);
+-                } finally {
+-                    this.minecraftServer.server.playerCommandState = false;
+-                }
++                this.handleCommand(s);
+             } else if (s.isEmpty()) {
+                 LOGGER.warn(this.player.getName() + " tried to send an empty message");
+             } else if (getPlayer().isConversing()) {
+@@ -1301,7 +1296,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+         }
+ 
+         if (!async && s.startsWith("/")) {
+-            this.handleCommand(s);
++            this.handleCommand0(s);
+         } else if (this.player.getChatFlags() == EntityHuman.EnumChatVisibility.SYSTEM) {
+             // Do nothing, this is coming from a plugin
+         } else {
+@@ -1368,7 +1363,16 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+     }
+     // CraftBukkit end
+ 
+-    private void handleCommand(String s) {
++    public void handleCommand(String command) {
++        try {
++            this.minecraftServer.server.playerCommandState = true;
++            this.handleCommand0(command);
++        } finally {
++            this.minecraftServer.server.playerCommandState = false;
++        }
++    }
++
++    private void handleCommand0(String s) {
+         org.bukkit.craftbukkit.SpigotTimings.playerCommandTimer.startTiming(); // Spigot
+        // CraftBukkit start - whole method
+         if ( org.spigotmc.SpigotConfig.logCommands ) // Spigot
+diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+index fd7b69a..756421a 100644
+--- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
++++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+@@ -247,6 +247,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+     }
+ 
+     @Override
++    public void performCommandAsChat(String command) {
++        getHandle().playerConnection.handleCommand(command);
++    }
++
++    @Override
+     public void playNote(Location loc, byte instrument, byte note) {
+         if (getHandle().playerConnection == null) return;
+ 
+-- 
+1.9.1
+

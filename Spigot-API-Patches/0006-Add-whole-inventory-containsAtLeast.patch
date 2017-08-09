@@ -1,7 +1,7 @@
-From 3c36d990a7bcc75736c45b069b9af73e627bd410 Mon Sep 17 00:00:00 2001
+From 402f37778d486ee6226a35bb3486dde775ab45e2 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 26 Jul 2017 08:46:08 -0500
-Subject: [PATCH 6/6] Add whole-inventory containsAtLeast
+Subject: [PATCH 6/7] Add whole-inventory containsAtLeast
 
 ---
  src/main/java/org/bukkit/inventory/Inventory.java | 12 ++++++++++++
