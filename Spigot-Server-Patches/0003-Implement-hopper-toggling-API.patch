@@ -1,4 +1,4 @@
-From ddad1025c1299dbe1f09cf50e1c3462c88b345d7 Mon Sep 17 00:00:00 2001
+From d7885eaa747ecee9b00a632a8d98234704d6f55f Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:48:49 -0600
 Subject: [PATCH 03/19] Implement hopper toggling API.
@@ -30,10 +30,10 @@ index 9855135..e067ce0 100644
              this.g = this.world.getTime();
              if (!this.J()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index e0fa25b..fa118a6 100644
+index 63740c6..6bd9a77 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -175,6 +175,7 @@ public final class CraftServer implements Server {
+@@ -176,6 +176,7 @@ public final class CraftServer implements Server {
      private final UUID invalidUserUUID = UUID.nameUUIDFromBytes("InvalidUsername".getBytes(Charsets.UTF_8));
      private final List<CraftPlayer> playerView;
      public int reloadCount;
@@ -41,7 +41,7 @@ index e0fa25b..fa118a6 100644
  
      private final class BooleanWrapper {
          private boolean value = true;
-@@ -1713,6 +1714,16 @@ public final class CraftServer implements Server {
+@@ -1719,6 +1720,16 @@ public final class CraftServer implements Server {
      }
  
      @Override

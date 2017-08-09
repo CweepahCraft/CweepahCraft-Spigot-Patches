@@ -1,4 +1,4 @@
-From 59e8eb3e8b46887f4fdedd77306c77eda7e8aac1 Mon Sep 17 00:00:00 2001
+From a54f235b2b97473f8ef559e4298330d7b25264d4 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 26 Jul 2017 08:45:10 -0500
 Subject: [PATCH 17/19] Implement whole-inventory containsAtLeast

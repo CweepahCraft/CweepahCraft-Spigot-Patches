@@ -1,4 +1,4 @@
-From f0e27a48548c835a0203a0677aaf7b62abd8b235 Mon Sep 17 00:00:00 2001
+From 352b16d3df5144c1fe9fb881b4c6a4fbb1321d32 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:52:08 -0500
 Subject: [PATCH 3/7] Add time sync API

@@ -1,4 +1,4 @@
-From 57db3ba01ccd4b15a5c248b13a68133d6a6efc8c Mon Sep 17 00:00:00 2001
+From e17701fb79a31f4707cc6d7b5a08677755d3078b Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
 Subject: [PATCH 01/19] POM Changes
@@ -8,7 +8,7 @@ Subject: [PATCH 01/19] POM Changes
  1 file changed, 22 insertions(+), 11 deletions(-)
 
 diff --git a/pom.xml b/pom.xml
-index 9072ab9..63541ba 100644
+index cbd561a..825e824 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@

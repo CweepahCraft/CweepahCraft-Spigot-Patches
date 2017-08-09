@@ -1,4 +1,4 @@
-From 8cb2cf981493001a63db1ef14422b99b83463b35 Mon Sep 17 00:00:00 2001
+From 87461560b5c3eae3a66bd63e23d67b6070906da3 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:31:46 -0600
 Subject: [PATCH 2/7] Hopper toggling API
@@ -9,7 +9,7 @@ Subject: [PATCH 2/7] Hopper toggling API
  2 files changed, 12 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 5649aaf..9538ad8 100644
+index eb6b797..733597c 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -1116,6 +1116,14 @@ public final class Bukkit {
@@ -28,12 +28,12 @@ index 5649aaf..9538ad8 100644
       * Gets an entity on the server by its UUID
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 7a08fd1..5a9e10e 100644
+index 83b6636..5afd92b 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -911,6 +911,10 @@ public interface Server extends PluginMessageRecipient {
       */
-     BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag ...flags);
+     BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags);
  
 +    boolean isHopperEnabled();
 +
