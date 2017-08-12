@@ -1,12 +1,13 @@
-From 4e74b68d8a62d79dc39098c4b62f6e06063d749d Mon Sep 17 00:00:00 2001
+From d7e8ee374b85234f7f34131f78c5cb5ce5736627 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 10 Jun 2017 10:52:56 -0500
 Subject: [PATCH 13/19] Parrot improvements
 
 ---
- src/main/java/net/minecraft/server/EntityHuman.java  | 2 +-
- src/main/java/net/minecraft/server/EntityParrot.java | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ src/main/java/net/minecraft/server/EntityHuman.java       | 2 +-
+ src/main/java/net/minecraft/server/EntityParrot.java      | 2 +-
+ src/main/java/net/minecraft/server/PathfinderGoalSit.java | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/EntityHuman.java b/src/main/java/net/minecraft/server/EntityHuman.java
 index 50829d8..f334462 100644
@@ -32,6 +33,19 @@ index f31d9b3..e827ab9 100644
 -        this.getAttributeInstance(GenericAttributes.e).setValue(0.4000000059604645D);
 +        this.getAttributeInstance(GenericAttributes.e).setValue(4 * 0.4000000059604645D);
          this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.20000000298023224D);
+     }
+ 
+diff --git a/src/main/java/net/minecraft/server/PathfinderGoalSit.java b/src/main/java/net/minecraft/server/PathfinderGoalSit.java
+index d80fce9..c2bf1b4 100644
+--- a/src/main/java/net/minecraft/server/PathfinderGoalSit.java
++++ b/src/main/java/net/minecraft/server/PathfinderGoalSit.java
+@@ -20,7 +20,7 @@ public class PathfinderGoalSit extends PathfinderGoal {
+         } else {
+             EntityLiving entityliving = this.entity.getOwner();
+ 
+-            return entityliving == null ? true : (this.entity.h(entityliving) < 144.0D && entityliving.getLastDamager() != null ? false : this.willSit);
++            return entityliving == null ? true : (!(this.entity instanceof EntityParrot) && this.entity.h(entityliving) < 144.0D && entityliving.getLastDamager() != null ? false : this.willSit);
+         }
      }
  
 -- 

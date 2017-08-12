@@ -1,4 +1,4 @@
-From 5478def719958e0315b18a165e2a72768a12ab8b Mon Sep 17 00:00:00 2001
+From 4bf94d339b54fc34c1031148151c081c88e03913 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:21 -0500
 Subject: [PATCH 12/19] Label chat messages as chat messages when sending
