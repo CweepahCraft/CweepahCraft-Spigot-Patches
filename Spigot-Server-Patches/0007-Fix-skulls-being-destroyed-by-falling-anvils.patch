@@ -1,7 +1,7 @@
-From c69be797b95a6ba8e314679100a05cb52a5b1514 Mon Sep 17 00:00:00 2001
+From 78540768135489fcd834439aa866bc39b0114362 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:57:27 -0600
-Subject: [PATCH 07/19] Fix skulls being destroyed by falling anvils.
+Subject: [PATCH 07/20] Fix skulls being destroyed by falling anvils.
 
 ---
  src/main/java/net/minecraft/server/BlockSkull.java | 5 +++++

@@ -1,7 +1,7 @@
-From 6a6f5576c9e8de285c165b3f40dba93d2716eb41 Mon Sep 17 00:00:00 2001
+From 538c628a6ce55f2644a6c0e29cc699a71306464b Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 17 Jul 2017 17:28:41 -0500
-Subject: [PATCH 16/19] Fix invisible blocks
+Subject: [PATCH 16/20] Fix invisible blocks
 
 Fix taken from the description here: https://www.youtube.com/watch?v=lu2Dgpf2yRM
 Imgur link to fix: http://i.imgur.com/AdvUzmE.png

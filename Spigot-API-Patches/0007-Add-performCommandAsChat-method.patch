@@ -1,7 +1,7 @@
-From e556587151d93c066a4f6f10ac962db0f019df7d Mon Sep 17 00:00:00 2001
+From a15d57753104d977b5ee5089aa6a2c656c5b3471 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:23 -0500
-Subject: [PATCH 7/7] Add performCommandAsChat method
+Subject: [PATCH 7/8] Add performCommandAsChat method
 
 ---
  src/main/java/org/bukkit/entity/Player.java | 10 ++++++++++

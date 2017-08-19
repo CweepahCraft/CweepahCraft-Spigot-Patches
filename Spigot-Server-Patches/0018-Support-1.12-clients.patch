@@ -1,7 +1,7 @@
-From a689c9948fe91c1e227121b0ef9b0cdb5052c041 Mon Sep 17 00:00:00 2001
+From 31a48447c7408c67a42a9012ace05986075a5c85 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Fri, 4 Aug 2017 16:34:59 -0500
-Subject: [PATCH 18/19] Support 1.12 clients
+Subject: [PATCH 18/20] Support 1.12 clients
 
 ---
  .../packet/PacketPlayInAutoRecipeLegacy.java       |  30 +++

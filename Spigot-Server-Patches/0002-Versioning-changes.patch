@@ -1,7 +1,7 @@
-From 1463070bcc1603a5594bca922f45fe61b927cf28 Mon Sep 17 00:00:00 2001
+From 7cbd591d76dc9cf9d277940853c8e3f7c1662def Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 28 Dec 2016 16:06:42 -0600
-Subject: [PATCH 02/19] Versioning changes
+Subject: [PATCH 02/20] Versioning changes
 
 ---
  src/main/java/org/bukkit/craftbukkit/util/Versioning.java | 2 +-

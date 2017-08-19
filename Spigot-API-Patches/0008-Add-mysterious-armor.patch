@@ -1,0 +1,27 @@
+From 87a9c513fb877cbd1f5bbfd9da12c004050a13ff Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sat, 19 Aug 2017 18:54:15 -0500
+Subject: [PATCH 8/8] Add mysterious armor
+
+---
+ src/main/java/org/bukkit/Material.java | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/main/java/org/bukkit/Material.java b/src/main/java/org/bukkit/Material.java
+index 8648959..880e057 100644
+--- a/src/main/java/org/bukkit/Material.java
++++ b/src/main/java/org/bukkit/Material.java
+@@ -536,6 +536,10 @@ public enum Material {
+     RECORD_10(2265, 1),
+     RECORD_11(2266, 1),
+     RECORD_12(2267, 1),
++    MYSTERIOUS_HELMET(31996, 1, 726),
++    MYSTERIOUS_CHESTPLATE(31997, 1, 1056),
++    MYSTERIOUS_LEGGINGS(31998, 1, 990),
++    MYSTERIOUS_BOOTS(31999, 1, 858)
+     ;
+ 
+     private final int id;
+-- 
+1.9.1
+
