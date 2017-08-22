@@ -1,7 +1,7 @@
-From 6a1f3b053228c166e42f08d5b13c724a0a05ff13 Mon Sep 17 00:00:00 2001
+From 0df10eb9cf8eb2e35330f8318d134f723cf62fd2 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:51:38 -0500
-Subject: [PATCH 10/20] Implement time sync API
+Subject: [PATCH 11/21] Implement time sync API
 
 ---
  src/main/java/net/minecraft/server/WorldServer.java  |  8 +++++++-

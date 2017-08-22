@@ -1,0 +1,394 @@
+From c0869e56938a525768fb1eb1ea05a2f4a2ab8681 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Fri, 4 Aug 2017 16:34:59 -0500
+Subject: [PATCH 19/21] Support 1.12 clients
+
+---
+ nms-patches/EnumProtocol.patch                     | 95 ++++++++++++++++++++++
+ nms-patches/PacketDecoder.patch                    | 55 +++++++++++++
+ nms-patches/PacketEncoder.patch                    | 53 ++++++++++++
+ .../packet/PacketPlayInAutoRecipeLegacy.java       | 30 +++++++
+ .../net/minecraft/server/HandshakeListener.java    |  6 +-
+ .../java/net/minecraft/server/NetworkManager.java  |  9 ++
+ .../net/minecraft/server/PacketStatusListener.java |  8 +-
+ .../net/minecraft/server/PlayerConnection.java     | 10 +++
+ 8 files changed, 262 insertions(+), 4 deletions(-)
+ create mode 100644 nms-patches/EnumProtocol.patch
+ create mode 100644 nms-patches/PacketDecoder.patch
+ create mode 100644 nms-patches/PacketEncoder.patch
+ create mode 100644 src/main/java/net/cweepahcraft/packet/PacketPlayInAutoRecipeLegacy.java
+
+diff --git a/nms-patches/EnumProtocol.patch b/nms-patches/EnumProtocol.patch
+new file mode 100644
+index 0000000..208aa52
+--- /dev/null
++++ b/nms-patches/EnumProtocol.patch
+@@ -0,0 +1,95 @@
++--- a/net/minecraft/server/EnumProtocol.java
+++++ b/net/minecraft/server/EnumProtocol.java
++@@ -3,10 +3,11 @@
++ import com.google.common.collect.BiMap;
++ import com.google.common.collect.HashBiMap;
++ import com.google.common.collect.Maps;
+++import org.apache.logging.log4j.LogManager;
+++
+++import javax.annotation.Nullable;
++ import java.util.Iterator;
++ import java.util.Map;
++-import javax.annotation.Nullable;
++-import org.apache.logging.log4j.LogManager;
++ 
++ public enum EnumProtocol {
++ 
++@@ -153,17 +154,17 @@
++     private final int g;
++     private final Map<EnumProtocolDirection, BiMap<Integer, Class<? extends Packet<?>>>> h;
++ 
++-    private EnumProtocol(int i) {
+++    EnumProtocol(int i) {
++         this.h = Maps.newEnumMap(EnumProtocolDirection.class);
++         this.g = i;
++     }
++ 
++     protected EnumProtocol a(EnumProtocolDirection enumprotocoldirection, Class<? extends Packet<?>> oclass) {
++-        Object object = (BiMap) this.h.get(enumprotocoldirection);
+++        Object object = this.h.get(enumprotocoldirection);
++ 
++         if (object == null) {
++             object = HashBiMap.create();
++-            this.h.put(enumprotocoldirection, object);
+++            this.h.put(enumprotocoldirection, (BiMap<Integer, Class<? extends Packet<?>>>) object); // CweepahCraft - Decompile error
++         }
++ 
++         if (((BiMap) object).containsValue(oclass)) {
++@@ -172,7 +173,7 @@
++             LogManager.getLogger().fatal(s);
++             throw new IllegalArgumentException(s);
++         } else {
++-            ((BiMap) object).put(Integer.valueOf(((BiMap) object).size()), oclass);
+++            ((BiMap) object).put(((BiMap) object).size(), oclass);
++             return this;
++         }
++     }
++@@ -181,13 +182,34 @@
++         return (Integer) ((BiMap) this.h.get(enumprotocoldirection)).inverse().get(packet.getClass());
++     }
++ 
+++    // CweepahCraft - Protocol hack
+++    public Integer getLegacyId(EnumProtocolDirection direction, Packet<?> packet) throws Exception {
+++        Integer original = a(direction, packet);
+++        if (this == PLAY && original != null && direction == EnumProtocolDirection.CLIENTBOUND && original > 43) {
+++            return original - 1;
+++        } else {
+++            return original;
+++        }
+++    }
+++    // CweepahCraft end
+++
++     @Nullable
++     public Packet<?> a(EnumProtocolDirection enumprotocoldirection, int i) throws IllegalAccessException, InstantiationException {
++-        Class oclass = (Class) ((BiMap) this.h.get(enumprotocoldirection)).get(Integer.valueOf(i));
+++        Class oclass = (Class) ((BiMap) this.h.get(enumprotocoldirection)).get(i);
++ 
++         return oclass == null ? null : (Packet) oclass.newInstance();
++     }
++ 
+++    // CweepahCraft - Protocol hack
+++    public Packet<?> getLegacyPacket(EnumProtocolDirection direction, int i) throws IllegalAccessException, InstantiationException {
+++        if (this == PLAY && direction == EnumProtocolDirection.SERVERBOUND && i > 0 && i < 19) {
+++            return a(direction, i - 1);
+++        } else {
+++            return a(direction, i);
+++        }
+++    }
+++    // CweepahCraft end
+++
++     public int a() {
++         return this.g;
++     }
++@@ -197,11 +219,7 @@
++     }
++ 
++     public static EnumProtocol a(Packet<?> packet) {
++-        return (EnumProtocol) EnumProtocol.f.get(packet.getClass());
++-    }
++-
++-    EnumProtocol(int i, Object object) {
++-        this(i);
+++        return EnumProtocol.f.get(packet.getClass());
++     }
++ 
++     static {
+diff --git a/nms-patches/PacketDecoder.patch b/nms-patches/PacketDecoder.patch
+new file mode 100644
+index 0000000..f8799b2
+--- /dev/null
++++ b/nms-patches/PacketDecoder.patch
+@@ -0,0 +1,55 @@
++--- a/net/minecraft/server/PacketDecoder.java
+++++ b/net/minecraft/server/PacketDecoder.java
++@@ -5,6 +5,8 @@
++ import io.netty.handler.codec.ByteToMessageDecoder;
++ import java.io.IOException;
++ import java.util.List;
+++
+++import net.cweepahcraft.packet.PacketPlayInAutoRecipeLegacy;
++ import org.apache.logging.log4j.LogManager;
++ import org.apache.logging.log4j.Logger;
++ import org.apache.logging.log4j.Marker;
++@@ -22,22 +24,39 @@
++ 
++     protected void decode(ChannelHandlerContext channelhandlercontext, ByteBuf bytebuf, List<Object> list) throws Exception {
++         if (bytebuf.readableBytes() != 0) {
+++            // CweepahCraft - Protocol hack
+++            EnumProtocol protocol = channelhandlercontext.channel().attr(NetworkManager.c).get();
++             PacketDataSerializer packetdataserializer = new PacketDataSerializer(bytebuf);
++             int i = packetdataserializer.g();
++-            Packet packet = ((EnumProtocol) channelhandlercontext.channel().attr(NetworkManager.c).get()).a(this.c, i);
+++            Packet packet;
+++            int version = 338;
+++
+++            if (channelhandlercontext.channel().hasAttr(NetworkManager.PROTOCOL_VERSION)) {
+++                version = channelhandlercontext.channel().attr(NetworkManager.PROTOCOL_VERSION).get();
+++            }
+++
+++            if (version == 338) {
+++                packet = ((EnumProtocol) protocol).a(this.c, i);
+++            } else {
+++                if (protocol == EnumProtocol.PLAY && i == 1 /* 1.12 prepare crafting grid packet ID */) {
+++                    packet = new PacketPlayInAutoRecipeLegacy();
+++                } else {
+++                    packet = protocol.getLegacyPacket(this.c, i);
+++                }
+++            }
+++            // CweepahCraft end
++ 
++             if (packet == null) {
++                 throw new IOException("Bad packet id " + i);
++             } else {
++                 packet.a(packetdataserializer);
++                 if (packetdataserializer.readableBytes() > 0) {
++-                    throw new IOException("Packet " + ((EnumProtocol) channelhandlercontext.channel().attr(NetworkManager.c).get()).a() + "/" + i + " (" + packet.getClass().getSimpleName() + ") was larger than I expected, found " + packetdataserializer.readableBytes() + " bytes extra whilst reading packet " + i);
+++                    throw new IOException("Packet " + protocol.a() + "/" + i + " (" + packet.getClass().getSimpleName() + ") was larger than I expected, found " + packetdataserializer.readableBytes() + " bytes extra whilst reading packet " + i);
++                 } else {
++                     list.add(packet);
++                     if (PacketDecoder.a.isDebugEnabled()) {
++-                        PacketDecoder.a.debug(PacketDecoder.b, " IN: [{}:{}] {}", channelhandlercontext.channel().attr(NetworkManager.c).get(), Integer.valueOf(i), packet.getClass().getName());
+++                        PacketDecoder.a.debug(PacketDecoder.b, " IN: [{}:{}] {}", protocol, i, packet.getClass().getName());
++                     }
++-
++                 }
++             }
++         }
+diff --git a/nms-patches/PacketEncoder.patch b/nms-patches/PacketEncoder.patch
+new file mode 100644
+index 0000000..f0d5666
+--- /dev/null
++++ b/nms-patches/PacketEncoder.patch
+@@ -0,0 +1,53 @@
++--- a/net/minecraft/server/PacketEncoder.java
+++++ b/net/minecraft/server/PacketEncoder.java
++@@ -20,23 +20,35 @@
++     }
++ 
++     protected void a(ChannelHandlerContext channelhandlercontext, Packet<?> packet, ByteBuf bytebuf) throws Exception {
++-        EnumProtocol enumprotocol = (EnumProtocol) channelhandlercontext.channel().attr(NetworkManager.c).get();
+++        // CweepahCraft - Protocol hack
+++        int version = 338;
+++        EnumProtocol enumprotocol = channelhandlercontext.channel().attr(NetworkManager.c).get();
+++        Integer packetId;
+++
+++        if (channelhandlercontext.channel().hasAttr(NetworkManager.PROTOCOL_VERSION)) {
+++            version = channelhandlercontext.channel().attr(NetworkManager.PROTOCOL_VERSION).get();
+++        }
++ 
++         if (enumprotocol == null) {
++             throw new RuntimeException("ConnectionProtocol unknown: " + packet.toString());
++         } else {
++-            Integer integer = enumprotocol.a(this.c, packet);
+++            if (version == 338) {
+++                packetId = enumprotocol.a(this.c, packet);
+++            } else {
+++                packetId = enumprotocol.getLegacyId(this.c, packet);
+++            }
+++            // CweepahCraft end
++ 
++             if (PacketEncoder.a.isDebugEnabled()) {
++-                PacketEncoder.a.debug(PacketEncoder.b, "OUT: [{}:{}] {}", channelhandlercontext.channel().attr(NetworkManager.c).get(), integer, packet.getClass().getName());
+++                PacketEncoder.a.debug(PacketEncoder.b, "OUT: [{}:{}] {}", channelhandlercontext.channel().attr(NetworkManager.c).get(), packetId, packet.getClass().getName());
++             }
++ 
++-            if (integer == null) {
+++            if (packetId == null) {
++                 throw new IOException("Can\'t serialize unregistered packet");
++             } else {
++                 PacketDataSerializer packetdataserializer = new PacketDataSerializer(bytebuf);
++ 
++-                packetdataserializer.d(integer.intValue());
+++                packetdataserializer.d(packetId);
++ 
++                 try {
++                     packet.b(packetdataserializer);
++@@ -48,7 +60,7 @@
++         }
++     }
++ 
++-    protected void encode(ChannelHandlerContext channelhandlercontext, Object object, ByteBuf bytebuf) throws Exception {
++-        this.a(channelhandlercontext, (Packet) object, bytebuf);
+++    protected void encode(ChannelHandlerContext channelhandlercontext, Packet<?> object, ByteBuf bytebuf) throws Exception { // CweepahCraft - decompile error
+++        this.a(channelhandlercontext, object, bytebuf);
++     }
++ }
+diff --git a/src/main/java/net/cweepahcraft/packet/PacketPlayInAutoRecipeLegacy.java b/src/main/java/net/cweepahcraft/packet/PacketPlayInAutoRecipeLegacy.java
+new file mode 100644
+index 0000000..4cf72a9
+--- /dev/null
++++ b/src/main/java/net/cweepahcraft/packet/PacketPlayInAutoRecipeLegacy.java
+@@ -0,0 +1,30 @@
++package net.cweepahcraft.packet;
++
++import net.minecraft.server.Packet;
++import net.minecraft.server.PacketDataSerializer;
++import net.minecraft.server.PacketListenerPlayIn;
++import net.minecraft.server.PacketPlayInAutoRecipe;
++
++import java.io.IOException;
++
++public class PacketPlayInAutoRecipeLegacy extends PacketPlayInAutoRecipe implements Packet<PacketListenerPlayIn> {
++    @Override
++    public void a(PacketDataSerializer serializer) throws IOException { // Read
++        serializer.readByte();
++        serializer.readShort();
++        readAutoRecipePacketListNOP(serializer);
++        readAutoRecipePacketListNOP(serializer);
++    }
++
++    private void readAutoRecipePacketListNOP(PacketDataSerializer serializer) throws IOException {
++        short size = serializer.readShort();
++        for (int i = 0; i < size; ++i) {
++            serializer.k();
++            serializer.readByte();
++            serializer.readByte();
++        }
++    }
++
++    @Override
++    public void b(PacketDataSerializer serializer) throws IOException {} // Write
++}
+diff --git a/src/main/java/net/minecraft/server/HandshakeListener.java b/src/main/java/net/minecraft/server/HandshakeListener.java
+index 0aa57b9..925b6b6 100644
+--- a/src/main/java/net/minecraft/server/HandshakeListener.java
++++ b/src/main/java/net/minecraft/server/HandshakeListener.java
+@@ -22,6 +22,8 @@ public class HandshakeListener implements PacketHandshakingInListener {
+     }
+ 
+     public void a(PacketHandshakingInSetProtocol packethandshakinginsetprotocol) {
++        this.b.setProtocolVersion(packethandshakinginsetprotocol.b()); // CweepahCraft - Protocol hack
++
+         switch (packethandshakinginsetprotocol.a()) {
+         case LOGIN:
+             this.b.setProtocol(EnumProtocol.LOGIN);
+@@ -66,7 +68,7 @@ public class HandshakeListener implements PacketHandshakingInListener {
+                 chatmessage = new ChatMessage( java.text.MessageFormat.format( org.spigotmc.SpigotConfig.outdatedServerMessage.replaceAll("'", "''"), "1.12.1" ) ); // Spigot
+                 this.b.sendPacket(new PacketLoginOutDisconnect(chatmessage));
+                 this.b.close(chatmessage);
+-            } else if (packethandshakinginsetprotocol.b() < 338) {
++            } else if (packethandshakinginsetprotocol.b() < 338 && packethandshakinginsetprotocol.b() != 335 /* CweepahCraft - protocol hack */) {
+                 chatmessage = new ChatMessage( java.text.MessageFormat.format( org.spigotmc.SpigotConfig.outdatedClientMessage.replaceAll("'", "''"), "1.12.1" ) ); // Spigot
+                 this.b.sendPacket(new PacketLoginOutDisconnect(chatmessage));
+                 this.b.close(chatmessage);
+@@ -98,7 +100,7 @@ public class HandshakeListener implements PacketHandshakingInListener {
+ 
+         case STATUS:
+             this.b.setProtocol(EnumProtocol.STATUS);
+-            this.b.setPacketListener(new PacketStatusListener(this.a, this.b));
++            this.b.setPacketListener(new PacketStatusListener(this.a, this.b, packethandshakinginsetprotocol.b()));
+             break;
+ 
+         default:
+diff --git a/src/main/java/net/minecraft/server/NetworkManager.java b/src/main/java/net/minecraft/server/NetworkManager.java
+index d583cce..0ace7bf 100644
+--- a/src/main/java/net/minecraft/server/NetworkManager.java
++++ b/src/main/java/net/minecraft/server/NetworkManager.java
+@@ -76,6 +76,9 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+     private boolean o;
+     private boolean p;
+ 
++    // CweepahCraft - Protocol hack
++    public static final AttributeKey<Integer> PROTOCOL_VERSION = AttributeKey.valueOf("protocol_version");
++
+     public NetworkManager(EnumProtocolDirection enumprotocoldirection) {
+         this.h = enumprotocoldirection;
+     }
+@@ -96,6 +99,12 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+ 
+     }
+ 
++    // CweepahCraft - Protocol hack
++    public void setProtocolVersion(int version) {
++        this.channel.attr(NetworkManager.PROTOCOL_VERSION).set(version);
++    }
++    // CweepahCraft end
++
+     public void setProtocol(EnumProtocol enumprotocol) {
+         this.channel.attr(NetworkManager.c).set(enumprotocol);
+         this.channel.config().setAutoRead(true);
+diff --git a/src/main/java/net/minecraft/server/PacketStatusListener.java b/src/main/java/net/minecraft/server/PacketStatusListener.java
+index 313bb00..0f07f2f 100644
+--- a/src/main/java/net/minecraft/server/PacketStatusListener.java
++++ b/src/main/java/net/minecraft/server/PacketStatusListener.java
+@@ -18,9 +18,13 @@ public class PacketStatusListener implements PacketStatusInListener {
+     private final NetworkManager networkManager;
+     private boolean d;
+ 
+-    public PacketStatusListener(MinecraftServer minecraftserver, NetworkManager networkmanager) {
++    // CweepahCraft - Protocol hack
++    private int protocolVersion;
++
++    public PacketStatusListener(MinecraftServer minecraftserver, NetworkManager networkmanager, int protocolVersion /* CweepahCraft */) {
+         this.minecraftServer = minecraftserver;
+         this.networkManager = networkmanager;
++        this.protocolVersion = protocolVersion;
+     }
+ 
+     public void a(IChatBaseComponent ichatbasecomponent) {}
+@@ -121,7 +125,7 @@ public class PacketStatusListener implements PacketStatusInListener {
+             ping.setFavicon(event.icon.value);
+             ping.setMOTD(new ChatComponentText(event.getMotd()));
+             ping.setPlayerSample(playerSample);
+-            int version = minecraftServer.getServerPing().getServerData().getProtocolVersion();
++            int version = protocolVersion == 335 ? 335 : minecraftServer.getServerPing().getServerData().getProtocolVersion(); // CweepahCraft - Protocol hack
+             ping.setServerInfo(new ServerPing.ServerData(minecraftServer.getServerModName() + " " + minecraftServer.getVersion(), version));
+ 
+             this.networkManager.sendPacket(new PacketStatusOutServerInfo(ping));
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 61bfd51..e841463 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -11,6 +11,8 @@ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.Iterator;
+ import java.util.Set;
++
++import net.cweepahcraft.packet.PacketPlayInAutoRecipeLegacy;
+ import org.apache.commons.lang3.StringUtils;
+ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
+@@ -1972,6 +1974,14 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+     public void a(PacketPlayInAutoRecipe packetplayinautorecipe) {
+         PlayerConnectionUtils.ensureMainThread(packetplayinautorecipe, this, this.player.x());
+         this.player.resetIdleTimer();
++
++        // CweepahCraft - Protocol hack
++        if (packetplayinautorecipe instanceof PacketPlayInAutoRecipeLegacy) {
++            player.getBukkitEntity().updateInventory();
++            return;
++        }
++        // CweepahCraft end
++
+         if (!this.player.isSpectator() && this.player.activeContainer.windowId == packetplayinautorecipe.a() && this.player.activeContainer.c(this.player)) {
+             this.H.a(this.player, packetplayinautorecipe.b(), packetplayinautorecipe.c());
+         }
+-- 
+1.9.1
+

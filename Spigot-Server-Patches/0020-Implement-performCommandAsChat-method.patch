@@ -1,7 +1,7 @@
-From bdda576cb8418555bb8f2a9a69beacfb9308d41a Mon Sep 17 00:00:00 2001
+From a394083934936cd5b9896ed701fc8cd424219e71 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:14 -0500
-Subject: [PATCH 19/20] Implement performCommandAsChat method
+Subject: [PATCH 20/21] Implement performCommandAsChat method
 
 ---
  .../java/net/minecraft/server/PlayerConnection.java  | 20 ++++++++++++--------

@@ -70,6 +70,11 @@ cd "$root/CweepahCraft/CweepahCraft-Server/"
 git fetch -a upstream
 git reset --hard upstream/master
 git am -3 ../Spigot-Server-Patches/*.patch
+git branch patched || true
+git checkout -f patched
+./applyPatches.sh ../../work/decompile-1ea8a6ae
+git add .
+git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
 
 cd "$root/CraftBukkit/"
 git checkout -f master
