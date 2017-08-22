@@ -1,4 +1,4 @@
-From 1bdbdf0e0b065ccb48238179c14b23c9f29a7d33 Mon Sep 17 00:00:00 2001
+From 5206ac1350a35f0d0b9bcbff0ade90333bf545d8 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:30:01 -0500
 Subject: [PATCH 4/8] Add action bar support for title API

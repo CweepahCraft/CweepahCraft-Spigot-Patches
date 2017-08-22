@@ -1,4 +1,4 @@
-From a394083934936cd5b9896ed701fc8cd424219e71 Mon Sep 17 00:00:00 2001
+From 9a804dbbc1506cd9e243410c2e8c3bc1b6f5bd72 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:14 -0500
 Subject: [PATCH 20/21] Implement performCommandAsChat method

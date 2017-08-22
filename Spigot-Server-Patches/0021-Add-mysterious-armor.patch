@@ -1,4 +1,4 @@
-From 5b870bcbd01221092053c09fdf4513d34319783a Mon Sep 17 00:00:00 2001
+From 1634b856f3605fc41bc9372b28f9828be0e71a8b Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 21 Aug 2017 14:40:44 -0500
 Subject: [PATCH 21/21] Add mysterious armor
@@ -20,7 +20,7 @@ Subject: [PATCH 21/21] Add mysterious armor
 
 diff --git a/nms-patches/Item.patch b/nms-patches/Item.patch
 new file mode 100644
-index 0000000..591bc2a
+index 0000000..62633ee
 --- /dev/null
 +++ b/nms-patches/Item.patch
 @@ -0,0 +1,51 @@
@@ -62,7 +62,7 @@ index 0000000..591bc2a
 ++        a(31997, "mysterious_chestplate", (new ItemArmor(ItemArmor.EnumArmorMaterial.MYSTERIOUS, 5, EnumItemSlot.CHEST)).c("chestplateMysterious"));
 ++        a(31998, "mysterious_leggings", (new ItemArmor(ItemArmor.EnumArmorMaterial.MYSTERIOUS, 5, EnumItemSlot.LEGS)).c("leggingsMysterious"));
 ++        a(31999, "mysterious_boots", (new ItemArmor(ItemArmor.EnumArmorMaterial.MYSTERIOUS, 5, EnumItemSlot.FEET)).c("bootsMysterious"));
-++            // CweepahCraft end
+++        // CweepahCraft end
 +         a(318, "flint", (new Item()).c("flint").b(CreativeModeTab.l));
 +         a(319, "porkchop", (new ItemFood(3, 0.3F, true)).c("porkchopRaw"));
 +         a(320, "cooked_porkchop", (new ItemFood(8, 0.8F, true)).c("porkchopCooked"));

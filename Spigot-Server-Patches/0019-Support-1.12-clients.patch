@@ -1,4 +1,4 @@
-From c0869e56938a525768fb1eb1ea05a2f4a2ab8681 Mon Sep 17 00:00:00 2001
+From 5d125f8e28fe5b859f184d8df62a7078de227f3b Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Fri, 4 Aug 2017 16:34:59 -0500
 Subject: [PATCH 19/21] Support 1.12 clients
