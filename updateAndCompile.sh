@@ -72,6 +72,7 @@ git reset --hard upstream/master
 git am -3 ../Spigot-Server-Patches/*.patch
 git branch patched || true
 git checkout -f patched
+git reset --hard master
 ./applyPatches.sh ../../work/decompile-1ea8a6ae
 git add .
 git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
