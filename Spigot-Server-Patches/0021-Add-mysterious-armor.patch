@@ -1,4 +1,4 @@
-From 1634b856f3605fc41bc9372b28f9828be0e71a8b Mon Sep 17 00:00:00 2001
+From 4fbc153b963010d3c8fc3cfb0a0a5218bec1967c Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 21 Aug 2017 14:40:44 -0500
 Subject: [PATCH 21/21] Add mysterious armor
@@ -8,12 +8,12 @@ Subject: [PATCH 21/21] Add mysterious armor
  nms-patches/Items.patch                            |  33 ++++
  .../net/cweepahcraft/item/ServerSpecificItem.java  |   9 ++
  src/main/java/net/minecraft/server/ItemArmor.java  | 167 +++++++++++++++++++--
- .../net/minecraft/server/PacketDataSerializer.java |  53 ++++++-
+ .../net/minecraft/server/PacketDataSerializer.java |  54 ++++++-
  .../java/net/minecraft/server/RecipeArmorDye.java  |   4 +-
  .../craftbukkit/inventory/CraftItemFactory.java    |   4 +
  .../craftbukkit/inventory/CraftItemStack.java      |   4 +
  .../inventory/CraftMetaLeatherArmor.java           |   4 +
- 9 files changed, 308 insertions(+), 21 deletions(-)
+ 9 files changed, 309 insertions(+), 21 deletions(-)
  create mode 100644 nms-patches/Item.patch
  create mode 100644 nms-patches/Items.patch
  create mode 100644 src/main/java/net/cweepahcraft/item/ServerSpecificItem.java
@@ -370,7 +370,7 @@ index 921cddd..e2b5ae0 100644
  
          public float e() {
 diff --git a/src/main/java/net/minecraft/server/PacketDataSerializer.java b/src/main/java/net/minecraft/server/PacketDataSerializer.java
-index a8fc7e4..726f4ed 100644
+index a8fc7e4..c7ebd0f 100644
 --- a/src/main/java/net/minecraft/server/PacketDataSerializer.java
 +++ b/src/main/java/net/minecraft/server/PacketDataSerializer.java
 @@ -25,6 +25,8 @@ import javax.annotation.Nullable;
@@ -428,12 +428,14 @@ index a8fc7e4..726f4ed 100644
          }
  
          return this;
-@@ -267,8 +293,25 @@ public class PacketDataSerializer extends ByteBuf {
+@@ -267,8 +293,26 @@ public class PacketDataSerializer extends ByteBuf {
              byte b0 = this.readByte();
              short short1 = this.readShort();
              ItemStack itemstack = new ItemStack(Item.getById(short0), b0, short1);
 +            // CweepahCraft start
 +            NBTTagCompound compound = this.j();
++
++            itemstack.setTag(compound);
 +
 +            if (compound != null && compound.hasKeyOfType("ServerId", 2)) {
 +                Item serverItem = Item.getById(compound.getShort("ServerId"));
@@ -446,7 +448,6 @@ index a8fc7e4..726f4ed 100644
 +                    }
 +                }
 +
-+                itemstack.setTag(compound);
 +                itemstack = ((ServerSpecificItem) serverItem).toServerStack(itemstack);
 +            }
 +            // CweepahCraft end
