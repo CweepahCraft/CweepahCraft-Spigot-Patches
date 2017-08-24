@@ -68,6 +68,7 @@ fi
 
 cd "$root/CweepahCraft/CweepahCraft-Server/"
 git fetch -a upstream
+git checkout -f master
 git reset --hard upstream/master
 git am -3 ../Spigot-Server-Patches/*.patch
 git branch patched || true
