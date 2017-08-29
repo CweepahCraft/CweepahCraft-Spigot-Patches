@@ -1,22 +1,8 @@
-From 4fbc153b963010d3c8fc3cfb0a0a5218bec1967c Mon Sep 17 00:00:00 2001
+From b2623f7b1dec0f9dbd424b904e0ceeea8470fc25 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 21 Aug 2017 14:40:44 -0500
-Subject: [PATCH 21/21] Add mysterious armor
+Subject: [PATCH] Add mysterious armor
 
----
- nms-patches/Item.patch                             |  51 +++++++
- nms-patches/Items.patch                            |  33 ++++
- .../net/cweepahcraft/item/ServerSpecificItem.java  |   9 ++
- src/main/java/net/minecraft/server/ItemArmor.java  | 167 +++++++++++++++++++--
- .../net/minecraft/server/PacketDataSerializer.java |  54 ++++++-
- .../java/net/minecraft/server/RecipeArmorDye.java  |   4 +-
- .../craftbukkit/inventory/CraftItemFactory.java    |   4 +
- .../craftbukkit/inventory/CraftItemStack.java      |   4 +
- .../inventory/CraftMetaLeatherArmor.java           |   4 +
- 9 files changed, 309 insertions(+), 21 deletions(-)
- create mode 100644 nms-patches/Item.patch
- create mode 100644 nms-patches/Items.patch
- create mode 100644 src/main/java/net/cweepahcraft/item/ServerSpecificItem.java
 
 diff --git a/nms-patches/Item.patch b/nms-patches/Item.patch
 new file mode 100644
@@ -130,7 +116,7 @@ index 0000000..fb0a2dd
 +    ItemStack toServerStack(ItemStack itemStack);
 +}
 diff --git a/src/main/java/net/minecraft/server/ItemArmor.java b/src/main/java/net/minecraft/server/ItemArmor.java
-index 921cddd..e2b5ae0 100644
+index 921cddd..56fcc0e 100644
 --- a/src/main/java/net/minecraft/server/ItemArmor.java
 +++ b/src/main/java/net/minecraft/server/ItemArmor.java
 @@ -10,7 +10,9 @@ import org.bukkit.craftbukkit.inventory.CraftItemStack;
@@ -214,7 +200,7 @@ index 921cddd..e2b5ae0 100644
              throw new UnsupportedOperationException("Can\'t dye non-leather!");
          } else {
              NBTTagCompound nbttagcompound = itemstack.getTag();
-@@ -187,9 +216,93 @@ public class ItemArmor extends Item {
+@@ -187,9 +216,106 @@ public class ItemArmor extends Item {
          return multimap;
      }
  
@@ -245,6 +231,12 @@ index 921cddd..e2b5ae0 100644
 +
 +        tag.setShort("ServerData", (short) itemStack.getData());
 +
++        if (!e_(itemStack)) {
++            NBTTagCompound display = tag.getCompound("display");
++            display.setInt("color", 0);
++            tag.set("display", display);
++        }
++
 +        clientStack.setTag(tag);
 +        return clientStack;
 +    }
@@ -272,6 +264,13 @@ index 921cddd..e2b5ae0 100644
 +
 +        if (tag.hasKey("AttributeModifiers") && tag.get("AttributeModifiers").equals(attributesToTag(new ItemStack(this)))) {
 +            tag.remove("AttributeModifiers");
++        }
++
++        if (tag.hasKeyOfType("display", 10)) {
++            NBTTagCompound display = tag.getCompound("display");
++            if (display.hasKeyOfType("color", 3) && display.getInt("color") == 0) {
++                display.remove("color");
++            }
 +        }
 +
 +        serverStack.setTag(tag);
@@ -309,11 +308,15 @@ index 921cddd..e2b5ae0 100644
  
          private final String f;
          private final int g;
-@@ -197,16 +310,24 @@ public class ItemArmor extends Item {
+@@ -197,15 +323,23 @@ public class ItemArmor extends Item {
          private final int i;
          private final SoundEffect j;
          private final float k;
 +        private final boolean dyeable;
++
++        EnumArmorMaterial(String s, int i, int[] aint, int j, SoundEffect soundeffect, float f) {
++            this(s, i, aint, j, soundeffect, f, false); // CweepahCraft - initializing code moved below to new constructor
++        }
  
 -        private EnumArmorMaterial(String s, int i, int[] aint, int j, SoundEffect soundeffect, float f) {
 -            this.f = s;
@@ -322,10 +325,6 @@ index 921cddd..e2b5ae0 100644
 -            this.i = j;
 -            this.j = soundeffect;
 -            this.k = f;
-+        EnumArmorMaterial(String s, int i, int[] aint, int j, SoundEffect soundeffect, float f) {
-+            this(s, i, aint, j, soundeffect, f, false); // CweepahCraft - initializing code moved below to new constructor
-         }
- 
 +        // CweepahCraft start
 +        EnumArmorMaterial(String typeName, int durabilityMultiplier, int[] protection, int enchantability, SoundEffect equipSound, float toughness, boolean dyeable) {
 +            this.f = typeName;
@@ -335,13 +334,12 @@ index 921cddd..e2b5ae0 100644
 +            this.j = equipSound;
 +            this.k = toughness;
 +            this.dyeable = dyeable;
-+        }
+         }
 +        // CweepahCraft end
-+
+ 
          public int a(EnumItemSlot enumitemslot) {
              return ItemArmor.n[enumitemslot.b()] * this.g;
-         }
-@@ -223,8 +344,26 @@ public class ItemArmor extends Item {
+@@ -223,8 +357,26 @@ public class ItemArmor extends Item {
              return this.j;
          }
  
