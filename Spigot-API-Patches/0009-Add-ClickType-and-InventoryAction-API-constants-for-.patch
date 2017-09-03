@@ -1,0 +1,40 @@
+From da4762495b053b8e7d0f976aa7f47d3bc87ca886 Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sun, 3 Sep 2017 10:27:38 -0500
+Subject: [PATCH] Add ClickType and InventoryAction API constants for the
+ recipe book
+
+
+diff --git a/src/main/java/org/bukkit/event/inventory/ClickType.java b/src/main/java/org/bukkit/event/inventory/ClickType.java
+index a7440aa..c489f0d 100644
+--- a/src/main/java/org/bukkit/event/inventory/ClickType.java
++++ b/src/main/java/org/bukkit/event/inventory/ClickType.java
+@@ -54,6 +54,10 @@ public enum ClickType {
+      */
+     CREATIVE,
+     /**
++     * Manipulating the inventory via the recipe book.
++     */
++    AUTO_RECIPE,
++    /**
+      * A type of inventory manipulation not yet recognized by Bukkit.
+      * <p>
+      * This is only for transitional purposes on a new Minecraft update, and
+diff --git a/src/main/java/org/bukkit/event/inventory/InventoryAction.java b/src/main/java/org/bukkit/event/inventory/InventoryAction.java
+index a7bc694..306104d 100644
+--- a/src/main/java/org/bukkit/event/inventory/InventoryAction.java
++++ b/src/main/java/org/bukkit/event/inventory/InventoryAction.java
+@@ -84,6 +84,10 @@ public enum InventoryAction {
+      */
+     COLLECT_TO_CURSOR,
+     /**
++     * The inventory is being manipulated by the recipe book.
++     */
++    AUTO_RECIPE,
++    /**
+      * An unrecognized ClickType.
+      */
+     UNKNOWN,
+-- 
+1.9.1
+
