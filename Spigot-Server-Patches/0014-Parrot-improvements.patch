@@ -1,16 +1,11 @@
-From c1b3b52426f2dee1d9f6c0fbbe9edabb6cf4fc38 Mon Sep 17 00:00:00 2001
+From 4d5d50978ede0b3e914da1da8b5faf1ffeab0a26 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 10 Jun 2017 10:52:56 -0500
-Subject: [PATCH 14/21] Parrot improvements
+Subject: [PATCH] Parrot improvements
 
----
- src/main/java/net/minecraft/server/EntityHuman.java       | 2 +-
- src/main/java/net/minecraft/server/EntityParrot.java      | 2 +-
- src/main/java/net/minecraft/server/PathfinderGoalSit.java | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/EntityHuman.java b/src/main/java/net/minecraft/server/EntityHuman.java
-index 50829d8..f334462 100644
+index 9643181..c01fd5b 100644
 --- a/src/main/java/net/minecraft/server/EntityHuman.java
 +++ b/src/main/java/net/minecraft/server/EntityHuman.java
 @@ -397,7 +397,7 @@ public abstract class EntityHuman extends EntityLiving {

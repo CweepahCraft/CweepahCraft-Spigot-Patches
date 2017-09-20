@@ -1,18 +1,14 @@
-From 9a804dbbc1506cd9e243410c2e8c3bc1b6f5bd72 Mon Sep 17 00:00:00 2001
+From 26fb6015ef44763190a6930c961c6e0b967cb978 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:14 -0500
-Subject: [PATCH 20/21] Implement performCommandAsChat method
+Subject: [PATCH] Implement performCommandAsChat method
 
----
- .../java/net/minecraft/server/PlayerConnection.java  | 20 ++++++++++++--------
- .../org/bukkit/craftbukkit/entity/CraftPlayer.java   |  5 +++++
- 2 files changed, 17 insertions(+), 8 deletions(-)
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index e841463..67b2430 100644
+index bb4640b..09dae27 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
-@@ -1218,12 +1218,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1222,12 +1222,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
  
              // CraftBukkit start
              if (isSync) {
@@ -26,7 +22,7 @@ index e841463..67b2430 100644
              } else if (s.isEmpty()) {
                  LOGGER.warn(this.player.getName() + " tried to send an empty message");
              } else if (getPlayer().isConversing()) {
-@@ -1301,7 +1296,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1305,7 +1300,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
          }
  
          if (!async && s.startsWith("/")) {
@@ -35,7 +31,7 @@ index e841463..67b2430 100644
          } else if (this.player.getChatFlags() == EntityHuman.EnumChatVisibility.SYSTEM) {
              // Do nothing, this is coming from a plugin
          } else {
-@@ -1368,7 +1363,16 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1372,7 +1367,16 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
      }
      // CraftBukkit end
  

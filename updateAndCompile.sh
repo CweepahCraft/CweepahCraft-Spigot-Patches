@@ -20,7 +20,7 @@ git checkout -f master
 git reset --hard origin/master
 git checkout -f patched
 git reset --hard origin/master
-./applyPatches.sh ../work/decompile-1ea8a6ae
+./applyPatches.sh ../work/decompile-cf6b1333
 git add .
 git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
 mvn clean install
@@ -74,7 +74,7 @@ git am -3 ../Spigot-Server-Patches/*.patch
 git branch patched || true
 git checkout -f patched
 git reset --hard master
-./applyPatches.sh ../../work/decompile-1ea8a6ae
+./applyPatches.sh ../../work/decompile-cf6b1333
 git add .
 git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
 

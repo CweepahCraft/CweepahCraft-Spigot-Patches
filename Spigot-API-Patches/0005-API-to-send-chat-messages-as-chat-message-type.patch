@@ -1,14 +1,11 @@
-From 14205c3692e10a56510586baeecbc94427449b8d Mon Sep 17 00:00:00 2001
+From 2714d5ed1c217a0e10bd5e3a7367f5dcc5804612 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:42 -0500
-Subject: [PATCH 5/8] API to send chat messages as chat message type
+Subject: [PATCH] API to send chat messages as chat message type
 
----
- src/main/java/org/bukkit/entity/Player.java | 7 +++++++
- 1 file changed, 7 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index fc780f6..e5023e3 100644
+index cf47ce1..ecadfc7 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1432,6 +1432,13 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline

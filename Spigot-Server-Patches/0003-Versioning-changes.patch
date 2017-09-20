@@ -1,11 +1,8 @@
-From f3b7101a65ab8c39a9736d99eaf220a81083740f Mon Sep 17 00:00:00 2001
+From efd49b1ca2e5df99f846fc000ade367c334cb026 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 28 Dec 2016 16:06:42 -0600
-Subject: [PATCH 03/21] Versioning changes
+Subject: [PATCH] Versioning changes
 
----
- src/main/java/org/bukkit/craftbukkit/util/Versioning.java | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 index 9304637..ef75df6 100644

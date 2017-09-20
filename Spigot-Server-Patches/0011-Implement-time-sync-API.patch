@@ -1,18 +1,14 @@
-From b5dc421b4af6d3415384227f777975c5e20cc745 Mon Sep 17 00:00:00 2001
+From 2df5f934e349624061dd100fe91984033a223c2c Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:51:38 -0500
-Subject: [PATCH 11/21] Implement time sync API
+Subject: [PATCH] Implement time sync API
 
----
- src/main/java/net/minecraft/server/WorldServer.java  |  8 +++++++-
- src/main/java/org/bukkit/craftbukkit/CraftWorld.java | 16 ++++++++++++++++
- 2 files changed, 23 insertions(+), 1 deletion(-)
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 660a358..232e6a0 100644
+index edd8769..63222b1 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -299,7 +299,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+@@ -300,7 +300,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
  
          this.worldData.setTime(this.worldData.getTime() + 1L);
          if (this.getGameRules().getBoolean("doDaylightCycle")) {

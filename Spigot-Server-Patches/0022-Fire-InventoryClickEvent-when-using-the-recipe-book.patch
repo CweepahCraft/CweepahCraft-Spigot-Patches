@@ -1,4 +1,4 @@
-From 56b63727dfb4b58a1a9cbd7e21836ca0e9093ecf Mon Sep 17 00:00:00 2001
+From 0c8e23ab974a932c5fe4a44a9aefbda4cd3a133a Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 10:33:21 -0500
 Subject: [PATCH] Fire InventoryClickEvent when using the recipe book

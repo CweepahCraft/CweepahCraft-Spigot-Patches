@@ -1,4 +1,4 @@
-From 5a112e74050b0f9db37ceba9e6ea29975ab21078 Mon Sep 17 00:00:00 2001
+From dd506edbd13e4697125ed4e1bd969c9cfb1ee5c6 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 26 Aug 2017 10:14:10 -0500
 Subject: [PATCH] Don't let blazes try to shoot through walls

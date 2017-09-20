@@ -1,4 +1,4 @@
-From f4caa49f8d006ee3cb83728b9bb0d9f367484ab3 Mon Sep 17 00:00:00 2001
+From 419ad210d7a88cdedbb843a2f4e474c2c890bf01 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 20:21:26 -0500
 Subject: [PATCH] Fix initialization of explorer maps in plugin-created worlds

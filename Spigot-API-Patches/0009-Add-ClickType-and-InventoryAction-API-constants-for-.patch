@@ -1,4 +1,4 @@
-From da4762495b053b8e7d0f976aa7f47d3bc87ca886 Mon Sep 17 00:00:00 2001
+From 03311f23221e92c6d94864c378b2af86efadaece Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 10:27:38 -0500
 Subject: [PATCH] Add ClickType and InventoryAction API constants for the

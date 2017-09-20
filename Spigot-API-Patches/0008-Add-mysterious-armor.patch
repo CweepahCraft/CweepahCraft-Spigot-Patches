@@ -1,11 +1,8 @@
-From 5ce81452e4eff94de4680572302b367185957f00 Mon Sep 17 00:00:00 2001
+From 3166068d12f788f79f7949b63b65fa9a653e03c1 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 19 Aug 2017 18:54:15 -0500
-Subject: [PATCH 8/8] Add mysterious armor
+Subject: [PATCH] Add mysterious armor
 
----
- src/main/java/org/bukkit/Material.java | 4 ++++
- 1 file changed, 4 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/Material.java b/src/main/java/org/bukkit/Material.java
 index 8648959..880e057 100644

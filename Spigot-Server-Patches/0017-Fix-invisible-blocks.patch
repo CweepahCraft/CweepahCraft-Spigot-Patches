@@ -1,13 +1,10 @@
-From 72808000173e432104c3a6970e78cf691683b750 Mon Sep 17 00:00:00 2001
+From 74ced7d104b5fb364518c1bbdd43a4f242294783 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 17 Jul 2017 17:28:41 -0500
-Subject: [PATCH 17/21] Fix invisible blocks
+Subject: [PATCH] Fix invisible blocks
 
 Fix taken from the description here: https://www.youtube.com/watch?v=lu2Dgpf2yRM
 Imgur link to fix: http://i.imgur.com/AdvUzmE.png
----
- src/main/java/net/minecraft/server/PlayerInteractManager.java | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/main/java/net/minecraft/server/PlayerInteractManager.java b/src/main/java/net/minecraft/server/PlayerInteractManager.java
 index a1689c0..38b3512 100644

@@ -1,630 +1,8 @@
-From d8769a4330c0ec154852ec5aa94a399a46e8c480 Mon Sep 17 00:00:00 2001
+From 71fc8de5cc250b17bbdf1beaab5614fcc2b5fcff Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 22 Aug 2017 15:40:26 -0500
-Subject: [PATCH 01/21] Prepare for our NMS patches
+Subject: [PATCH] Prepare for our NMS patches
 
----
- applyPatches.sh                                    |    6 +-
- makePatches.sh                                     |   11 +-
- nms-patches/Advancement.patch                      |   10 -
- nms-patches/AdvancementDataPlayer.patch            |   50 -
- nms-patches/AdvancementRewards.patch               |   52 -
- nms-patches/Advancements.patch                     |   11 -
- nms-patches/Block.patch                            |   67 -
- nms-patches/BlockButtonAbstract.patch              |  110 --
- nms-patches/BlockCactus.patch                      |   33 -
- nms-patches/BlockCake.patch                        |   22 -
- nms-patches/BlockCauldron.patch                    |  175 --
- nms-patches/BlockChorusFlower.patch                |   92 --
- nms-patches/BlockCocoa.patch                       |   35 -
- nms-patches/BlockCommand.patch                     |   27 -
- nms-patches/BlockConcretePowder.patch              |   22 -
- nms-patches/BlockCrops.patch                       |   35 -
- nms-patches/BlockDaylightDetector.patch            |   10 -
- nms-patches/BlockDiodeAbstract.patch               |   30 -
- nms-patches/BlockDispenser.patch                   |   18 -
- nms-patches/BlockDoor.patch                        |   37 -
- nms-patches/BlockDragonEgg.patch                   |   30 -
- nms-patches/BlockDropper.patch                     |   41 -
- nms-patches/BlockEnderPortal.patch                 |   22 -
- nms-patches/BlockFire.patch                        |  156 --
- nms-patches/BlockFlowing.patch                     |   66 -
- nms-patches/BlockFluids.patch                      |   27 -
- nms-patches/BlockGrass.patch                       |   77 -
- nms-patches/BlockIce.patch                         |   14 -
- nms-patches/BlockJukeBox.patch                     |   14 -
- nms-patches/BlockLeaves.patch                      |   26 -
- nms-patches/BlockLever.patch                       |   32 -
- nms-patches/BlockMagma.patch                       |   12 -
- nms-patches/BlockMinecartDetector.patch            |   29 -
- nms-patches/BlockMobSpawner.patch                  |   22 -
- nms-patches/BlockMonsterEggs.patch                 |   20 -
- nms-patches/BlockMushroom.patch                    |   55 -
- nms-patches/BlockMycel.patch                       |   58 -
- nms-patches/BlockNetherWart.patch                  |   12 -
- nms-patches/BlockOre.patch                         |   45 -
- nms-patches/BlockPiston.patch                      |   98 --
- nms-patches/BlockPlant.patch                       |   14 -
- nms-patches/BlockPortal.patch                      |  144 --
- nms-patches/BlockPoweredRail.patch                 |   25 -
- nms-patches/BlockPressurePlateAbstract.patch       |   31 -
- nms-patches/BlockPressurePlateBinary.patch         |   38 -
- nms-patches/BlockPressurePlateWeighted.patch       |   43 -
- nms-patches/BlockPumpkin.patch                     |   81 -
- nms-patches/BlockRedstoneLamp.patch                |   47 -
- nms-patches/BlockRedstoneOre.patch                 |  103 --
- nms-patches/BlockRedstoneTorch.patch               |   62 -
- nms-patches/BlockRedstoneWire.patch                |   27 -
- nms-patches/BlockReed.patch                        |   16 -
- nms-patches/BlockSapling.patch                     |  126 --
- nms-patches/BlockShulkerBox.patch                  |   55 -
- nms-patches/BlockSkull.patch                       |  123 --
- nms-patches/BlockSnow.patch                        |   14 -
- nms-patches/BlockSnowBlock.patch                   |   14 -
- nms-patches/BlockSoil.patch                        |   58 -
- nms-patches/BlockStationary.patch                  |   40 -
- nms-patches/BlockStem.patch                        |   41 -
- nms-patches/BlockTNT.patch                         |   14 -
- nms-patches/BlockTallPlant.patch                   |   14 -
- nms-patches/BlockTrapdoor.patch                    |   30 -
- nms-patches/BlockTripwire.patch                    |   52 -
- nms-patches/BlockTripwireHook.patch                |   29 -
- nms-patches/BlockVine.patch                        |   71 -
- nms-patches/BlockWaterLily.patch                   |   11 -
- nms-patches/ChatBaseComponent.patch                |   11 -
- nms-patches/ChatModifier.patch                     |   45 -
- nms-patches/Chunk.patch                            |  206 ---
- nms-patches/ChunkProviderGenerate.patch            |   14 -
- nms-patches/ChunkProviderServer.patch              |  182 ---
- nms-patches/ChunkRegionLoader.patch                |  249 ---
- nms-patches/ChunkSection.patch                     |   36 -
- nms-patches/CommandBlockListenerAbstract.patch     |  209 ---
- nms-patches/CommandDebug.patch                     |   32 -
- nms-patches/CommandExecute.patch                   |   58 -
- nms-patches/CommandGamemode.patch                  |   34 -
- nms-patches/CommandGamerule.patch                  |   23 -
- nms-patches/CommandSpreadPlayers.patch             |   51 -
- nms-patches/CommandTeleport.patch                  |   23 -
- nms-patches/CommandTp.patch                        |   45 -
- nms-patches/Container.patch                        |  136 --
- nms-patches/ContainerAnvil.patch                   |  115 --
- nms-patches/ContainerBeacon.patch                  |   47 -
- nms-patches/ContainerBrewingStand.patch            |   53 -
- nms-patches/ContainerChest.patch                   |   60 -
- nms-patches/ContainerDispenser.patch               |   53 -
- nms-patches/ContainerEnchantTable.patch            |  206 ---
- nms-patches/ContainerFurnace.patch                 |   50 -
- nms-patches/ContainerHopper.patch                  |   44 -
- nms-patches/ContainerHorse.patch                   |   34 -
- nms-patches/ContainerMerchant.patch                |   37 -
- nms-patches/ContainerPlayer.patch                  |   70 -
- nms-patches/ContainerShulkerBox.patch              |   34 -
- nms-patches/ContainerWorkbench.patch               |   60 -
- nms-patches/CraftingManager.patch                  |   57 -
- nms-patches/CrashReport.patch                      |   10 -
- nms-patches/CustomFunction.patch                   |   19 -
- nms-patches/CustomFunctionData.patch               |   45 -
- nms-patches/DamageSource.patch                     |   21 -
- nms-patches/DataInspectorBlockEntity.patch         |   12 -
- nms-patches/DataPaletteBlock.patch                 |   25 -
- nms-patches/DataWatcher.patch                      |   20 -
- nms-patches/DedicatedServer.patch                  |  268 ----
- nms-patches/DispenseBehaviorItem.patch             |   76 -
- nms-patches/DispenseBehaviorProjectile.patch       |   54 -
- nms-patches/DispenserRegistry.patch                |  540 -------
- nms-patches/DragonControllerManager.patch          |   41 -
- nms-patches/Enchantment.patch                      |   23 -
- nms-patches/EnchantmentFrostWalker.patch           |   25 -
- nms-patches/EnchantmentThorns.patch                |   11 -
- nms-patches/Entity.patch                           |  721 ---------
- nms-patches/EntityAgeable.patch                    |   43 -
- nms-patches/EntityAnimal.patch                     |   36 -
- nms-patches/EntityAreaEffectCloud.patch            |   62 -
- nms-patches/EntityArmorStand.patch                 |  124 --
- nms-patches/EntityArrow.patch                      |   88 -
- nms-patches/EntityBoat.patch                       |  154 --
- nms-patches/EntityChicken.patch                    |   24 -
- nms-patches/EntityCow.patch                        |   40 -
- nms-patches/EntityCreature.patch                   |   29 -
- nms-patches/EntityCreeper.patch                    |   82 -
- nms-patches/EntityDamageSourceIndirect.patch       |   13 -
- nms-patches/EntityEgg.patch                        |   62 -
- nms-patches/EntityEnderCrystal.patch               |   52 -
- nms-patches/EntityEnderDragon.patch                |  114 --
- nms-patches/EntityEnderPearl.patch                 |   65 -
- nms-patches/EntityEnderman.patch                   |   66 -
- nms-patches/EntityEvokerFangs.patch                |   12 -
- nms-patches/EntityExperienceOrb.patch              |   82 -
- nms-patches/EntityFallingBlock.patch               |   54 -
- nms-patches/EntityFireball.patch                   |   72 -
- nms-patches/EntityFireworks.patch                  |   45 -
- nms-patches/EntityFishingHook.patch                |  117 --
- nms-patches/EntityGhast.patch                      |   12 -
- nms-patches/EntityHanging.patch                    |  175 --
- nms-patches/EntityHorseAbstract.patch              |  110 --
- nms-patches/EntityHorseChestedAbstract.patch       |   19 -
- nms-patches/EntityHuman.patch                      |  405 -----
- nms-patches/EntityInsentient.patch                 |  198 ---
- nms-patches/EntityIronGolem.patch                  |   11 -
- nms-patches/EntityItem.patch                       |  118 --
- nms-patches/EntityItemFrame.patch                  |   14 -
- nms-patches/EntityLargeFireball.patch              |   49 -
- nms-patches/EntityLeash.patch                      |   56 -
- nms-patches/EntityLightning.patch                  |   93 --
- nms-patches/EntityLiving.patch                     |  651 --------
- nms-patches/EntityLlamaSpit.patch                  |   19 -
- nms-patches/EntityMinecartAbstract.patch           |  227 ---
- nms-patches/EntityMinecartCommandBlock.patch       |   12 -
- nms-patches/EntityMinecartContainer.patch          |   79 -
- nms-patches/EntityMonster.patch                    |   26 -
- nms-patches/EntityMushroomCow.patch                |   25 -
- nms-patches/EntityOcelot.patch                     |   40 -
- nms-patches/EntityPainting.patch                   |   10 -
- nms-patches/EntityParrot.patch                     |  103 --
- nms-patches/EntityPig.patch                        |   50 -
- nms-patches/EntityPlayer.patch                     |  776 ---------
- nms-patches/EntityPotion.patch                     |  109 --
- nms-patches/EntityProjectile.patch                 |   31 -
- nms-patches/EntityRabbit.patch                     |   41 -
- nms-patches/EntitySheep.patch                      |   73 -
- nms-patches/EntityShulker.patch                    |   42 -
- nms-patches/EntityShulkerBullet.patch              |   40 -
- nms-patches/EntitySilverfish.patch                 |   26 -
- nms-patches/EntitySkeleton.patch                   |   19 -
- nms-patches/EntitySkeletonAbstract.patch           |   54 -
- nms-patches/EntitySkeletonWither.patch             |   19 -
- nms-patches/EntitySlice.patch                      |   29 -
- nms-patches/EntitySlime.patch                      |   40 -
- nms-patches/EntitySmallFireball.patch              |   61 -
- nms-patches/EntitySnowman.patch                    |   47 -
- nms-patches/EntitySpider.patch                     |   11 -
- nms-patches/EntityTNTPrimed.patch                  |   54 -
- nms-patches/EntityThrownExpBottle.patch            |   22 -
- nms-patches/EntityTippedArrow.patch                |   28 -
- nms-patches/EntityTracker.patch                    |   17 -
- nms-patches/EntityTrackerEntry.patch               |  179 ---
- nms-patches/EntityVex.patch                        |   19 -
- nms-patches/EntityVillager.patch                   |   64 -
- nms-patches/EntityWither.patch                     |   78 -
- nms-patches/EntityWitherSkull.patch                |   41 -
- nms-patches/EntityWolf.patch                       |   83 -
- nms-patches/EntityZombie.patch                     |   94 --
- nms-patches/EntityZombieVillager.patch             |   31 -
- nms-patches/ExpirableListEntry.patch               |   42 -
- nms-patches/Explosion.patch                        |  154 --
- nms-patches/FoodMetaData.patch                     |   74 -
- nms-patches/HandshakeListener.patch                |   70 -
- nms-patches/IDataManager.patch                     |    9 -
- nms-patches/IInventory.patch                       |   33 -
- nms-patches/IRecipe.patch                          |   11 -
- nms-patches/InventoryCraftResult.patch             |   57 -
- nms-patches/InventoryCrafting.patch                |   71 -
- nms-patches/InventoryEnderChest.patch              |   31 -
- nms-patches/InventoryHorseChest.patch              |   14 -
- nms-patches/InventoryLargeChest.patch              |   74 -
- nms-patches/InventoryMerchant.patch                |   66 -
- nms-patches/InventorySubcontainer.patch            |   64 -
- nms-patches/ItemArmor.patch                        |   47 -
- nms-patches/ItemBlock.patch                        |   11 -
- nms-patches/ItemBoat.patch                         |   25 -
- nms-patches/ItemBow.patch                          |   49 -
- nms-patches/ItemBucket.patch                       |  110 --
- nms-patches/ItemChorusFruit.patch                  |   35 -
- nms-patches/ItemDye.patch                          |   28 -
- nms-patches/ItemEnderPearl.patch                   |   35 -
- nms-patches/ItemFireball.patch                     |   17 -
- nms-patches/ItemFishingRod.patch                   |   37 -
- nms-patches/ItemFlintAndSteel.patch                |   15 -
- nms-patches/ItemHanging.patch                      |   32 -
- nms-patches/ItemLeash.patch                        |   35 -
- nms-patches/ItemMinecart.patch                     |   69 -
- nms-patches/ItemMonsterEgg.patch                   |   30 -
- nms-patches/ItemRecord.patch                       |   10 -
- nms-patches/ItemRedstone.patch                     |   11 -
- nms-patches/ItemReed.patch                         |   11 -
- nms-patches/ItemSkull.patch                        |   18 -
- nms-patches/ItemSnowball.patch                     |   33 -
- nms-patches/ItemStack.patch                        |  318 ----
- nms-patches/ItemWaterLily.patch                    |   18 -
- nms-patches/ItemWorldMap.patch                     |  111 --
- nms-patches/JsonList.patch                         |   47 -
- nms-patches/LoginListener.patch                    |  137 --
- nms-patches/MerchantRecipe.patch                   |   29 -
- nms-patches/MethodProfiler.patch                   |   72 -
- nms-patches/MinecraftServer.patch                  |  716 ---------
- nms-patches/MobEffectList.patch                    |   85 -
- nms-patches/MobSpawnerAbstract.patch               |   19 -
- nms-patches/NameReferencingFileConverter.patch     |   99 --
- nms-patches/NetworkManager.patch                   |   29 -
- nms-patches/PacketDataSerializer.patch             |   50 -
- nms-patches/PacketPlayInCloseWindow.patch          |   15 -
- nms-patches/PacketPlayOutWorldBorder.patch         |   15 -
- nms-patches/PacketStatusListener.patch             |  117 --
- nms-patches/PathfinderGoalBreakDoor.patch          |   15 -
- nms-patches/PathfinderGoalBreed.patch              |   49 -
- nms-patches/PathfinderGoalDefendVillage.patch      |   11 -
- nms-patches/PathfinderGoalEatTile.patch            |   34 -
- nms-patches/PathfinderGoalFollowOwner.patch        |   34 -
- nms-patches/PathfinderGoalHorseTrap.patch          |   37 -
- nms-patches/PathfinderGoalHurtByTarget.patch       |   19 -
- nms-patches/PathfinderGoalMakeLove.patch           |   23 -
- .../PathfinderGoalNearestAttackableTarget.patch    |   56 -
- ...nderGoalNearestAttackableTargetInsentient.patch |   11 -
- nms-patches/PathfinderGoalOwnerHurtByTarget.patch  |   11 -
- nms-patches/PathfinderGoalOwnerHurtTarget.patch    |   11 -
- nms-patches/PathfinderGoalPanic.patch              |   15 -
- nms-patches/PathfinderGoalSit.patch                |   11 -
- nms-patches/PathfinderGoalTame.patch               |   12 -
- nms-patches/PathfinderGoalTarget.patch             |   28 -
- .../PathfinderGoalTargetNearestPlayer.patch        |   11 -
- nms-patches/PathfinderGoalTempt.patch              |   43 -
- nms-patches/PathfinderGoalVillagerFarm.patch       |   48 -
- nms-patches/PlayerChunk.patch                      |  107 --
- nms-patches/PlayerChunkMap.patch                   |  152 --
- nms-patches/PlayerConnection.patch                 | 1693 --------------------
- nms-patches/PlayerInteractManager.patch            |  377 -----
- nms-patches/PlayerInventory.patch                  |  113 --
- nms-patches/PlayerList.patch                       | 1025 ------------
- nms-patches/PortalTravelAgent.patch                |  288 ----
- nms-patches/PropertyManager.patch                  |   93 --
- nms-patches/RecipeArmorDye.patch                   |   18 -
- nms-patches/RecipeBookClone.patch                  |   16 -
- nms-patches/RecipeFireworks.patch                  |   20 -
- nms-patches/RecipeMapClone.patch                   |   17 -
- nms-patches/RecipeRepair.patch                     |   38 -
- nms-patches/RecipeShulkerBox.patch                 |   20 -
- nms-patches/RecipeTippedArrow.patch                |   22 -
- nms-patches/RecipesBanner.patch                    |   37 -
- nms-patches/RecipesFurnace.patch                   |   80 -
- nms-patches/RecipiesShield.patch                   |   20 -
- nms-patches/RegionFileCache.patch                  |   34 -
- nms-patches/RemoteControlCommandListener.patch     |   15 -
- nms-patches/ScoreboardServer.patch                 |  126 --
- nms-patches/SecondaryWorldServer.patch             |   38 -
- nms-patches/ShapedRecipes.patch                    |   92 --
- nms-patches/ShapelessRecipes.patch                 |   49 -
- nms-patches/SlotFurnaceResult.patch                |   32 -
- nms-patches/SpawnerCreature.patch                  |  111 --
- nms-patches/StatisticManager.patch                 |   15 -
- nms-patches/TileEntity.patch                       |   25 -
- nms-patches/TileEntityBanner.patch                 |   26 -
- nms-patches/TileEntityBeacon.patch                 |  144 --
- nms-patches/TileEntityBrewingStand.patch           |  116 --
- nms-patches/TileEntityChest.patch                  |  110 --
- nms-patches/TileEntityCommand.patch                |   12 -
- nms-patches/TileEntityContainer.patch              |   15 -
- nms-patches/TileEntityDispenser.patch              |   55 -
- nms-patches/TileEntityEndGateway.patch             |   42 -
- nms-patches/TileEntityFurnace.patch                |  180 ---
- nms-patches/TileEntityHopper.patch                 |  154 --
- nms-patches/TileEntityNote.patch                   |   16 -
- nms-patches/TileEntityShulkerBox.patch             |   54 -
- nms-patches/TileEntitySign.patch                   |   70 -
- nms-patches/UserCache.patch                        |   25 -
- nms-patches/Village.patch                          |   11 -
- nms-patches/VillageSiege.patch                     |   11 -
- nms-patches/World.patch                            |  652 --------
- nms-patches/WorldBorder.patch                      |   18 -
- nms-patches/WorldData.patch                        |   82 -
- nms-patches/WorldGenGroundBush.patch               |   15 -
- nms-patches/WorldGenMegaTreeAbstract.patch         |   11 -
- nms-patches/WorldGenRegistration.patch             |   11 -
- nms-patches/WorldGenVillagePieces.patch            |   45 -
- nms-patches/WorldManager.patch                     |   48 -
- nms-patches/WorldMap.patch                         |  123 --
- nms-patches/WorldNBTStorage.patch                  |  112 --
- nms-patches/WorldProviderHell.patch                |   16 -
- nms-patches/WorldServer.patch                      |  691 --------
- 311 files changed, 13 insertions(+), 24592 deletions(-)
- delete mode 100644 nms-patches/Advancement.patch
- delete mode 100644 nms-patches/AdvancementDataPlayer.patch
- delete mode 100644 nms-patches/AdvancementRewards.patch
- delete mode 100644 nms-patches/Advancements.patch
- delete mode 100644 nms-patches/Block.patch
- delete mode 100644 nms-patches/BlockButtonAbstract.patch
- delete mode 100644 nms-patches/BlockCactus.patch
- delete mode 100644 nms-patches/BlockCake.patch
- delete mode 100644 nms-patches/BlockCauldron.patch
- delete mode 100644 nms-patches/BlockChorusFlower.patch
- delete mode 100644 nms-patches/BlockCocoa.patch
- delete mode 100644 nms-patches/BlockCommand.patch
- delete mode 100644 nms-patches/BlockConcretePowder.patch
- delete mode 100644 nms-patches/BlockCrops.patch
- delete mode 100644 nms-patches/BlockDaylightDetector.patch
- delete mode 100644 nms-patches/BlockDiodeAbstract.patch
- delete mode 100644 nms-patches/BlockDispenser.patch
- delete mode 100644 nms-patches/BlockDoor.patch
- delete mode 100644 nms-patches/BlockDragonEgg.patch
- delete mode 100644 nms-patches/BlockDropper.patch
- delete mode 100644 nms-patches/BlockEnderPortal.patch
- delete mode 100644 nms-patches/BlockFire.patch
- delete mode 100644 nms-patches/BlockFlowing.patch
- delete mode 100644 nms-patches/BlockFluids.patch
- delete mode 100644 nms-patches/BlockGrass.patch
- delete mode 100644 nms-patches/BlockIce.patch
- delete mode 100644 nms-patches/BlockJukeBox.patch
- delete mode 100644 nms-patches/BlockLeaves.patch
- delete mode 100644 nms-patches/BlockLever.patch
- delete mode 100644 nms-patches/BlockMagma.patch
- delete mode 100644 nms-patches/BlockMinecartDetector.patch
- delete mode 100644 nms-patches/BlockMobSpawner.patch
- delete mode 100644 nms-patches/BlockMonsterEggs.patch
- delete mode 100644 nms-patches/BlockMushroom.patch
- delete mode 100644 nms-patches/BlockMycel.patch
- delete mode 100644 nms-patches/BlockNetherWart.patch
- delete mode 100644 nms-patches/BlockOre.patch
- delete mode 100644 nms-patches/BlockPiston.patch
- delete mode 100644 nms-patches/BlockPlant.patch
- delete mode 100644 nms-patches/BlockPortal.patch
- delete mode 100644 nms-patches/BlockPoweredRail.patch
- delete mode 100644 nms-patches/BlockPressurePlateAbstract.patch
- delete mode 100644 nms-patches/BlockPressurePlateBinary.patch
- delete mode 100644 nms-patches/BlockPressurePlateWeighted.patch
- delete mode 100644 nms-patches/BlockPumpkin.patch
- delete mode 100644 nms-patches/BlockRedstoneLamp.patch
- delete mode 100644 nms-patches/BlockRedstoneOre.patch
- delete mode 100644 nms-patches/BlockRedstoneTorch.patch
- delete mode 100644 nms-patches/BlockRedstoneWire.patch
- delete mode 100644 nms-patches/BlockReed.patch
- delete mode 100644 nms-patches/BlockSapling.patch
- delete mode 100644 nms-patches/BlockShulkerBox.patch
- delete mode 100644 nms-patches/BlockSkull.patch
- delete mode 100644 nms-patches/BlockSnow.patch
- delete mode 100644 nms-patches/BlockSnowBlock.patch
- delete mode 100644 nms-patches/BlockSoil.patch
- delete mode 100644 nms-patches/BlockStationary.patch
- delete mode 100644 nms-patches/BlockStem.patch
- delete mode 100644 nms-patches/BlockTNT.patch
- delete mode 100644 nms-patches/BlockTallPlant.patch
- delete mode 100644 nms-patches/BlockTrapdoor.patch
- delete mode 100644 nms-patches/BlockTripwire.patch
- delete mode 100644 nms-patches/BlockTripwireHook.patch
- delete mode 100644 nms-patches/BlockVine.patch
- delete mode 100644 nms-patches/BlockWaterLily.patch
- delete mode 100644 nms-patches/ChatBaseComponent.patch
- delete mode 100644 nms-patches/ChatModifier.patch
- delete mode 100644 nms-patches/Chunk.patch
- delete mode 100644 nms-patches/ChunkProviderGenerate.patch
- delete mode 100644 nms-patches/ChunkProviderServer.patch
- delete mode 100644 nms-patches/ChunkRegionLoader.patch
- delete mode 100644 nms-patches/ChunkSection.patch
- delete mode 100644 nms-patches/CommandBlockListenerAbstract.patch
- delete mode 100644 nms-patches/CommandDebug.patch
- delete mode 100644 nms-patches/CommandExecute.patch
- delete mode 100644 nms-patches/CommandGamemode.patch
- delete mode 100644 nms-patches/CommandGamerule.patch
- delete mode 100644 nms-patches/CommandSpreadPlayers.patch
- delete mode 100644 nms-patches/CommandTeleport.patch
- delete mode 100644 nms-patches/CommandTp.patch
- delete mode 100644 nms-patches/Container.patch
- delete mode 100644 nms-patches/ContainerAnvil.patch
- delete mode 100644 nms-patches/ContainerBeacon.patch
- delete mode 100644 nms-patches/ContainerBrewingStand.patch
- delete mode 100644 nms-patches/ContainerChest.patch
- delete mode 100644 nms-patches/ContainerDispenser.patch
- delete mode 100644 nms-patches/ContainerEnchantTable.patch
- delete mode 100644 nms-patches/ContainerFurnace.patch
- delete mode 100644 nms-patches/ContainerHopper.patch
- delete mode 100644 nms-patches/ContainerHorse.patch
- delete mode 100644 nms-patches/ContainerMerchant.patch
- delete mode 100644 nms-patches/ContainerPlayer.patch
- delete mode 100644 nms-patches/ContainerShulkerBox.patch
- delete mode 100644 nms-patches/ContainerWorkbench.patch
- delete mode 100644 nms-patches/CraftingManager.patch
- delete mode 100644 nms-patches/CrashReport.patch
- delete mode 100644 nms-patches/CustomFunction.patch
- delete mode 100644 nms-patches/CustomFunctionData.patch
- delete mode 100644 nms-patches/DamageSource.patch
- delete mode 100644 nms-patches/DataInspectorBlockEntity.patch
- delete mode 100644 nms-patches/DataPaletteBlock.patch
- delete mode 100644 nms-patches/DataWatcher.patch
- delete mode 100644 nms-patches/DedicatedServer.patch
- delete mode 100644 nms-patches/DispenseBehaviorItem.patch
- delete mode 100644 nms-patches/DispenseBehaviorProjectile.patch
- delete mode 100644 nms-patches/DispenserRegistry.patch
- delete mode 100644 nms-patches/DragonControllerManager.patch
- delete mode 100644 nms-patches/Enchantment.patch
- delete mode 100644 nms-patches/EnchantmentFrostWalker.patch
- delete mode 100644 nms-patches/EnchantmentThorns.patch
- delete mode 100644 nms-patches/Entity.patch
- delete mode 100644 nms-patches/EntityAgeable.patch
- delete mode 100644 nms-patches/EntityAnimal.patch
- delete mode 100644 nms-patches/EntityAreaEffectCloud.patch
- delete mode 100644 nms-patches/EntityArmorStand.patch
- delete mode 100644 nms-patches/EntityArrow.patch
- delete mode 100644 nms-patches/EntityBoat.patch
- delete mode 100644 nms-patches/EntityChicken.patch
- delete mode 100644 nms-patches/EntityCow.patch
- delete mode 100644 nms-patches/EntityCreature.patch
- delete mode 100644 nms-patches/EntityCreeper.patch
- delete mode 100644 nms-patches/EntityDamageSourceIndirect.patch
- delete mode 100644 nms-patches/EntityEgg.patch
- delete mode 100644 nms-patches/EntityEnderCrystal.patch
- delete mode 100644 nms-patches/EntityEnderDragon.patch
- delete mode 100644 nms-patches/EntityEnderPearl.patch
- delete mode 100644 nms-patches/EntityEnderman.patch
- delete mode 100644 nms-patches/EntityEvokerFangs.patch
- delete mode 100644 nms-patches/EntityExperienceOrb.patch
- delete mode 100644 nms-patches/EntityFallingBlock.patch
- delete mode 100644 nms-patches/EntityFireball.patch
- delete mode 100644 nms-patches/EntityFireworks.patch
- delete mode 100644 nms-patches/EntityFishingHook.patch
- delete mode 100644 nms-patches/EntityGhast.patch
- delete mode 100644 nms-patches/EntityHanging.patch
- delete mode 100644 nms-patches/EntityHorseAbstract.patch
- delete mode 100644 nms-patches/EntityHorseChestedAbstract.patch
- delete mode 100644 nms-patches/EntityHuman.patch
- delete mode 100644 nms-patches/EntityInsentient.patch
- delete mode 100644 nms-patches/EntityIronGolem.patch
- delete mode 100644 nms-patches/EntityItem.patch
- delete mode 100644 nms-patches/EntityItemFrame.patch
- delete mode 100644 nms-patches/EntityLargeFireball.patch
- delete mode 100644 nms-patches/EntityLeash.patch
- delete mode 100644 nms-patches/EntityLightning.patch
- delete mode 100644 nms-patches/EntityLiving.patch
- delete mode 100644 nms-patches/EntityLlamaSpit.patch
- delete mode 100644 nms-patches/EntityMinecartAbstract.patch
- delete mode 100644 nms-patches/EntityMinecartCommandBlock.patch
- delete mode 100644 nms-patches/EntityMinecartContainer.patch
- delete mode 100644 nms-patches/EntityMonster.patch
- delete mode 100644 nms-patches/EntityMushroomCow.patch
- delete mode 100644 nms-patches/EntityOcelot.patch
- delete mode 100644 nms-patches/EntityPainting.patch
- delete mode 100644 nms-patches/EntityParrot.patch
- delete mode 100644 nms-patches/EntityPig.patch
- delete mode 100644 nms-patches/EntityPlayer.patch
- delete mode 100644 nms-patches/EntityPotion.patch
- delete mode 100644 nms-patches/EntityProjectile.patch
- delete mode 100644 nms-patches/EntityRabbit.patch
- delete mode 100644 nms-patches/EntitySheep.patch
- delete mode 100644 nms-patches/EntityShulker.patch
- delete mode 100644 nms-patches/EntityShulkerBullet.patch
- delete mode 100644 nms-patches/EntitySilverfish.patch
- delete mode 100644 nms-patches/EntitySkeleton.patch
- delete mode 100644 nms-patches/EntitySkeletonAbstract.patch
- delete mode 100644 nms-patches/EntitySkeletonWither.patch
- delete mode 100644 nms-patches/EntitySlice.patch
- delete mode 100644 nms-patches/EntitySlime.patch
- delete mode 100644 nms-patches/EntitySmallFireball.patch
- delete mode 100644 nms-patches/EntitySnowman.patch
- delete mode 100644 nms-patches/EntitySpider.patch
- delete mode 100644 nms-patches/EntityTNTPrimed.patch
- delete mode 100644 nms-patches/EntityThrownExpBottle.patch
- delete mode 100644 nms-patches/EntityTippedArrow.patch
- delete mode 100644 nms-patches/EntityTracker.patch
- delete mode 100644 nms-patches/EntityTrackerEntry.patch
- delete mode 100644 nms-patches/EntityVex.patch
- delete mode 100644 nms-patches/EntityVillager.patch
- delete mode 100644 nms-patches/EntityWither.patch
- delete mode 100644 nms-patches/EntityWitherSkull.patch
- delete mode 100644 nms-patches/EntityWolf.patch
- delete mode 100644 nms-patches/EntityZombie.patch
- delete mode 100644 nms-patches/EntityZombieVillager.patch
- delete mode 100644 nms-patches/ExpirableListEntry.patch
- delete mode 100644 nms-patches/Explosion.patch
- delete mode 100644 nms-patches/FoodMetaData.patch
- delete mode 100644 nms-patches/HandshakeListener.patch
- delete mode 100644 nms-patches/IDataManager.patch
- delete mode 100644 nms-patches/IInventory.patch
- delete mode 100644 nms-patches/IRecipe.patch
- delete mode 100644 nms-patches/InventoryCraftResult.patch
- delete mode 100644 nms-patches/InventoryCrafting.patch
- delete mode 100644 nms-patches/InventoryEnderChest.patch
- delete mode 100644 nms-patches/InventoryHorseChest.patch
- delete mode 100644 nms-patches/InventoryLargeChest.patch
- delete mode 100644 nms-patches/InventoryMerchant.patch
- delete mode 100644 nms-patches/InventorySubcontainer.patch
- delete mode 100644 nms-patches/ItemArmor.patch
- delete mode 100644 nms-patches/ItemBlock.patch
- delete mode 100644 nms-patches/ItemBoat.patch
- delete mode 100644 nms-patches/ItemBow.patch
- delete mode 100644 nms-patches/ItemBucket.patch
- delete mode 100644 nms-patches/ItemChorusFruit.patch
- delete mode 100644 nms-patches/ItemDye.patch
- delete mode 100644 nms-patches/ItemEnderPearl.patch
- delete mode 100644 nms-patches/ItemFireball.patch
- delete mode 100644 nms-patches/ItemFishingRod.patch
- delete mode 100644 nms-patches/ItemFlintAndSteel.patch
- delete mode 100644 nms-patches/ItemHanging.patch
- delete mode 100644 nms-patches/ItemLeash.patch
- delete mode 100644 nms-patches/ItemMinecart.patch
- delete mode 100644 nms-patches/ItemMonsterEgg.patch
- delete mode 100644 nms-patches/ItemRecord.patch
- delete mode 100644 nms-patches/ItemRedstone.patch
- delete mode 100644 nms-patches/ItemReed.patch
- delete mode 100644 nms-patches/ItemSkull.patch
- delete mode 100644 nms-patches/ItemSnowball.patch
- delete mode 100644 nms-patches/ItemStack.patch
- delete mode 100644 nms-patches/ItemWaterLily.patch
- delete mode 100644 nms-patches/ItemWorldMap.patch
- delete mode 100644 nms-patches/JsonList.patch
- delete mode 100644 nms-patches/LoginListener.patch
- delete mode 100644 nms-patches/MerchantRecipe.patch
- delete mode 100644 nms-patches/MethodProfiler.patch
- delete mode 100644 nms-patches/MinecraftServer.patch
- delete mode 100644 nms-patches/MobEffectList.patch
- delete mode 100644 nms-patches/MobSpawnerAbstract.patch
- delete mode 100644 nms-patches/NameReferencingFileConverter.patch
- delete mode 100644 nms-patches/NetworkManager.patch
- delete mode 100644 nms-patches/PacketDataSerializer.patch
- delete mode 100644 nms-patches/PacketPlayInCloseWindow.patch
- delete mode 100644 nms-patches/PacketPlayOutWorldBorder.patch
- delete mode 100644 nms-patches/PacketStatusListener.patch
- delete mode 100644 nms-patches/PathfinderGoalBreakDoor.patch
- delete mode 100644 nms-patches/PathfinderGoalBreed.patch
- delete mode 100644 nms-patches/PathfinderGoalDefendVillage.patch
- delete mode 100644 nms-patches/PathfinderGoalEatTile.patch
- delete mode 100644 nms-patches/PathfinderGoalFollowOwner.patch
- delete mode 100644 nms-patches/PathfinderGoalHorseTrap.patch
- delete mode 100644 nms-patches/PathfinderGoalHurtByTarget.patch
- delete mode 100644 nms-patches/PathfinderGoalMakeLove.patch
- delete mode 100644 nms-patches/PathfinderGoalNearestAttackableTarget.patch
- delete mode 100644 nms-patches/PathfinderGoalNearestAttackableTargetInsentient.patch
- delete mode 100644 nms-patches/PathfinderGoalOwnerHurtByTarget.patch
- delete mode 100644 nms-patches/PathfinderGoalOwnerHurtTarget.patch
- delete mode 100644 nms-patches/PathfinderGoalPanic.patch
- delete mode 100644 nms-patches/PathfinderGoalSit.patch
- delete mode 100644 nms-patches/PathfinderGoalTame.patch
- delete mode 100644 nms-patches/PathfinderGoalTarget.patch
- delete mode 100644 nms-patches/PathfinderGoalTargetNearestPlayer.patch
- delete mode 100644 nms-patches/PathfinderGoalTempt.patch
- delete mode 100644 nms-patches/PathfinderGoalVillagerFarm.patch
- delete mode 100644 nms-patches/PlayerChunk.patch
- delete mode 100644 nms-patches/PlayerChunkMap.patch
- delete mode 100644 nms-patches/PlayerConnection.patch
- delete mode 100644 nms-patches/PlayerInteractManager.patch
- delete mode 100644 nms-patches/PlayerInventory.patch
- delete mode 100644 nms-patches/PlayerList.patch
- delete mode 100644 nms-patches/PortalTravelAgent.patch
- delete mode 100644 nms-patches/PropertyManager.patch
- delete mode 100644 nms-patches/RecipeArmorDye.patch
- delete mode 100644 nms-patches/RecipeBookClone.patch
- delete mode 100644 nms-patches/RecipeFireworks.patch
- delete mode 100644 nms-patches/RecipeMapClone.patch
- delete mode 100644 nms-patches/RecipeRepair.patch
- delete mode 100644 nms-patches/RecipeShulkerBox.patch
- delete mode 100644 nms-patches/RecipeTippedArrow.patch
- delete mode 100644 nms-patches/RecipesBanner.patch
- delete mode 100644 nms-patches/RecipesFurnace.patch
- delete mode 100644 nms-patches/RecipiesShield.patch
- delete mode 100644 nms-patches/RegionFileCache.patch
- delete mode 100644 nms-patches/RemoteControlCommandListener.patch
- delete mode 100644 nms-patches/ScoreboardServer.patch
- delete mode 100644 nms-patches/SecondaryWorldServer.patch
- delete mode 100644 nms-patches/ShapedRecipes.patch
- delete mode 100644 nms-patches/ShapelessRecipes.patch
- delete mode 100644 nms-patches/SlotFurnaceResult.patch
- delete mode 100644 nms-patches/SpawnerCreature.patch
- delete mode 100644 nms-patches/StatisticManager.patch
- delete mode 100644 nms-patches/TileEntity.patch
- delete mode 100644 nms-patches/TileEntityBanner.patch
- delete mode 100644 nms-patches/TileEntityBeacon.patch
- delete mode 100644 nms-patches/TileEntityBrewingStand.patch
- delete mode 100644 nms-patches/TileEntityChest.patch
- delete mode 100644 nms-patches/TileEntityCommand.patch
- delete mode 100644 nms-patches/TileEntityContainer.patch
- delete mode 100644 nms-patches/TileEntityDispenser.patch
- delete mode 100644 nms-patches/TileEntityEndGateway.patch
- delete mode 100644 nms-patches/TileEntityFurnace.patch
- delete mode 100644 nms-patches/TileEntityHopper.patch
- delete mode 100644 nms-patches/TileEntityNote.patch
- delete mode 100644 nms-patches/TileEntityShulkerBox.patch
- delete mode 100644 nms-patches/TileEntitySign.patch
- delete mode 100644 nms-patches/UserCache.patch
- delete mode 100644 nms-patches/Village.patch
- delete mode 100644 nms-patches/VillageSiege.patch
- delete mode 100644 nms-patches/World.patch
- delete mode 100644 nms-patches/WorldBorder.patch
- delete mode 100644 nms-patches/WorldData.patch
- delete mode 100644 nms-patches/WorldGenGroundBush.patch
- delete mode 100644 nms-patches/WorldGenMegaTreeAbstract.patch
- delete mode 100644 nms-patches/WorldGenRegistration.patch
- delete mode 100644 nms-patches/WorldGenVillagePieces.patch
- delete mode 100644 nms-patches/WorldManager.patch
- delete mode 100644 nms-patches/WorldMap.patch
- delete mode 100644 nms-patches/WorldNBTStorage.patch
- delete mode 100644 nms-patches/WorldProviderHell.patch
- delete mode 100644 nms-patches/WorldServer.patch
 
 diff --git a/applyPatches.sh b/applyPatches.sh
 index 0240113..516739d 100755
@@ -1704,7 +1082,7 @@ index 07c21cb..0000000
 -                         } else {
 diff --git a/nms-patches/BlockEnderPortal.patch b/nms-patches/BlockEnderPortal.patch
 deleted file mode 100644
-index 478cb6a..0000000
+index 52f8b81..0000000
 --- a/nms-patches/BlockEnderPortal.patch
 +++ /dev/null
 @@ -1,22 +0,0 @@
@@ -1722,7 +1100,7 @@ index 478cb6a..0000000
 -@@ -37,6 +39,10 @@
 - 
 -     public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
--         if (!entity.isPassenger() && !entity.isVehicle() && entity.bf() && !world.isClientSide && entity.getBoundingBox().c(iblockdata.e(world, blockposition).a(blockposition))) {
+-         if (!world.isClientSide && !entity.isPassenger() && !entity.isVehicle() && entity.bf() && entity.getBoundingBox().c(iblockdata.e(world, blockposition).a(blockposition))) {
 -+            // CraftBukkit start - Entity in portal
 -+            EntityPortalEnterEvent event = new EntityPortalEnterEvent(entity.getBukkitEntity(), new org.bukkit.Location(world.getWorld(), blockposition.getX(), blockposition.getY(), blockposition.getZ()));
 -+            world.getServer().getPluginManager().callEvent(event);
@@ -3662,7 +3040,7 @@ index 5329149..0000000
 -         }
 diff --git a/nms-patches/BlockSoil.patch b/nms-patches/BlockSoil.patch
 deleted file mode 100644
-index 33fdfe0..0000000
+index bb670a3..0000000
 --- a/nms-patches/BlockSoil.patch
 +++ /dev/null
 @@ -1,58 +0,0 @@
@@ -3680,7 +3058,7 @@ index 33fdfe0..0000000
 - public class BlockSoil extends Block {
 - 
 -     public static final BlockStateInteger MOISTURE = BlockStateInteger.of("moisture", 0, 7);
--@@ -35,6 +40,12 @@
+-@@ -36,6 +41,12 @@
 -             if (i > 0) {
 -                 world.setTypeAndData(blockposition, iblockdata.set(BlockSoil.MOISTURE, Integer.valueOf(i - 1)), 2);
 -             } else if (!this.c(world, blockposition)) {
@@ -3690,10 +3068,10 @@ index 33fdfe0..0000000
 -+                    return;
 -+                }
 -+                // CraftBukkit end
--                 this.b(world, blockposition);
+-                 b(world, blockposition);
 -             }
 -         } else if (i < 7) {
--@@ -44,11 +55,29 @@
+-@@ -45,11 +56,29 @@
 -     }
 - 
 -     public void fallOn(World world, BlockPosition blockposition, Entity entity, float f) {
@@ -3716,14 +3094,14 @@ index 33fdfe0..0000000
 -+                return;
 -+            }
 -+            // CraftBukkit end
--             this.b(world, blockposition);
+-             b(world, blockposition);
 -         }
 - 
 --        super.fallOn(world, blockposition, entity, f);
 -+        // super.fallOn(world, blockposition, entity, f); // CraftBukkit - moved up
 -     }
 - 
--     private void b(World world, BlockPosition blockposition) {
+-     protected static void b(World world, BlockPosition blockposition) {
 diff --git a/nms-patches/BlockStationary.patch b/nms-patches/BlockStationary.patch
 deleted file mode 100644
 index 02a516f..0000000
@@ -5390,7 +4768,7 @@ index 603af70..0000000
 - }
 diff --git a/nms-patches/Container.patch b/nms-patches/Container.patch
 deleted file mode 100644
-index 0a505a2..0000000
+index 26daef6..0000000
 --- a/nms-patches/Container.patch
 +++ /dev/null
 @@ -1,136 +0,0 @@
@@ -5413,7 +4791,7 @@ index 0a505a2..0000000
 -+
 - public abstract class Container {
 - 
--     public NonNullList<ItemStack> b = NonNullList.a();
+-     public NonNullList<ItemStack> items = NonNullList.a();
 -@@ -18,6 +29,18 @@
 -     protected List<ICrafting> listeners = Lists.newArrayList();
 -     private final Set<EntityHuman> i = Sets.newHashSet();
@@ -5532,7 +4910,7 @@ index 0a505a2..0000000
 -             entityplayer.playerConnection.sendPacket(new PacketPlayOutSetSlot(this.windowId, 0, itemstack));
 diff --git a/nms-patches/ContainerAnvil.patch b/nms-patches/ContainerAnvil.patch
 deleted file mode 100644
-index 904745b..0000000
+index e32f857..0000000
 --- a/nms-patches/ContainerAnvil.patch
 +++ /dev/null
 @@ -1,115 +0,0 @@
@@ -5612,7 +4990,7 @@ index 904745b..0000000
 -@@ -301,6 +311,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.i.getType(this.j).getBlock() != Blocks.ANVIL ? false : entityhuman.d((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 -     }
@@ -5653,7 +5031,7 @@ index 904745b..0000000
 - }
 diff --git a/nms-patches/ContainerBeacon.patch b/nms-patches/ContainerBeacon.patch
 deleted file mode 100644
-index 13196bb..0000000
+index bd8adc0..0000000
 --- a/nms-patches/ContainerBeacon.patch
 +++ /dev/null
 @@ -1,47 +0,0 @@
@@ -5681,7 +5059,7 @@ index 13196bb..0000000
 -@@ -48,6 +55,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.beacon.a(entityhuman);
 -     }
@@ -5706,7 +5084,7 @@ index 13196bb..0000000
 - }
 diff --git a/nms-patches/ContainerBrewingStand.patch b/nms-patches/ContainerBrewingStand.patch
 deleted file mode 100644
-index 6bacb34..0000000
+index aa2b973..0000000
 --- a/nms-patches/ContainerBrewingStand.patch
 +++ /dev/null
 @@ -1,53 +0,0 @@
@@ -5740,7 +5118,7 @@ index 6bacb34..0000000
 -@@ -54,6 +65,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.brewingStand.a(entityhuman);
 -     }
@@ -5765,7 +5143,7 @@ index 6bacb34..0000000
 - }
 diff --git a/nms-patches/ContainerChest.patch b/nms-patches/ContainerChest.patch
 deleted file mode 100644
-index 9535a08..0000000
+index 43f85e7..0000000
 --- a/nms-patches/ContainerChest.patch
 +++ /dev/null
 @@ -1,60 +0,0 @@
@@ -5824,14 +5202,14 @@ index 9535a08..0000000
 -@@ -33,6 +66,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.container.a(entityhuman);
 -     }
 - 
 diff --git a/nms-patches/ContainerDispenser.patch b/nms-patches/ContainerDispenser.patch
 deleted file mode 100644
-index 9b8b1ad..0000000
+index fb1f4f1..0000000
 --- a/nms-patches/ContainerDispenser.patch
 +++ /dev/null
 @@ -1,53 +0,0 @@
@@ -5865,7 +5243,7 @@ index 9b8b1ad..0000000
 -@@ -29,6 +42,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.items.a(entityhuman);
 -     }
@@ -5890,7 +5268,7 @@ index 9b8b1ad..0000000
 - }
 diff --git a/nms-patches/ContainerEnchantTable.patch b/nms-patches/ContainerEnchantTable.patch
 deleted file mode 100644
-index 4fd8a19..0000000
+index 6b4c4a7..0000000
 --- a/nms-patches/ContainerEnchantTable.patch
 +++ /dev/null
 @@ -1,206 +0,0 @@
@@ -6077,7 +5455,7 @@ index 4fd8a19..0000000
 -         }
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.world.getType(this.position).getBlock() != Blocks.ENCHANTING_TABLE ? false : entityhuman.d((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 -     }
@@ -6102,7 +5480,7 @@ index 4fd8a19..0000000
 - }
 diff --git a/nms-patches/ContainerFurnace.patch b/nms-patches/ContainerFurnace.patch
 deleted file mode 100644
-index e64b781..0000000
+index 51ddf57..0000000
 --- a/nms-patches/ContainerFurnace.patch
 +++ /dev/null
 @@ -1,50 +0,0 @@
@@ -6151,14 +5529,14 @@ index e64b781..0000000
 -@@ -63,6 +85,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.furnace.a(entityhuman);
 -     }
 - 
 diff --git a/nms-patches/ContainerHopper.patch b/nms-patches/ContainerHopper.patch
 deleted file mode 100644
-index 54117f6..0000000
+index 3475a2c..0000000
 --- a/nms-patches/ContainerHopper.patch
 +++ /dev/null
 @@ -1,44 +0,0 @@
@@ -6201,7 +5579,7 @@ index 54117f6..0000000
 -@@ -28,6 +50,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.hopper.a(entityhuman);
 -     }
@@ -6407,7 +5785,7 @@ index 494f7c4..0000000
 -         boolean flag1 = true;
 diff --git a/nms-patches/ContainerWorkbench.patch b/nms-patches/ContainerWorkbench.patch
 deleted file mode 100644
-index 6b1c4cb..0000000
+index 153d2c6..0000000
 --- a/nms-patches/ContainerWorkbench.patch
 +++ /dev/null
 @@ -1,60 +0,0 @@
@@ -6448,7 +5826,7 @@ index 6b1c4cb..0000000
 -@@ -47,6 +62,7 @@
 -     }
 - 
--     public boolean a(EntityHuman entityhuman) {
+-     public boolean canUse(EntityHuman entityhuman) {
 -+        if (!this.checkReachable) return true; // CraftBukkit
 -         return this.g.getType(this.h).getBlock() != Blocks.CRAFTING_TABLE ? false : entityhuman.d((double) this.h.getX() + 0.5D, (double) this.h.getY() + 0.5D, (double) this.h.getZ() + 0.5D) <= 64.0D;
 -     }
@@ -6730,7 +6108,7 @@ index 131d78a..0000000
 -         this.e.writeLock().lock();
 diff --git a/nms-patches/DedicatedServer.patch b/nms-patches/DedicatedServer.patch
 deleted file mode 100644
-index 86e8cad..0000000
+index 9cd3444..0000000
 --- a/nms-patches/DedicatedServer.patch
 +++ /dev/null
 @@ -1,268 +0,0 @@
@@ -6834,7 +6212,7 @@ index 86e8cad..0000000
 -+
 -         thread.setDaemon(true);
 -         thread.start();
--         DedicatedServer.LOGGER.info("Starting minecraft server version 1.12.1");
+-         DedicatedServer.LOGGER.info("Starting minecraft server version 1.12.2");
 -@@ -79,7 +126,7 @@
 -         }
 - 
@@ -9550,26 +8928,26 @@ index 6bfae17..0000000
 -             double d1 = axisalignedbb.b + (axisalignedbb.e - axisalignedbb.b) * (double) this.random.nextFloat();
 diff --git a/nms-patches/EntityEnderPearl.patch b/nms-patches/EntityEnderPearl.patch
 deleted file mode 100644
-index e209aab..0000000
+index d61d7c6..0000000
 --- a/nms-patches/EntityEnderPearl.patch
 +++ /dev/null
 @@ -1,65 +0,0 @@
 ---- a/net/minecraft/server/EntityEnderPearl.java
 -+++ b/net/minecraft/server/EntityEnderPearl.java
--@@ -1,5 +1,12 @@
+-@@ -1,6 +1,12 @@
 - package net.minecraft.server;
 - 
+- import javax.annotation.Nullable;
 -+// CraftBukkit start
 -+import org.bukkit.Bukkit;
 -+import org.bukkit.craftbukkit.event.CraftEventFactory;
 -+import org.bukkit.event.entity.CreatureSpawnEvent;
 -+import org.bukkit.event.player.PlayerTeleportEvent;
 -+// CraftBukkit end
--+
+- 
 - public class EntityEnderPearl extends EntityProjectile {
 - 
--     private EntityLiving d;
--@@ -59,21 +66,35 @@
+-@@ -61,21 +67,35 @@
 -                 EntityPlayer entityplayer = (EntityPlayer) entityliving;
 - 
 -                 if (entityplayer.playerConnection.a().isConnected() && entityplayer.world == this.world && !entityplayer.isSleeping()) {
@@ -9579,6 +8957,10 @@ index e209aab..0000000
 --                        entityendermite.a(true);
 --                        entityendermite.setPositionRotation(entityliving.locX, entityliving.locY, entityliving.locZ, entityliving.yaw, entityliving.pitch);
 --                        this.world.addEntity(entityendermite);
+--                    }
+--
+--                    if (entityliving.isPassenger()) {
+--                        entityliving.stopRiding();
 -+                    // CraftBukkit start - Fire PlayerTeleportEvent
 -+                    org.bukkit.craftbukkit.entity.CraftPlayer player = entityplayer.getBukkitEntity();
 -+                    org.bukkit.Location location = getBukkitEntity().getLocation();
@@ -9607,10 +8989,6 @@ index e209aab..0000000
 -+                        entityliving.damageEntity(DamageSource.FALL, 5.0F);
 -+                        CraftEventFactory.entityDamage = null;
 -                     }
---
---                    if (entityliving.isPassenger()) {
---                        entityliving.stopRiding();
---                    }
 --
 --                    entityliving.enderTeleportTo(this.locX, this.locY, this.locZ);
 --                    entityliving.fallDistance = 0.0F;
@@ -13648,7 +13026,7 @@ index 117e59d..0000000
 -     public boolean isLingering() {
 diff --git a/nms-patches/EntityProjectile.patch b/nms-patches/EntityProjectile.patch
 deleted file mode 100644
-index f2c9c7f..0000000
+index af70eb1..0000000
 --- a/nms-patches/EntityProjectile.patch
 +++ /dev/null
 @@ -1,31 +0,0 @@
@@ -13664,11 +13042,11 @@ index f2c9c7f..0000000
 -     protected void i() {}
 -@@ -127,7 +128,7 @@
 -             if (entity1.isInteractable()) {
--                 if (entity1 == this.c) {
+-                 if (entity1 == this.d) {
 -                     flag = true;
---                } else if (this.shooter != null && this.ticksLived < 2 && this.c == null) {
--+                } else if (this.shooter != null && this.ticksLived < 2 && this.c == null && this.shooter == entity1) { // CraftBukkit - MC-88491
--                     this.c = entity1;
+--                } else if (this.shooter != null && this.ticksLived < 2 && this.d == null) {
+-+                } else if (this.shooter != null && this.ticksLived < 2 && this.d == null && this.shooter == entity1) { // CraftBukkit - MC-88491
+-                     this.d = entity1;
 -                     flag = true;
 -                 } else {
 -@@ -164,6 +165,11 @@
@@ -13732,7 +13110,7 @@ index 890a0ef..0000000
 -                     }
 diff --git a/nms-patches/EntitySheep.patch b/nms-patches/EntitySheep.patch
 deleted file mode 100644
-index a9b69ca..0000000
+index 2f4845d..0000000
 --- a/nms-patches/EntitySheep.patch
 +++ /dev/null
 @@ -1,73 +0,0 @@
@@ -13752,7 +13130,7 @@ index a9b69ca..0000000
 - 
 -     private static final DataWatcherObject<Byte> bx = DataWatcher.a(EntitySheep.class, DataWatcherRegistry.a);
 -@@ -12,6 +18,13 @@
--         public boolean a(EntityHuman entityhuman) {
+-         public boolean canUse(EntityHuman entityhuman) {
 -             return false;
 -         }
 -+
@@ -15335,7 +14713,7 @@ index 121f388..0000000
 -             }
 diff --git a/nms-patches/HandshakeListener.patch b/nms-patches/HandshakeListener.patch
 deleted file mode 100644
-index dc8c023..0000000
+index 8799f9f..0000000
 --- a/nms-patches/HandshakeListener.patch
 +++ /dev/null
 @@ -1,70 +0,0 @@
@@ -15398,8 +14776,8 @@ index dc8c023..0000000
 -+            }
 -+            // CraftBukkit end
 -+
--             if (packethandshakinginsetprotocol.b() > 338) {
--                 chatmessage = new ChatMessage("multiplayer.disconnect.outdated_server", new Object[] { "1.12.1"});
+-             if (packethandshakinginsetprotocol.b() > 340) {
+-                 chatmessage = new ChatMessage("multiplayer.disconnect.outdated_server", new Object[] { "1.12.2"});
 -                 this.b.sendPacket(new PacketLoginOutDisconnect(chatmessage));
 -@@ -26,6 +71,7 @@
 -                 this.b.close(chatmessage);
@@ -19516,10 +18894,10 @@ index 37c4c47..0000000
 - }
 diff --git a/nms-patches/PlayerConnection.patch b/nms-patches/PlayerConnection.patch
 deleted file mode 100644
-index fa397aa..0000000
+index 947c67e..0000000
 --- a/nms-patches/PlayerConnection.patch
 +++ /dev/null
-@@ -1,1693 +0,0 @@
+@@ -1,1701 +0,0 @@
 ---- a/net/minecraft/server/PlayerConnection.java
 -+++ b/net/minecraft/server/PlayerConnection.java
 -@@ -15,6 +15,49 @@
@@ -19573,8 +18951,8 @@ index fa397aa..0000000
 - 
 -     private static final Logger LOGGER = LogManager.getLogger();
 -@@ -25,7 +68,10 @@
--     private int f;
--     private long g;
+-     private long f;
+-     private boolean g;
 -     private long h;
 --    private int chatThrottle;
 -+    // CraftBukkit start - multithreaded fields
@@ -19619,7 +18997,7 @@ index fa397aa..0000000
 - 
 -     public void e() {
 -         this.syncPosition();
--@@ -110,15 +183,21 @@
+-@@ -116,15 +189,21 @@
 -         }
 - 
 -         this.minecraftServer.methodProfiler.b();
@@ -19641,7 +19019,7 @@ index fa397aa..0000000
 -             this.disconnect(new ChatMessage("multiplayer.disconnect.idling", new Object[0]));
 -         }
 - 
--@@ -137,18 +216,48 @@
+-@@ -143,18 +222,48 @@
 -         return this.networkManager;
 -     }
 - 
@@ -19696,7 +19074,7 @@ index fa397aa..0000000
 -     }
 - 
 -     public void a(PacketPlayInSteerVehicle packetplayinsteervehicle) {
--@@ -187,7 +296,34 @@
+-@@ -193,7 +302,34 @@
 -                 double d9 = entity.motX * entity.motX + entity.motY * entity.motY + entity.motZ * entity.motZ;
 -                 double d10 = d6 * d6 + d7 * d7 + d8 * d8;
 - 
@@ -19732,7 +19110,7 @@ index fa397aa..0000000
 -                     PlayerConnection.LOGGER.warn("{} (vehicle of {}) moved too quickly! {},{},{}", entity.getName(), this.player.getName(), Double.valueOf(d6), Double.valueOf(d7), Double.valueOf(d8));
 -                     this.networkManager.sendPacket(new PacketPlayOutVehicleMove(entity));
 -                     return;
--@@ -225,6 +361,62 @@
+-@@ -231,6 +367,62 @@
 -                     return;
 -                 }
 - 
@@ -19795,7 +19173,7 @@ index fa397aa..0000000
 -                 this.minecraftServer.getPlayerList().d(this.player);
 -                 this.player.checkMovement(this.player.locX - d0, this.player.locY - d1, this.player.locZ - d2);
 -                 this.D = d11 >= -0.03125D && !this.minecraftServer.getAllowFlight() && !worldserver.c(entity.getBoundingBox().g(0.0625D).b(0.0D, -0.55D, 0.0D));
--@@ -283,7 +475,7 @@
+-@@ -289,7 +481,7 @@
 -         } else {
 -             WorldServer worldserver = this.minecraftServer.getWorldServer(this.player.dimension);
 - 
@@ -19804,7 +19182,7 @@ index fa397aa..0000000
 -                 if (this.e == 0) {
 -                     this.syncPosition();
 -                 }
--@@ -293,13 +485,21 @@
+-@@ -299,13 +491,21 @@
 -                         this.A = this.e;
 -                         this.a(this.teleportPos.x, this.teleportPos.y, this.teleportPos.z, this.player.yaw, this.player.pitch);
 -                     }
@@ -19827,7 +19205,7 @@ index fa397aa..0000000
 -                         double d0 = this.player.locX;
 -                         double d1 = this.player.locY;
 -                         double d2 = this.player.locZ;
--@@ -324,15 +524,33 @@
+-@@ -330,15 +530,33 @@
 -                             ++this.receivedMovePackets;
 -                             int i = this.receivedMovePackets - this.processedMovePackets;
 - 
@@ -19863,7 +19241,7 @@ index fa397aa..0000000
 -                                     PlayerConnection.LOGGER.warn("{} moved too quickly! {},{},{}", this.player.getName(), Double.valueOf(d7), Double.valueOf(d8), Double.valueOf(d9));
 -                                     this.a(this.player.locX, this.player.locY, this.player.locZ, this.player.yaw, this.player.pitch);
 -                                     return;
--@@ -378,6 +596,69 @@
+-@@ -384,6 +602,69 @@
 -                                 }
 -                             }
 - 
@@ -19933,7 +19311,7 @@ index fa397aa..0000000
 -                             this.B = d12 >= -0.03125D;
 -                             this.B &= !this.minecraftServer.getAllowFlight() && !this.player.abilities.canFly;
 -                             this.B &= !this.player.hasEffect(MobEffects.LEVITATION) && !this.player.cP() && !worldserver.c(this.player.getBoundingBox().g(0.0625D).b(0.0D, -0.55D, 0.0D));
--@@ -395,10 +676,76 @@
+-@@ -401,10 +682,76 @@
 -     }
 - 
 -     public void a(double d0, double d1, double d2, float f, float f1) {
@@ -20011,7 +19389,7 @@ index fa397aa..0000000
 -         double d3 = set.contains(PacketPlayOutPosition.EnumPlayerTeleportFlags.X) ? this.player.locX : 0.0D;
 -         double d4 = set.contains(PacketPlayOutPosition.EnumPlayerTeleportFlags.Y) ? this.player.locY : 0.0D;
 -         double d5 = set.contains(PacketPlayOutPosition.EnumPlayerTeleportFlags.Z) ? this.player.locZ : 0.0D;
--@@ -415,6 +762,14 @@
+-@@ -421,6 +768,14 @@
 -             f3 = f1 + this.player.pitch;
 -         }
 - 
@@ -20026,7 +19404,7 @@ index fa397aa..0000000
 -         if (++this.teleportAwait == Integer.MAX_VALUE) {
 -             this.teleportAwait = 0;
 -         }
--@@ -426,6 +781,7 @@
+-@@ -432,6 +787,7 @@
 - 
 -     public void a(PacketPlayInBlockDig packetplayinblockdig) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinblockdig, this, this.player.x());
@@ -20034,7 +19412,7 @@ index fa397aa..0000000
 -         WorldServer worldserver = this.minecraftServer.getWorldServer(this.player.dimension);
 -         BlockPosition blockposition = packetplayinblockdig.a();
 - 
--@@ -435,7 +791,15 @@
+-@@ -441,7 +797,15 @@
 -             if (!this.player.isSpectator()) {
 -                 ItemStack itemstack = this.player.b(EnumHand.OFF_HAND);
 - 
@@ -20051,7 +19429,7 @@ index fa397aa..0000000
 -                 this.player.a(EnumHand.MAIN_HAND, itemstack);
 -             }
 - 
--@@ -443,6 +807,21 @@
+-@@ -449,6 +813,21 @@
 - 
 -         case DROP_ITEM:
 -             if (!this.player.isSpectator()) {
@@ -20073,7 +19451,7 @@ index fa397aa..0000000
 -                 this.player.a(false);
 -             }
 - 
--@@ -476,7 +855,15 @@
+-@@ -482,7 +861,15 @@
 -                     if (!this.minecraftServer.a(worldserver, blockposition, this.player) && worldserver.getWorldBorder().a(blockposition)) {
 -                         this.player.playerInteractManager.a(blockposition, packetplayinblockdig.b());
 -                     } else {
@@ -20089,7 +19467,7 @@ index fa397aa..0000000
 -                     }
 -                 } else {
 -                     if (packetplayinblockdig.c() == PacketPlayInBlockDig.EnumPlayerDigType.STOP_DESTROY_BLOCK) {
--@@ -496,10 +883,12 @@
+-@@ -502,10 +889,12 @@
 -         default:
 -             throw new IllegalArgumentException("Invalid player action");
 -         }
@@ -20102,7 +19480,7 @@ index fa397aa..0000000
 -         WorldServer worldserver = this.minecraftServer.getWorldServer(this.player.dimension);
 -         EnumHand enumhand = packetplayinuseitem.c();
 -         ItemStack itemstack = this.player.b(enumhand);
--@@ -513,6 +902,13 @@
+-@@ -519,6 +908,13 @@
 -             chatmessage.getChatModifier().setColor(EnumChatFormat.RED);
 -             this.player.playerConnection.sendPacket(new PacketPlayOutChat(chatmessage, ChatMessageType.GAME_INFO));
 -         } else if (this.teleportPos == null && this.player.d((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D) < 64.0D && !this.minecraftServer.a(worldserver, blockposition, this.player) && worldserver.getWorldBorder().a(blockposition)) {
@@ -20116,7 +19494,7 @@ index fa397aa..0000000
 -             this.player.playerInteractManager.a(this.player, worldserver, itemstack, enumhand, blockposition, enumdirection, packetplayinuseitem.d(), packetplayinuseitem.e(), packetplayinuseitem.f());
 -         }
 - 
--@@ -522,13 +918,52 @@
+-@@ -528,13 +924,52 @@
 - 
 -     public void a(PacketPlayInBlockPlace packetplayinblockplace) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinblockplace, this, this.player.x());
@@ -20170,7 +19548,7 @@ index fa397aa..0000000
 -         }
 -     }
 - 
--@@ -539,8 +974,8 @@
+-@@ -545,8 +980,8 @@
 -             WorldServer[] aworldserver = this.minecraftServer.worldServer;
 -             int i = aworldserver.length;
 - 
@@ -20181,7 +19559,7 @@ index fa397aa..0000000
 - 
 -                 if (worldserver != null) {
 -                     entity = packetplayinspectate.a(worldserver);
--@@ -553,6 +988,8 @@
+-@@ -559,6 +994,8 @@
 -             if (entity != null) {
 -                 this.player.setSpectatorTarget(this.player);
 -                 this.player.stopRiding();
@@ -20190,7 +19568,7 @@ index fa397aa..0000000
 -                 if (entity.world == this.player.world) {
 -                     this.player.enderTeleportTo(entity.locX, entity.locY, entity.locZ);
 -                 } else {
--@@ -578,12 +1015,20 @@
+-@@ -584,12 +1021,20 @@
 -                     this.minecraftServer.getPlayerList().b(this.player, worldserver2);
 -                     this.minecraftServer.getPlayerList().updateClient(this.player);
 -                 }
@@ -20212,7 +19590,7 @@ index fa397aa..0000000
 - 
 -     public void a(PacketPlayInBoatMove packetplayinboatmove) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinboatmove, this, this.player.x());
--@@ -596,14 +1041,29 @@
+-@@ -602,14 +1047,29 @@
 -     }
 - 
 -     public void a(IChatBaseComponent ichatbasecomponent) {
@@ -20243,7 +19621,7 @@ index fa397aa..0000000
 -         if (this.minecraftServer.R() && this.player.getName().equals(this.minecraftServer.Q())) {
 -             PlayerConnection.LOGGER.info("Stopping singleplayer server as player logged out");
 -             this.minecraftServer.safeShutdown();
--@@ -625,6 +1085,15 @@
+-@@ -631,6 +1091,15 @@
 -             }
 -         }
 - 
@@ -20259,7 +19637,7 @@ index fa397aa..0000000
 -         try {
 -             this.networkManager.sendPacket(packet);
 -         } catch (Throwable throwable) {
--@@ -646,17 +1115,32 @@
+-@@ -652,17 +1121,32 @@
 - 
 -     public void a(PacketPlayInHeldItemSlot packetplayinhelditemslot) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinhelditemslot, this, this.player.x());
@@ -20294,7 +19672,7 @@ index fa397aa..0000000
 -             ChatMessage chatmessage = new ChatMessage("chat.cannotSend", new Object[0]);
 - 
 -             chatmessage.getChatModifier().setColor(EnumChatFormat.RED);
--@@ -669,39 +1153,249 @@
+-@@ -675,39 +1159,249 @@
 - 
 -             for (int i = 0; i < s.length(); ++i) {
 -                 if (!SharedConstants.isAllowedChatCharacter(s.charAt(i))) {
@@ -20551,7 +19929,7 @@ index fa397aa..0000000
 -         this.player.resetIdleTimer();
 -         IJumpable ijumpable;
 - 
--@@ -773,6 +1467,7 @@
+-@@ -779,6 +1473,7 @@
 - 
 -     public void a(PacketPlayInUseEntity packetplayinuseentity) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinuseentity, this, this.player.x());
@@ -20559,7 +19937,7 @@ index fa397aa..0000000
 -         WorldServer worldserver = this.minecraftServer.getWorldServer(this.player.dimension);
 -         Entity entity = packetplayinuseentity.a((World) worldserver);
 - 
--@@ -788,20 +1483,68 @@
+-@@ -794,20 +1489,68 @@
 -             if (this.player.h(entity) < d0) {
 -                 EnumHand enumhand;
 - 
@@ -20629,7 +20007,7 @@ index fa397aa..0000000
 -                 }
 -             }
 -         }
--@@ -817,7 +1560,8 @@
+-@@ -823,7 +1566,8 @@
 -         case PERFORM_RESPAWN:
 -             if (this.player.viewingCredits) {
 -                 this.player.viewingCredits = false;
@@ -20639,7 +20017,7 @@ index fa397aa..0000000
 -                 CriterionTriggers.u.a(this.player, DimensionManager.THE_END, DimensionManager.OVERWORLD);
 -             } else {
 -                 if (this.player.getHealth() > 0.0F) {
--@@ -840,14 +1584,20 @@
+-@@ -846,14 +1590,20 @@
 - 
 -     public void a(PacketPlayInCloseWindow packetplayinclosewindow) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinclosewindow, this, this.player.x());
@@ -20656,13 +20034,13 @@ index fa397aa..0000000
 -         this.player.resetIdleTimer();
 --        if (this.player.activeContainer.windowId == packetplayinwindowclick.a() && this.player.activeContainer.c(this.player)) {
 --            if (this.player.isSpectator()) {
--+        if (this.player.activeContainer.windowId == packetplayinwindowclick.a() && this.player.activeContainer.c(this.player) && this.player.activeContainer.a(this.player)) { // CraftBukkit
+-+        if (this.player.activeContainer.windowId == packetplayinwindowclick.a() && this.player.activeContainer.c(this.player) && this.player.activeContainer.canUse(this.player)) { // CraftBukkit
 -+            boolean cancelled = this.player.isSpectator(); // CraftBukkit - see below if
 -+            if (false/*this.player.isSpectator()*/) { // CraftBukkit
 -                 NonNullList nonnulllist = NonNullList.a();
 - 
--                 for (int i = 0; i < this.player.activeContainer.c.size(); ++i) {
--@@ -856,8 +1606,274 @@
+-                 for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
+-@@ -862,8 +1612,274 @@
 - 
 -                 this.player.a(this.player.activeContainer, nonnulllist);
 -             } else {
@@ -20938,7 +20316,7 @@ index fa397aa..0000000
 -                 if (ItemStack.matches(packetplayinwindowclick.e(), itemstack)) {
 -                     this.player.playerConnection.sendPacket(new PacketPlayOutTransaction(packetplayinwindowclick.a(), packetplayinwindowclick.d(), true));
 -                     this.player.f = true;
--@@ -894,6 +1910,7 @@
+-@@ -900,6 +1916,7 @@
 - 
 -     public void a(PacketPlayInEnchantItem packetplayinenchantitem) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinenchantitem, this, this.player.x());
@@ -20946,7 +20324,7 @@ index fa397aa..0000000
 -         this.player.resetIdleTimer();
 -         if (this.player.activeContainer.windowId == packetplayinenchantitem.a() && this.player.activeContainer.c(this.player) && !this.player.isSpectator()) {
 -             this.player.activeContainer.a(this.player, packetplayinenchantitem.b());
--@@ -927,7 +1944,45 @@
+-@@ -933,7 +1950,45 @@
 -             }
 - 
 -             boolean flag1 = packetplayinsetcreativeslot.a() >= 1 && packetplayinsetcreativeslot.a() <= 45;
@@ -20993,7 +20371,7 @@ index fa397aa..0000000
 - 
 -             if (flag1 && flag2) {
 -                 if (itemstack.isEmpty()) {
--@@ -951,6 +2006,7 @@
+-@@ -957,6 +2012,7 @@
 - 
 -     public void a(PacketPlayInTransaction packetplayintransaction) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayintransaction, this, this.player.x());
@@ -21001,7 +20379,7 @@ index fa397aa..0000000
 -         Short oshort = (Short) this.k.get(this.player.activeContainer.windowId);
 - 
 -         if (oshort != null && packetplayintransaction.b() == oshort.shortValue() && this.player.activeContainer.windowId == packetplayintransaction.a() && !this.player.activeContainer.c(this.player) && !this.player.isSpectator()) {
--@@ -961,6 +2017,7 @@
+-@@ -967,6 +2023,7 @@
 - 
 -     public void a(PacketPlayInUpdateSign packetplayinupdatesign) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinupdatesign, this, this.player.x());
@@ -21009,7 +20387,7 @@ index fa397aa..0000000
 -         this.player.resetIdleTimer();
 -         WorldServer worldserver = this.minecraftServer.getWorldServer(this.player.dimension);
 -         BlockPosition blockposition = packetplayinupdatesign.a();
--@@ -977,14 +2034,30 @@
+-@@ -983,14 +2040,30 @@
 - 
 -             if (!tileentitysign.a() || tileentitysign.e() != this.player) {
 -                 this.minecraftServer.warning("Player " + this.player.getName() + " just tried to change non-editable sign");
@@ -21041,7 +20419,15 @@ index fa397aa..0000000
 - 
 -             tileentitysign.update();
 -             worldserver.notify(blockposition, iblockdata, iblockdata, 3);
--@@ -1007,11 +2080,27 @@
+-@@ -999,6 +2072,7 @@
+-     }
+- 
+-     public void a(PacketPlayInKeepAlive packetplayinkeepalive) {
+-+        PlayerConnectionUtils.ensureMainThread(packetplayinkeepalive, this, this.player.x()); // CraftBukkit
+-         if (this.g && packetplayinkeepalive.a() == this.h) {
+-             int i = (int) (this.d() - this.f);
+- 
+-@@ -1016,11 +2090,27 @@
 - 
 -     public void a(PacketPlayInAbilities packetplayinabilities) {
 -         PlayerConnectionUtils.ensureMainThread(packetplayinabilities, this, this.player.x());
@@ -21070,7 +20456,7 @@ index fa397aa..0000000
 -         ArrayList arraylist = Lists.newArrayList();
 -         Iterator iterator = this.minecraftServer.tabCompleteCommand(this.player, packetplayintabcomplete.a(), packetplayintabcomplete.b(), packetplayintabcomplete.c()).iterator();
 - 
--@@ -1037,6 +2126,13 @@
+-@@ -1046,6 +2136,13 @@
 -         ItemStack itemstack1;
 - 
 -         if ("MC|BEdit".equals(s)) {
@@ -21084,7 +20470,7 @@ index fa397aa..0000000
 -             packetdataserializer = packetplayincustompayload.b();
 - 
 -             try {
--@@ -1055,15 +2151,25 @@
+-@@ -1064,15 +2161,25 @@
 -                 }
 - 
 -                 if (itemstack.getItem() == Items.WRITABLE_BOOK && itemstack.getItem() == itemstack1.getItem()) {
@@ -21110,7 +20496,7 @@ index fa397aa..0000000
 -                 packetdataserializer = packetplayincustompayload.b();
 - 
 -                 try {
--@@ -1097,10 +2203,11 @@
+-@@ -1106,10 +2213,11 @@
 -                         }
 - 
 -                         itemstack2.a("pages", (NBTBase) nbttaglist);
@@ -21123,7 +20509,7 @@ index fa397aa..0000000
 -                 }
 -             } else if ("MC|TrSel".equals(s)) {
 -                 try {
--@@ -1112,6 +2219,7 @@
+-@@ -1121,6 +2229,7 @@
 -                     }
 -                 } catch (Exception exception2) {
 -                     PlayerConnection.LOGGER.error("Couldn\'t select trade", exception2);
@@ -21131,7 +20517,7 @@ index fa397aa..0000000
 -                 }
 -             } else {
 -                 TileEntity tileentity;
--@@ -1161,6 +2269,7 @@
+-@@ -1170,6 +2279,7 @@
 -                         }
 -                     } catch (Exception exception3) {
 -                         PlayerConnection.LOGGER.error("Couldn\'t set command block", exception3);
@@ -21139,7 +20525,7 @@ index fa397aa..0000000
 -                     }
 -                 } else if ("MC|AutoCmd".equals(s)) {
 -                     if (!this.minecraftServer.getEnableCommandBlock()) {
--@@ -1228,6 +2337,7 @@
+-@@ -1237,6 +2347,7 @@
 -                         }
 -                     } catch (Exception exception4) {
 -                         PlayerConnection.LOGGER.error("Couldn\'t set command block", exception4);
@@ -21147,7 +20533,7 @@ index fa397aa..0000000
 -                     }
 -                 } else {
 -                     int k;
--@@ -1251,6 +2361,7 @@
+-@@ -1260,6 +2371,7 @@
 -                                 }
 -                             } catch (Exception exception5) {
 -                                 PlayerConnection.LOGGER.error("Couldn\'t set beacon", exception5);
@@ -21155,7 +20541,7 @@ index fa397aa..0000000
 -                             }
 -                         }
 -                     } else if ("MC|ItemName".equals(s)) {
--@@ -1337,6 +2448,7 @@
+-@@ -1346,6 +2458,7 @@
 -                             }
 -                         } catch (Exception exception6) {
 -                             PlayerConnection.LOGGER.error("Couldn\'t set structure block", exception6);
@@ -21163,7 +20549,7 @@ index fa397aa..0000000
 -                         }
 -                     } else if ("MC|PickItem".equals(s)) {
 -                         packetdataserializer = packetplayincustompayload.b();
--@@ -1349,11 +2461,49 @@
+-@@ -1358,11 +2471,49 @@
 -                             this.player.playerConnection.sendPacket(new PacketPlayOutHeldItemSlot(this.player.inventory.itemInHandIndex));
 -                         } catch (Exception exception7) {
 -                             PlayerConnection.LOGGER.error("Couldn\'t pick item", exception7);
@@ -25223,10 +24609,10 @@ index 626a008..0000000
 -             entityzombie.a(blockposition, this.f.b());
 diff --git a/nms-patches/World.patch b/nms-patches/World.patch
 deleted file mode 100644
-index ddda651..0000000
+index 1c43e86..0000000
 --- a/nms-patches/World.patch
 +++ /dev/null
-@@ -1,652 +0,0 @@
+@@ -1,624 +0,0 @@
 ---- a/net/minecraft/server/World.java
 -+++ b/net/minecraft/server/World.java
 -@@ -14,6 +14,21 @@
@@ -25616,35 +25002,7 @@ index ddda651..0000000
 -                 this.c(entity);
 -             }
 - 
--@@ -1138,6 +1371,13 @@
-- 
--         this.methodProfiler.c("blockEntities");
--         this.O = true;
--+        // CraftBukkit start - From below, clean up tile entities before ticking them
--+        if (!this.tileEntityListUnload.isEmpty()) {
--+            this.tileEntityListTick.removeAll(this.tileEntityListUnload);
--+            this.tileEntityList.removeAll(this.tileEntityListUnload);
--+            this.tileEntityListUnload.clear();
--+        }
--+        // CraftBukkit end
--         Iterator iterator = this.tileEntityListTick.iterator();
-- 
--         while (iterator.hasNext()) {
--@@ -1172,11 +1412,13 @@
--         }
-- 
--         this.O = false;
--+        /* CraftBukkit start - Moved up
--         if (!this.tileEntityListUnload.isEmpty()) {
--             this.tileEntityListTick.removeAll(this.tileEntityListUnload);
--             this.tileEntityList.removeAll(this.tileEntityListUnload);
--             this.tileEntityListUnload.clear();
--         }
--+        // CraftBukkit end */
-- 
--         this.methodProfiler.c("pendingBlockEntities");
--         if (!this.b.isEmpty()) {
--@@ -1184,9 +1426,11 @@
+-@@ -1184,9 +1417,11 @@
 -                 TileEntity tileentity1 = (TileEntity) this.b.get(i1);
 - 
 -                 if (!tileentity1.y()) {
@@ -25656,7 +25014,7 @@ index ddda651..0000000
 - 
 -                     if (this.isLoaded(tileentity1.getPosition())) {
 -                         Chunk chunk = this.getChunkAtWorldCoords(tileentity1.getPosition());
--@@ -1194,6 +1438,12 @@
+-@@ -1194,6 +1429,12 @@
 - 
 -                         chunk.a(tileentity1.getPosition(), tileentity1);
 -                         this.notify(tileentity1.getPosition(), iblockdata, iblockdata, 3);
@@ -25669,7 +25027,7 @@ index ddda651..0000000
 -                     }
 -                 }
 -             }
--@@ -1247,15 +1497,13 @@
+-@@ -1247,15 +1488,13 @@
 -         int i;
 -         int j;
 - 
@@ -25691,7 +25049,7 @@ index ddda651..0000000
 - 
 -         entity.M = entity.locX;
 -         entity.N = entity.locY;
--@@ -1268,6 +1516,7 @@
+-@@ -1268,6 +1507,7 @@
 -                 entity.aE();
 -             } else {
 -                 entity.B_();
@@ -25699,7 +25057,7 @@ index ddda651..0000000
 -             }
 -         }
 - 
--@@ -1559,11 +1808,18 @@
+-@@ -1559,11 +1799,18 @@
 -         }
 -     }
 - 
@@ -25718,7 +25076,7 @@ index ddda651..0000000
 -             TileEntity tileentity = null;
 - 
 -             if (this.O) {
--@@ -1598,6 +1854,14 @@
+-@@ -1598,6 +1845,14 @@
 -     public void setTileEntity(BlockPosition blockposition, @Nullable TileEntity tileentity) {
 -         if (!this.E(blockposition)) {
 -             if (tileentity != null && !tileentity.y()) {
@@ -25733,7 +25091,7 @@ index ddda651..0000000
 -                 if (this.O) {
 -                     tileentity.setPosition(blockposition);
 -                     Iterator iterator = this.b.iterator();
--@@ -1757,6 +2021,14 @@
+-@@ -1757,6 +2012,14 @@
 -                 }
 - 
 -                 this.o = MathHelper.a(this.o, 0.0F, 1.0F);
@@ -25748,7 +25106,7 @@ index ddda651..0000000
 -             }
 -         }
 -     }
--@@ -1894,7 +2166,10 @@
+-@@ -1894,7 +2157,10 @@
 -     }
 - 
 -     public boolean c(EnumSkyBlock enumskyblock, BlockPosition blockposition) {
@@ -25760,7 +25118,7 @@ index ddda651..0000000
 -             return false;
 -         } else {
 -             int i = 0;
--@@ -2061,7 +2336,7 @@
+-@@ -2061,7 +2327,7 @@
 -         while (iterator.hasNext()) {
 -             Entity entity = (Entity) iterator.next();
 - 
@@ -25769,7 +25127,7 @@ index ddda651..0000000
 -                 arraylist.add(entity);
 -             }
 -         }
--@@ -2076,7 +2351,7 @@
+-@@ -2076,7 +2342,7 @@
 -         while (iterator.hasNext()) {
 -             Entity entity = (Entity) iterator.next();
 - 
@@ -25778,7 +25136,7 @@ index ddda651..0000000
 -                 arraylist.add(entity);
 -             }
 -         }
--@@ -2125,7 +2400,7 @@
+-@@ -2125,7 +2391,7 @@
 -             }
 -         }
 - 
@@ -25787,7 +25145,7 @@ index ddda651..0000000
 -     }
 - 
 -     @Nullable
--@@ -2146,8 +2421,17 @@
+-@@ -2146,8 +2412,17 @@
 - 
 -         while (iterator.hasNext()) {
 -             Entity entity = (Entity) iterator.next();
@@ -25806,7 +25164,7 @@ index ddda651..0000000
 -                 ++i;
 -             }
 -         }
--@@ -2156,12 +2440,18 @@
+-@@ -2156,12 +2431,18 @@
 -     }
 - 
 -     public void a(Collection<Entity> collection) {
@@ -25826,7 +25184,7 @@ index ddda651..0000000
 -             this.b(entity);
 -         }
 - 
--@@ -2175,7 +2465,13 @@
+-@@ -2175,7 +2456,13 @@
 -         IBlockData iblockdata = this.getType(blockposition);
 -         AxisAlignedBB axisalignedbb = flag ? null : block.getBlockData().d(this, blockposition);
 - 
@@ -25841,7 +25199,7 @@ index ddda651..0000000
 -     }
 - 
 -     public int getSeaLevel() {
--@@ -2285,6 +2581,11 @@
+-@@ -2285,6 +2572,11 @@
 - 
 -         for (int i = 0; i < this.players.size(); ++i) {
 -             EntityHuman entityhuman1 = (EntityHuman) this.players.get(i);
@@ -25853,7 +25211,7 @@ index ddda651..0000000
 - 
 -             if (predicate.apply(entityhuman1)) {
 -                 double d5 = entityhuman1.d(d0, d1, d2);
--@@ -2453,6 +2754,16 @@
+-@@ -2453,6 +2745,16 @@
 - 
 -     public void everyoneSleeping() {}
 - 
@@ -25870,7 +25228,7 @@ index ddda651..0000000
 -     public float h(float f) {
 -         return (this.p + (this.q - this.p) * f) * this.j(f);
 -     }
--@@ -2670,7 +2981,7 @@
+-@@ -2670,7 +2972,7 @@
 -         int l = j * 16 + 8 - blockposition.getZ();
 -         boolean flag = true;
 - 
@@ -26422,13 +25780,13 @@ index 3b43b31..0000000
 -     }
 diff --git a/nms-patches/WorldServer.patch b/nms-patches/WorldServer.patch
 deleted file mode 100644
-index 57a5ae8..0000000
+index b5178ec..0000000
 --- a/nms-patches/WorldServer.patch
 +++ /dev/null
 @@ -1,691 +0,0 @@
 ---- a/net/minecraft/server/WorldServer.java
 -+++ b/net/minecraft/server/WorldServer.java
--@@ -19,14 +19,26 @@
+-@@ -20,14 +20,26 @@
 - import org.apache.logging.log4j.LogManager;
 - import org.apache.logging.log4j.Logger;
 - 
@@ -26457,7 +25815,7 @@ index 57a5ae8..0000000
 -     private final Map<UUID, Entity> entitiesByUUID = Maps.newHashMap();
 -     public boolean savingDisabled;
 -     private boolean Q;
--@@ -38,14 +50,22 @@
+-@@ -39,14 +51,22 @@
 -     private int V;
 -     private final List<NextTickListEntry> W = Lists.newArrayList();
 - 
@@ -26483,7 +25841,7 @@ index 57a5ae8..0000000
 -         this.J();
 -         this.K();
 -         this.getWorldBorder().a(minecraftserver.aE());
--@@ -64,6 +84,7 @@
+-@@ -65,6 +85,7 @@
 -             this.villages.a((World) this);
 -         }
 - 
@@ -26491,7 +25849,7 @@ index 57a5ae8..0000000
 -         this.scoreboard = new ScoreboardServer(this.server);
 -         PersistentScoreboard persistentscoreboard = (PersistentScoreboard) this.worldMaps.get(PersistentScoreboard.class, "scoreboard");
 - 
--@@ -74,9 +95,21 @@
+-@@ -75,9 +96,21 @@
 - 
 -         persistentscoreboard.a(this.scoreboard);
 -         ((ScoreboardServer) this.scoreboard).a((Runnable) (new RunnableSaveScoreboard(persistentscoreboard)));
@@ -26515,7 +25873,7 @@ index 57a5ae8..0000000
 -         this.getWorldBorder().setCenter(this.worldData.B(), this.worldData.C());
 -         this.getWorldBorder().setDamageAmount(this.worldData.H());
 -         this.getWorldBorder().setDamageBuffer(this.worldData.G());
--@@ -88,9 +121,146 @@
+-@@ -89,9 +122,146 @@
 -             this.getWorldBorder().setSize(this.worldData.D());
 -         }
 - 
@@ -26662,7 +26020,7 @@ index 57a5ae8..0000000
 -     public void doTick() {
 -         super.doTick();
 -         if (this.getWorldData().isHardcore() && this.getDifficulty() != EnumDifficulty.HARD) {
--@@ -109,8 +279,11 @@
+-@@ -110,8 +280,11 @@
 -         }
 - 
 -         this.methodProfiler.a("mobSpawner");
@@ -26676,7 +26034,7 @@ index 57a5ae8..0000000
 -         }
 - 
 -         this.methodProfiler.c("chunkSource");
--@@ -139,6 +312,8 @@
+-@@ -140,6 +313,8 @@
 -         this.portalTravelAgent.a(this.getTime());
 -         this.methodProfiler.b();
 -         this.aq();
@@ -26685,7 +26043,7 @@ index 57a5ae8..0000000
 -     }
 - 
 -     @Nullable
--@@ -166,7 +341,7 @@
+-@@ -167,7 +342,7 @@
 - 
 -                 if (entityhuman.isSpectator()) {
 -                     ++i;

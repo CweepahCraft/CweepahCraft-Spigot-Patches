@@ -1,11 +1,8 @@
-From f14c279e351dd94b38f22b87351575026efe046f Mon Sep 17 00:00:00 2001
+From a0da7f929cda84a4edd9107a3230bd6709f60087 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:52:08 -0500
-Subject: [PATCH 3/8] Add time sync API
+Subject: [PATCH] Add time sync API
 
----
- src/main/java/org/bukkit/World.java | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
 index 67b0d51..3c54cd2 100644

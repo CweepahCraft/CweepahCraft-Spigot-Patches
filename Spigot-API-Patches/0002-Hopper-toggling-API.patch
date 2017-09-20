@@ -1,12 +1,8 @@
-From 67a9a2641dd98d33ac8361dfbf8557f8577401f6 Mon Sep 17 00:00:00 2001
+From 8525c82fb268db343340064b0fa25d6aeed1e446 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:31:46 -0600
-Subject: [PATCH 2/8] Hopper toggling API
+Subject: [PATCH] Hopper toggling API
 
----
- src/main/java/org/bukkit/Bukkit.java | 8 ++++++++
- src/main/java/org/bukkit/Server.java | 4 ++++
- 2 files changed, 12 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
 index eb6b797..733597c 100644

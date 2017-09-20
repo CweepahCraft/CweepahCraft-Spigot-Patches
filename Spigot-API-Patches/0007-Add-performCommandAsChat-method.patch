@@ -1,14 +1,11 @@
-From a000acfc9e387e3268cc6a254f4d39f3f0e9c874 Mon Sep 17 00:00:00 2001
+From 1b7365a08db02a581fa15fda50dec43ddfcf4a9d Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:23 -0500
-Subject: [PATCH 7/8] Add performCommandAsChat method
+Subject: [PATCH] Add performCommandAsChat method
 
----
- src/main/java/org/bukkit/entity/Player.java | 10 ++++++++++
- 1 file changed, 10 insertions(+)
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index e5023e3..3256759 100644
+index ecadfc7..c42ff22 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -133,6 +133,16 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
