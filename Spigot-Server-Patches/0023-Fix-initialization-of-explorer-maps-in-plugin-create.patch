@@ -1,11 +1,11 @@
-From 419ad210d7a88cdedbb843a2f4e474c2c890bf01 Mon Sep 17 00:00:00 2001
+From 775aa03bd333f15c86c7bf1bb3a4aedac8e823fb Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 20:21:26 -0500
 Subject: [PATCH] Fix initialization of explorer maps in plugin-created worlds
 
 
 diff --git a/src/main/java/net/minecraft/server/ItemWorldMap.java b/src/main/java/net/minecraft/server/ItemWorldMap.java
-index e0799ff..676d017 100644
+index e0799ff0..676d017d 100644
 --- a/src/main/java/net/minecraft/server/ItemWorldMap.java
 +++ b/src/main/java/net/minecraft/server/ItemWorldMap.java
 @@ -194,8 +194,10 @@ public class ItemWorldMap extends ItemWorldMapBase {
@@ -22,5 +22,5 @@ index e0799ff..676d017 100644
                      int j = worldmap.centerX;
                      int k = worldmap.centerZ;
 -- 
-1.9.1
+2.14.1
 

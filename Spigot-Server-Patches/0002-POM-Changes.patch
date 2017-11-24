@@ -1,11 +1,11 @@
-From 16446305fdf70c176f04bd1decc895fa96b49fc2 Mon Sep 17 00:00:00 2001
+From cd6560f000aa36c6ccc88e218859c6b42f7d1da1 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
 Subject: [PATCH] POM Changes
 
 
 diff --git a/pom.xml b/pom.xml
-index f31825f..dafb154 100644
+index 1278c628..1e4dfa04 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@
@@ -86,5 +86,5 @@ index f31825f..dafb154 100644
                              <Specification-Title>Bukkit</Specification-Title>
                              <Specification-Version>${api.version}</Specification-Version>
 -- 
-1.9.1
+2.14.1
 

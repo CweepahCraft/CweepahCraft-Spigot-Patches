@@ -1,11 +1,11 @@
-From 586872287917ab7d9e95985c9d1abd2e9ebee70c Mon Sep 17 00:00:00 2001
+From 66f3ecf1d02b8b11ab9907b63219ad9f6f819054 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 9 Jul 2017 08:55:35 -0500
 Subject: [PATCH] When getting new map IDs, skip existing maps
 
 
 diff --git a/src/main/java/net/minecraft/server/PersistentCollection.java b/src/main/java/net/minecraft/server/PersistentCollection.java
-index 936d6c6..5f2e3a6 100644
+index 936d6c64..5f2e3a6e 100644
 --- a/src/main/java/net/minecraft/server/PersistentCollection.java
 +++ b/src/main/java/net/minecraft/server/PersistentCollection.java
 @@ -142,17 +142,17 @@ public class PersistentCollection {
@@ -43,5 +43,5 @@ index 936d6c6..5f2e3a6 100644
      }
  }
 -- 
-1.9.1
+2.14.1
 

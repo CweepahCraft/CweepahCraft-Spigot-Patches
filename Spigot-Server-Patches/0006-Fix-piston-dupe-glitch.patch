@@ -1,11 +1,11 @@
-From c0b6919c6280009c66816d26a32aaa0535f40c08 Mon Sep 17 00:00:00 2001
+From 4360ff8ea9564ff97b6b532a04a6b71f8dfd9d55 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:52:30 -0600
 Subject: [PATCH] Fix piston dupe glitch.
 
 
 diff --git a/src/main/java/net/minecraft/server/BlockPiston.java b/src/main/java/net/minecraft/server/BlockPiston.java
-index 0f90172..f8e14d9 100644
+index 0f90172f..f8e14d94 100644
 --- a/src/main/java/net/minecraft/server/BlockPiston.java
 +++ b/src/main/java/net/minecraft/server/BlockPiston.java
 @@ -289,14 +289,6 @@ public class BlockPiston extends BlockDirectional {
@@ -33,5 +33,5 @@ index 0f90172..f8e14d9 100644
                  aiblockdata[j] = iblockdata;
              }
 -- 
-1.9.1
+2.14.1
 

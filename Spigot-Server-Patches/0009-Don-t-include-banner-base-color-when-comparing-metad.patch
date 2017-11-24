@@ -1,4 +1,4 @@
-From d87ca6425c0505f9e61d9cebc4222b09e4a72e79 Mon Sep 17 00:00:00 2001
+From 88430bd751c7c08ac0775392e523f3613afa0f04 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 19:00:26 -0600
 Subject: [PATCH] Don't include banner base color when comparing metadata.
@@ -6,7 +6,7 @@ Subject: [PATCH] Don't include banner base color when comparing metadata.
 1.11 introduced base colors being stored by item damage value.
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java
-index aa1a210..f5ad80a 100644
+index aa1a210a..f5ad80ac 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBanner.java
 @@ -181,19 +181,19 @@ public class CraftMetaBanner extends CraftMetaItem implements BannerMeta {
@@ -33,5 +33,5 @@ index aa1a210..f5ad80a 100644
  
      @Override
 -- 
-1.9.1
+2.14.1
 

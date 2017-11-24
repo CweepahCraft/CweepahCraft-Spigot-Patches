@@ -1,4 +1,4 @@
-From dd506edbd13e4697125ed4e1bd969c9cfb1ee5c6 Mon Sep 17 00:00:00 2001
+From fdd7227c3f9dedce789c4a40cb93ba2c3799d349 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 26 Aug 2017 10:14:10 -0500
 Subject: [PATCH] Don't let blazes try to shoot through walls
@@ -6,7 +6,7 @@ Subject: [PATCH] Don't let blazes try to shoot through walls
 
 diff --git a/nms-patches/EntityBlaze.patch b/nms-patches/EntityBlaze.patch
 new file mode 100644
-index 0000000..5af2186
+index 00000000..5af2186e
 --- /dev/null
 +++ b/nms-patches/EntityBlaze.patch
 @@ -0,0 +1,11 @@
@@ -22,5 +22,5 @@ index 0000000..5af2186
 +                 double d2 = entityliving.getBoundingBox().b + (double) (entityliving.length / 2.0F) - (this.a.locY + (double) (this.a.length / 2.0F));
 +                 double d3 = entityliving.locZ - this.a.locZ;
 -- 
-1.9.1
+2.14.1
 

@@ -1,11 +1,11 @@
-From ab5ddce445ca259ce21256ad5978fe570f904263 Mon Sep 17 00:00:00 2001
+From 19713533ee6b2196fa9ca94b4b028916007ba053 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:54:39 -0600
 Subject: [PATCH] Optimize boats to improve collision performance.
 
 
 diff --git a/src/main/java/net/minecraft/server/EntityBoat.java b/src/main/java/net/minecraft/server/EntityBoat.java
-index 164e21f..cacccab 100644
+index 164e21fe..cacccab4 100644
 --- a/src/main/java/net/minecraft/server/EntityBoat.java
 +++ b/src/main/java/net/minecraft/server/EntityBoat.java
 @@ -250,7 +250,9 @@ public class EntityBoat extends Entity {
@@ -20,5 +20,5 @@ index 164e21f..cacccab 100644
              this.motX = 0.0D;
              this.motY = 0.0D;
 -- 
-1.9.1
+2.14.1
 

@@ -1,11 +1,11 @@
-From 580884a3fcdb964cc95ec6daed9ae300a654b4f0 Mon Sep 17 00:00:00 2001
+From d6aed2daac75aacc62721a48f38dc206729f7092 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Fri, 16 Jun 2017 13:29:45 -0500
 Subject: [PATCH] Avoid potential frozen entities from Dynmap
 
 
 diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
-index f62e7d9..9d6e553 100644
+index f62e7d9e..9d6e553d 100644
 --- a/src/main/java/net/minecraft/server/World.java
 +++ b/src/main/java/net/minecraft/server/World.java
 @@ -1084,6 +1084,13 @@ public abstract class World implements IBlockAccess {
@@ -37,5 +37,5 @@ index f62e7d9..9d6e553 100644
  
          while (iterator.hasNext()) {
 -- 
-1.9.1
+2.14.1
 

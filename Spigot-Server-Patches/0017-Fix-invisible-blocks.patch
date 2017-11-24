@@ -1,4 +1,4 @@
-From 74ced7d104b5fb364518c1bbdd43a4f242294783 Mon Sep 17 00:00:00 2001
+From b88588fc6a2c8e559d583f327f5484fbb22ad42d Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 17 Jul 2017 17:28:41 -0500
 Subject: [PATCH] Fix invisible blocks
@@ -7,7 +7,7 @@ Fix taken from the description here: https://www.youtube.com/watch?v=lu2Dgpf2yRM
 Imgur link to fix: http://i.imgur.com/AdvUzmE.png
 
 diff --git a/src/main/java/net/minecraft/server/PlayerInteractManager.java b/src/main/java/net/minecraft/server/PlayerInteractManager.java
-index a1689c0..38b3512 100644
+index a1689c06..38b35123 100644
 --- a/src/main/java/net/minecraft/server/PlayerInteractManager.java
 +++ b/src/main/java/net/minecraft/server/PlayerInteractManager.java
 @@ -195,7 +195,7 @@ public class PlayerInteractManager {
@@ -20,5 +20,5 @@ index a1689c0..38b3512 100644
              }
  
 -- 
-1.9.1
+2.14.1
 

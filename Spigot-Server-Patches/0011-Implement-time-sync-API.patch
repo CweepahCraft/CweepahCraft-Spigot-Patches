@@ -1,11 +1,11 @@
-From 2df5f934e349624061dd100fe91984033a223c2c Mon Sep 17 00:00:00 2001
+From c286b1e0d34538232bf12a9fccd70e65ccc5e049 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:51:38 -0500
 Subject: [PATCH] Implement time sync API
 
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index edd8769..63222b1 100644
+index edd8769f..63222b17 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -300,7 +300,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
@@ -24,10 +24,10 @@ index edd8769..63222b1 100644
  
          timings.doChunkUnload.stopTiming(); // Spigot
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 44a3dc9..d107188 100644
+index ef8165da..61ca409d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -516,6 +516,22 @@ public class CraftWorld implements World {
+@@ -523,6 +523,22 @@ public class CraftWorld implements World {
          }
      }
  
@@ -51,5 +51,5 @@ index 44a3dc9..d107188 100644
          return createExplosion(x, y, z, power, false, true);
      }
 -- 
-1.9.1
+2.14.1
 

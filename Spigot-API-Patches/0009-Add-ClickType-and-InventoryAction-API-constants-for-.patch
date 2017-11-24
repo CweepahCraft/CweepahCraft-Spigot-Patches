@@ -1,4 +1,4 @@
-From 03311f23221e92c6d94864c378b2af86efadaece Mon Sep 17 00:00:00 2001
+From 6ebd125169f934077a908f70f55515efe5a7d5aa Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 10:27:38 -0500
 Subject: [PATCH] Add ClickType and InventoryAction API constants for the
@@ -6,35 +6,35 @@ Subject: [PATCH] Add ClickType and InventoryAction API constants for the
 
 
 diff --git a/src/main/java/org/bukkit/event/inventory/ClickType.java b/src/main/java/org/bukkit/event/inventory/ClickType.java
-index a7440aa..c489f0d 100644
+index a7440aac..c489f0dd 100644
 --- a/src/main/java/org/bukkit/event/inventory/ClickType.java
 +++ b/src/main/java/org/bukkit/event/inventory/ClickType.java
-@@ -54,6 +54,10 @@ public enum ClickType {
+@@ -53,6 +53,10 @@ public enum ClickType {
+      * Any action done with the Creative inventory open.
       */
      CREATIVE,
-     /**
++    /**
 +     * Manipulating the inventory via the recipe book.
 +     */
 +    AUTO_RECIPE,
-+    /**
+     /**
       * A type of inventory manipulation not yet recognized by Bukkit.
       * <p>
-      * This is only for transitional purposes on a new Minecraft update, and
 diff --git a/src/main/java/org/bukkit/event/inventory/InventoryAction.java b/src/main/java/org/bukkit/event/inventory/InventoryAction.java
-index a7bc694..306104d 100644
+index a7bc694b..306104da 100644
 --- a/src/main/java/org/bukkit/event/inventory/InventoryAction.java
 +++ b/src/main/java/org/bukkit/event/inventory/InventoryAction.java
-@@ -84,6 +84,10 @@ public enum InventoryAction {
+@@ -83,6 +83,10 @@ public enum InventoryAction {
+      * the cursor up to {@link org.bukkit.Material#getMaxStackSize()}.
       */
      COLLECT_TO_CURSOR,
-     /**
++    /**
 +     * The inventory is being manipulated by the recipe book.
 +     */
 +    AUTO_RECIPE,
-+    /**
+     /**
       * An unrecognized ClickType.
       */
-     UNKNOWN,
 -- 
-1.9.1
+2.14.1
 

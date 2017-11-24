@@ -1,4 +1,4 @@
-From 0c8e23ab974a932c5fe4a44a9aefbda4cd3a133a Mon Sep 17 00:00:00 2001
+From cdc9c4f76a2d2a9dc7a102f93c24beac9d8745ff Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 10:33:21 -0500
 Subject: [PATCH] Fire InventoryClickEvent when using the recipe book
@@ -6,7 +6,7 @@ Subject: [PATCH] Fire InventoryClickEvent when using the recipe book
 
 diff --git a/nms-patches/AutoRecipe.patch b/nms-patches/AutoRecipe.patch
 new file mode 100644
-index 0000000..2d4c353
+index 00000000..2d4c3538
 --- /dev/null
 +++ b/nms-patches/AutoRecipe.patch
 @@ -0,0 +1,82 @@
@@ -93,7 +93,7 @@ index 0000000..2d4c353
 + 
 +                     ++l;
 diff --git a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
-index 4385cd9..705689f 100644
+index bc84dd30..c1c86338 100644
 --- a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 +++ b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 @@ -28,6 +28,7 @@ import org.bukkit.craftbukkit.entity.CraftEntity;
@@ -104,7 +104,7 @@ index 4385cd9..705689f 100644
  import org.bukkit.craftbukkit.inventory.CraftItemStack;
  import org.bukkit.craftbukkit.inventory.CraftMetaBook;
  import org.bukkit.craftbukkit.util.CraftDamageSource;
-@@ -53,10 +54,7 @@ import org.bukkit.event.entity.*;
+@@ -54,10 +55,7 @@ import org.bukkit.event.entity.*;
  import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
  import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
  import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
@@ -116,7 +116,7 @@ index 4385cd9..705689f 100644
  import org.bukkit.event.player.*;
  import org.bukkit.event.server.ServerListPingEvent;
  import org.bukkit.inventory.EquipmentSlot;
-@@ -887,6 +885,13 @@ public class CraftEventFactory {
+@@ -896,6 +894,13 @@ public class CraftEventFactory {
          human.activeContainer.transferTo(human.defaultContainer, human.getBukkitEntity());
      }
  
@@ -131,5 +131,5 @@ index 4385cd9..705689f 100644
          int itemInHandIndex = player.inventory.itemInHandIndex;
  
 -- 
-1.9.1
+2.14.1
 

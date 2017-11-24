@@ -1,11 +1,11 @@
-From 2714d5ed1c217a0e10bd5e3a7367f5dcc5804612 Mon Sep 17 00:00:00 2001
+From 705b71fee48c25724e09b7721205b15d509bc816 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:42 -0500
 Subject: [PATCH] API to send chat messages as chat message type
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index cf47ce1..ecadfc7 100644
+index cf47ce12..ecadfc74 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1432,6 +1432,13 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
@@ -23,5 +23,5 @@ index cf47ce1..ecadfc7 100644
      public class Spigot extends Entity.Spigot
      {
 -- 
-1.9.1
+2.14.1
 

@@ -1,14 +1,14 @@
-From 26fb6015ef44763190a6930c961c6e0b967cb978 Mon Sep 17 00:00:00 2001
+From 0c8293f88a32f38b48e52d67ad32f3568d7508a6 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:14 -0500
 Subject: [PATCH] Implement performCommandAsChat method
 
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index bb4640b..09dae27 100644
+index 87b6821e..71ca00e1 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
-@@ -1222,12 +1222,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1227,12 +1227,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
  
              // CraftBukkit start
              if (isSync) {
@@ -22,7 +22,7 @@ index bb4640b..09dae27 100644
              } else if (s.isEmpty()) {
                  LOGGER.warn(this.player.getName() + " tried to send an empty message");
              } else if (getPlayer().isConversing()) {
-@@ -1305,7 +1300,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1310,7 +1305,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
          }
  
          if (!async && s.startsWith("/")) {
@@ -31,7 +31,7 @@ index bb4640b..09dae27 100644
          } else if (this.player.getChatFlags() == EntityHuman.EnumChatVisibility.SYSTEM) {
              // Do nothing, this is coming from a plugin
          } else {
-@@ -1372,7 +1367,16 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+@@ -1377,7 +1372,16 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
      }
      // CraftBukkit end
  
@@ -50,21 +50,21 @@ index bb4640b..09dae27 100644
         // CraftBukkit start - whole method
          if ( org.spigotmc.SpigotConfig.logCommands ) // Spigot
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index fd7b69a..756421a 100644
+index 7797946e..68da4d7d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -247,6 +247,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -246,6 +246,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+         return server.dispatchCommand(this, command);
      }
  
-     @Override
++    @Override
 +    public void performCommandAsChat(String command) {
 +        getHandle().playerConnection.handleCommand(command);
 +    }
 +
-+    @Override
+     @Override
      public void playNote(Location loc, byte instrument, byte note) {
          if (getHandle().playerConnection == null) return;
- 
 -- 
-1.9.1
+2.14.1
 

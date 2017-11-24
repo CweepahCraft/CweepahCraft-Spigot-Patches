@@ -1,17 +1,18 @@
-From 28a54febf6b0014020526e85629398fddc335a15 Mon Sep 17 00:00:00 2001
+From 28149ca1fa16c6fc3d44fd2faa95fc6b214864c9 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:30:01 -0500
 Subject: [PATCH] Add action bar support for title API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 8af5f84..cf47ce1 100644
+index 8af5f849..cf47ce12 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1196,6 +1196,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+@@ -1195,6 +1195,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+      */
      public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
  
-     /**
++    /**
 +     * Sends a title, subtitle, and action bar message to the player. If any of these
 +     * values are null, they will not be sent and the display will remain
 +     * unchanged. If they are empty strings, the display will be updated as
@@ -28,10 +29,9 @@ index 8af5f84..cf47ce1 100644
 +     */
 +    public void sendTitle(String title, String subtitle, String actionBar, int fadeIn, int stay, int fadeOut);
 +
-+    /**
+     /**
       * Resets the title displayed to the player. This will clear the displayed
       * title / subtitle and reset timings to their default values.
-      */
 -- 
-1.9.1
+2.14.1
 
