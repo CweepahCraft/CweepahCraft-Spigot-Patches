@@ -68,8 +68,14 @@ fi
 
 cd "$root/CweepahCraft/CweepahCraft-Server/"
 git fetch -a upstream
-git checkout -f master
+git branch premaster || true
+git checkout -f premaster
 git reset --hard upstream/master
+rm nms-patches/*
+git add .
+git commit -m "Deleted old nms-patches on `date '+%Y/%m/%d %H:%M%S'`"
+git checkout -f master
+git reset --hard premaster
 git am -3 ../Spigot-Server-Patches/*.patch
 git branch patched || true
 git checkout -f patched

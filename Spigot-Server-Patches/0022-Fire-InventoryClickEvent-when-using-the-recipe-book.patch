@@ -1,4 +1,4 @@
-From cdc9c4f76a2d2a9dc7a102f93c24beac9d8745ff Mon Sep 17 00:00:00 2001
+From a784bea4c7b3303b749411a3ac8d7b33b4edbf84 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 10:33:21 -0500
 Subject: [PATCH] Fire InventoryClickEvent when using the recipe book
@@ -131,5 +131,5 @@ index bc84dd30..c1c86338 100644
          int itemInHandIndex = player.inventory.itemInHandIndex;
  
 -- 
-2.14.1
+2.17.0
 

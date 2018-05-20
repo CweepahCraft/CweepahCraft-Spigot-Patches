@@ -1,14 +1,14 @@
-From fac513e643b880c0d42e5503e4d8a085238dd67b Mon Sep 17 00:00:00 2001
+From 3cee013e7d860568d06698e795ff2716b7cf29c1 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:23 -0500
 Subject: [PATCH] Add performCommandAsChat method
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index ecadfc74..c42ff22f 100644
+index 4b6ca1d4..c8d4f99a 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -132,6 +132,16 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+@@ -133,6 +133,16 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
       */
      public boolean performCommand(String command);
  
@@ -26,5 +26,5 @@ index ecadfc74..c42ff22f 100644
       * Returns if the player is in sneak mode
       *
 -- 
-2.14.1
+2.17.0
 

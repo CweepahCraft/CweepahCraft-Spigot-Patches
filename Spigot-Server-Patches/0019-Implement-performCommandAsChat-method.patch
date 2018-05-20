@@ -1,4 +1,4 @@
-From 0c8293f88a32f38b48e52d67ad32f3568d7508a6 Mon Sep 17 00:00:00 2001
+From 3c0060e5bf0b0cef216a72d6574915d3741abcf8 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 9 Aug 2017 13:38:14 -0500
 Subject: [PATCH] Implement performCommandAsChat method
@@ -50,10 +50,10 @@ index 87b6821e..71ca00e1 100644
         // CraftBukkit start - whole method
          if ( org.spigotmc.SpigotConfig.logCommands ) // Spigot
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 7797946e..68da4d7d 100644
+index fb419b94..085fbf8b 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -246,6 +246,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -244,6 +244,11 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
          return server.dispatchCommand(this, command);
      }
  
@@ -66,5 +66,5 @@ index 7797946e..68da4d7d 100644
      public void playNote(Location loc, byte instrument, byte note) {
          if (getHandle().playerConnection == null) return;
 -- 
-2.14.1
+2.17.0
 

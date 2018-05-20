@@ -1,14 +1,14 @@
-From c286b1e0d34538232bf12a9fccd70e65ccc5e049 Mon Sep 17 00:00:00 2001
+From 0f3feff8814491482f238fc84c8fdd6ad63f03c6 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 13 Mar 2017 15:51:38 -0500
 Subject: [PATCH] Implement time sync API
 
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index edd8769f..63222b17 100644
+index 669a9169..3a5faac3 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -300,7 +300,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+@@ -303,7 +303,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
  
          this.worldData.setTime(this.worldData.getTime() + 1L);
          if (this.getGameRules().getBoolean("doDaylightCycle")) {
@@ -51,5 +51,5 @@ index ef8165da..61ca409d 100644
          return createExplosion(x, y, z, power, false, true);
      }
 -- 
-2.14.1
+2.17.0
 

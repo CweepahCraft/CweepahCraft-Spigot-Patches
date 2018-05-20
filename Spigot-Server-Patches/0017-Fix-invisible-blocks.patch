@@ -1,4 +1,4 @@
-From b88588fc6a2c8e559d583f327f5484fbb22ad42d Mon Sep 17 00:00:00 2001
+From df67ca9882b4d42f905b38cc9888060c7b26fbde Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 17 Jul 2017 17:28:41 -0500
 Subject: [PATCH] Fix invisible blocks
@@ -20,5 +20,5 @@ index a1689c06..38b35123 100644
              }
  
 -- 
-2.14.1
+2.17.0
 

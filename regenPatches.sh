@@ -10,6 +10,6 @@ git format-patch --no-stat -N -o ../Spigot-API-Patches/ origin/master
 cd ../Spigot-Server-Patches/
 rm *
 cd ../CweepahCraft-Server/
-git format-patch --no-stat -N -o ../Spigot-Server-Patches/ upstream/master
+git format-patch --no-stat -N -o ../Spigot-Server-Patches/ premaster
 
 echo Done!

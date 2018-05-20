@@ -1,4 +1,4 @@
-From 6ebd125169f934077a908f70f55515efe5a7d5aa Mon Sep 17 00:00:00 2001
+From dde749da95604aabfcc429e9d63732c0b873268e Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 3 Sep 2017 10:27:38 -0500
 Subject: [PATCH] Add ClickType and InventoryAction API constants for the
@@ -36,5 +36,5 @@ index a7bc694b..306104da 100644
       * An unrecognized ClickType.
       */
 -- 
-2.14.1
+2.17.0
 

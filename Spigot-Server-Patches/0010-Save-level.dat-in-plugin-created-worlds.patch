@@ -1,14 +1,14 @@
-From 644cc598d6555358644a599bb3a8e06f6b35bf60 Mon Sep 17 00:00:00 2001
+From 37176f42a23d9babc6fa4973e43978eb70ca677e Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 7 Jan 2017 14:19:08 -0600
 Subject: [PATCH] Save level.dat in plugin-created worlds.
 
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index d4f25cbf..edd8769f 100644
+index c891629b..669a9169 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -1081,15 +1081,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+@@ -1084,15 +1084,13 @@ public class WorldServer extends World implements IAsyncTaskHandler {
          for (int j = 0; j < i; ++j) {
              WorldServer worldserver = aworldserver[j];
  
@@ -27,7 +27,7 @@ index d4f25cbf..edd8769f 100644
          // CraftBukkit end
  
          this.worldData.a(this.getWorldBorder().getSize());
-@@ -1432,6 +1430,10 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+@@ -1435,6 +1433,10 @@ public class WorldServer extends World implements IAsyncTaskHandler {
          return this.getChunkProviderServer();
      }
  
@@ -39,5 +39,5 @@ index d4f25cbf..edd8769f 100644
  
          private BlockActionDataList() {}
 -- 
-2.14.1
+2.17.0
 

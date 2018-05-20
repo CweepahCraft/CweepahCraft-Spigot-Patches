@@ -1,4 +1,4 @@
-From 8f4c189ecc5684d41e54ed2c679fc3de9d09872e Mon Sep 17 00:00:00 2001
+From fc06a73f977b2a134bf1cedaa53fb25b22e97f28 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:21 -0500
 Subject: [PATCH] Label chat messages as chat messages when sending
@@ -6,10 +6,10 @@ Subject: [PATCH] Label chat messages as chat messages when sending
 Also implements API method for players to be sent this type of chat message.
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index 4e71963b..411b1d35 100644
+index 730acd97..b14682be 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
-@@ -1173,6 +1173,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
+@@ -1182,6 +1182,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
          this.playerConnection.sendPacket(new PacketPlayOutChat(ichatbasecomponent));
      }
  
@@ -59,10 +59,10 @@ index 687025ca..87b6821e 100644
                  }
              }
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index cbc0aa7a..7797946e 100644
+index 3b5b546c..fb419b94 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1499,6 +1499,13 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1548,6 +1548,13 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
          return getHandle().locale;
      }
  
@@ -77,5 +77,5 @@ index cbc0aa7a..7797946e 100644
      private final Player.Spigot spigot = new Player.Spigot()
      {
 -- 
-2.14.1
+2.17.0
 

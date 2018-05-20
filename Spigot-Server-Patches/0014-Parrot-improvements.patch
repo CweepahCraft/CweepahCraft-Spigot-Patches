@@ -1,11 +1,11 @@
-From 44d781ac94f055cf0cb3fe24fe9a2e5481b18ad3 Mon Sep 17 00:00:00 2001
+From beba86e2bf4559eea9af8a4273fd5c9e2486ef2b Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 10 Jun 2017 10:52:56 -0500
 Subject: [PATCH] Parrot improvements
 
 
 diff --git a/src/main/java/net/minecraft/server/EntityHuman.java b/src/main/java/net/minecraft/server/EntityHuman.java
-index 9643181f..c01fd5ba 100644
+index c374efd7..d76a9b40 100644
 --- a/src/main/java/net/minecraft/server/EntityHuman.java
 +++ b/src/main/java/net/minecraft/server/EntityHuman.java
 @@ -397,7 +397,7 @@ public abstract class EntityHuman extends EntityLiving {
@@ -44,5 +44,5 @@ index d80fce98..c2bf1b4c 100644
      }
  
 -- 
-2.14.1
+2.17.0
 

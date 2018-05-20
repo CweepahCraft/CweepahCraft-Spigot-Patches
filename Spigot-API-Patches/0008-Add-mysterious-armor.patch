@@ -1,11 +1,11 @@
-From 169b5ff9993383c524bd782ee0f94f4e0a10deda Mon Sep 17 00:00:00 2001
+From 6e457c95dc36a539ffc56a911b1bd32430fd2ef1 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 19 Aug 2017 18:54:15 -0500
 Subject: [PATCH] Add mysterious armor
 
 
 diff --git a/src/main/java/org/bukkit/Material.java b/src/main/java/org/bukkit/Material.java
-index 86489593..880e057d 100644
+index fcc76e19..38f252f0 100644
 --- a/src/main/java/org/bukkit/Material.java
 +++ b/src/main/java/org/bukkit/Material.java
 @@ -536,6 +536,10 @@ public enum Material {
@@ -20,5 +20,5 @@ index 86489593..880e057d 100644
  
      private final int id;
 -- 
-2.14.1
+2.17.0
 
