@@ -1,4 +1,4 @@
-From dcba263455fe644731819257289ef6e5a9840d4e Mon Sep 17 00:00:00 2001
+From 2dcb7168a3d3f73237233b02aee1355d486e0bec Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 21 Aug 2017 14:40:44 -0500
 Subject: [PATCH] Add mysterious armor
@@ -6,7 +6,7 @@ Subject: [PATCH] Add mysterious armor
 
 diff --git a/nms-patches/Item.patch b/nms-patches/Item.patch
 new file mode 100644
-index 00000000..62633eec
+index 0000000..62633ee
 --- /dev/null
 +++ b/nms-patches/Item.patch
 @@ -0,0 +1,51 @@
@@ -63,7 +63,7 @@ index 00000000..62633eec
 + 
 diff --git a/nms-patches/Items.patch b/nms-patches/Items.patch
 new file mode 100644
-index 00000000..3b6e1554
+index 0000000..3b6e155
 --- /dev/null
 +++ b/nms-patches/Items.patch
 @@ -0,0 +1,33 @@
@@ -102,7 +102,7 @@ index 00000000..3b6e1554
 +             COOKED_PORKCHOP = get("cooked_porkchop");
 diff --git a/src/main/java/net/cweepahcraft/item/ServerSpecificItem.java b/src/main/java/net/cweepahcraft/item/ServerSpecificItem.java
 new file mode 100644
-index 00000000..fb0a2dd7
+index 0000000..fb0a2dd
 --- /dev/null
 +++ b/src/main/java/net/cweepahcraft/item/ServerSpecificItem.java
 @@ -0,0 +1,9 @@
@@ -116,7 +116,7 @@ index 00000000..fb0a2dd7
 +    ItemStack toServerStack(ItemStack itemStack);
 +}
 diff --git a/src/main/java/net/minecraft/server/ItemArmor.java b/src/main/java/net/minecraft/server/ItemArmor.java
-index 921cddd2..56fcc0eb 100644
+index 921cddd..56fcc0e 100644
 --- a/src/main/java/net/minecraft/server/ItemArmor.java
 +++ b/src/main/java/net/minecraft/server/ItemArmor.java
 @@ -10,7 +10,9 @@ import org.bukkit.craftbukkit.inventory.CraftItemStack;
@@ -368,7 +368,7 @@ index 921cddd2..56fcc0eb 100644
  
          public float e() {
 diff --git a/src/main/java/net/minecraft/server/PacketDataSerializer.java b/src/main/java/net/minecraft/server/PacketDataSerializer.java
-index a8fc7e43..c7ebd0f3 100644
+index a8fc7e4..c7ebd0f 100644
 --- a/src/main/java/net/minecraft/server/PacketDataSerializer.java
 +++ b/src/main/java/net/minecraft/server/PacketDataSerializer.java
 @@ -25,6 +25,8 @@ import javax.annotation.Nullable;
@@ -455,7 +455,7 @@ index a8fc7e43..c7ebd0f3 100644
              if (itemstack.getTag() != null) {
                  CraftItemStack.setItemMeta(itemstack, CraftItemStack.getItemMeta(itemstack));
 diff --git a/src/main/java/net/minecraft/server/RecipeArmorDye.java b/src/main/java/net/minecraft/server/RecipeArmorDye.java
-index 123002ec..4a4cf7ef 100644
+index 123002e..4a4cf7e 100644
 --- a/src/main/java/net/minecraft/server/RecipeArmorDye.java
 +++ b/src/main/java/net/minecraft/server/RecipeArmorDye.java
 @@ -22,7 +22,7 @@ public class RecipeArmorDye extends ShapelessRecipes implements IRecipe { // Cra
@@ -477,7 +477,7 @@ index 123002ec..4a4cf7ef 100644
                      }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java
-index 49ebad22..9612bf85 100644
+index 49ebad2..9612bf8 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java
 @@ -76,6 +76,10 @@ public final class CraftItemFactory implements ItemFactory {
@@ -492,7 +492,7 @@ index 49ebad22..9612bf85 100644
          case POTION:
          case SPLASH_POTION:
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java
-index fb1dc542..cb30efd5 100644
+index fb1dc54..cb30efd 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java
 @@ -335,6 +335,10 @@ public final class CraftItemStack extends ItemStack {
@@ -507,7 +507,7 @@ index fb1dc542..cb30efd5 100644
              case POTION:
              case SPLASH_POTION:
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java
-index 5478e9bc..2e306b76 100644
+index 5478e9b..2e306b7 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java
 @@ -71,6 +71,10 @@ class CraftMetaLeatherArmor extends CraftMetaItem implements LeatherArmorMeta {
@@ -521,6 +521,150 @@ index 5478e9bc..2e306b76 100644
                  return true;
              default:
                  return false;
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_boots.json b/src/main/resources/assets/minecraft/recipes/mysterious_boots.json
+new file mode 100644
+index 0000000..beee792
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_boots.json
+@@ -0,0 +1,29 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_boots"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:skull",
++      "data": 5
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_boots"
++  }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_chestplate.json b/src/main/resources/assets/minecraft/recipes/mysterious_chestplate.json
+new file mode 100644
+index 0000000..bd5cfac
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_chestplate.json
+@@ -0,0 +1,29 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_chestplate"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:skull",
++      "data": 5
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_chestplate"
++  }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_helmet.json b/src/main/resources/assets/minecraft/recipes/mysterious_helmet.json
+new file mode 100644
+index 0000000..a4fe863
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_helmet.json
+@@ -0,0 +1,29 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_helmet"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:skull",
++      "data": 5
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_helmet"
++  }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_leggings.json b/src/main/resources/assets/minecraft/recipes/mysterious_leggings.json
+new file mode 100644
+index 0000000..252b6f0
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_leggings.json
+@@ -0,0 +1,29 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_leggings"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:skull",
++      "data": 5
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_leggings"
++  }
++}
+\ No newline at end of file
 -- 
-2.17.0
+2.7.4
 
