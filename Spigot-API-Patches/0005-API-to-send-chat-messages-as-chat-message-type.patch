@@ -1,14 +1,14 @@
-From c55115cf2e727470fafc3e466bb07defd160aaa6 Mon Sep 17 00:00:00 2001
+From 7e1029e8c3c5524c8c7843981aa7b64a1bed73db Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Mon, 15 May 2017 19:25:42 -0500
 Subject: [PATCH] API to send chat messages as chat message type
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 29bc604d..4b6ca1d4 100644
+index 70cde9d2..c5847dff 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1455,6 +1455,13 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+@@ -1461,6 +1461,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public String getLocale();
  
@@ -19,9 +19,9 @@ index 29bc604d..4b6ca1d4 100644
 +     */
 +    public void sendChatMessage(String message);
 +
-     // Spigot start
-     public class Spigot extends Entity.Spigot
-     {
+     /**
+      * Update the list of commands sent to the client.
+      * <br>
 -- 
-2.17.0
+2.21.0
 

@@ -1,47 +1,50 @@
-From f6f47f273b1279bd34296e0138860cc8d8b8eb03 Mon Sep 17 00:00:00 2001
+From 694d128324196ceedfa4c7b374a8da984229aac1 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:48:49 -0600
 Subject: [PATCH] Implement hopper toggling API.
 
 
 diff --git a/src/main/java/net/minecraft/server/TileEntityHopper.java b/src/main/java/net/minecraft/server/TileEntityHopper.java
-index 9855135..b36132f 100644
+index 559eedfa..2eb6b442 100644
 --- a/src/main/java/net/minecraft/server/TileEntityHopper.java
 +++ b/src/main/java/net/minecraft/server/TileEntityHopper.java
-@@ -13,6 +13,8 @@ import org.bukkit.event.inventory.InventoryPickupItemEvent;
+@@ -15,6 +15,10 @@ import org.bukkit.event.inventory.InventoryPickupItemEvent;
  import org.bukkit.inventory.Inventory;
  // CraftBukkit end
  
++// CweepahCraft start
 +import org.bukkit.Bukkit;
++// CweepahCraft end
 +
  public class TileEntityHopper extends TileEntityLootable implements IHopper, ITickable {
  
      private NonNullList<ItemStack> items;
-@@ -110,7 +112,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper, ITi
+@@ -109,7 +113,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper, ITi
      }
  
-     public void e() {
+     public void tick() {
 -        if (this.world != null && !this.world.isClientSide) {
 +        if (Bukkit.isHopperEnabled() && this.world != null && !this.world.isClientSide) {
              --this.f;
-             this.g = this.world.getTime();
-             if (!this.J()) {
+             this.j = this.world.getTime();
+             if (!this.E()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 5ab7cee..e419957 100644
+index a0afe056..4c139214 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -173,6 +173,7 @@ public final class CraftServer implements Server {
-     private boolean unrestrictedAdvancements;
+@@ -201,6 +201,7 @@ public final class CraftServer implements Server {
+     public boolean ignoreVanillaPermissions = false;
      private final List<CraftPlayer> playerView;
      public int reloadCount;
 +    private boolean hopperEnabled = true;
  
      private final class BooleanWrapper {
          private boolean value = true;
-@@ -1720,6 +1721,16 @@ public final class CraftServer implements Server {
+@@ -1845,6 +1846,16 @@ public final class CraftServer implements Server {
+         return false;
      }
  
-     @Override
++    @Override
 +    public boolean isHopperEnabled() {
 +        return hopperEnabled;
 +    }
@@ -51,10 +54,9 @@ index 5ab7cee..e419957 100644
 +        hopperEnabled = enabled;
 +    }
 +
-+    @Override
+     @Override
      public Entity getEntity(UUID uuid) {
          Validate.notNull(uuid, "UUID cannot be null");
-         net.minecraft.server.Entity entity = console.a(uuid); // PAIL: getEntity
 -- 
-2.7.4
+2.21.0
 

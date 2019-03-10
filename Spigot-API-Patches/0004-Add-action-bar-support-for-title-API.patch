@@ -1,14 +1,14 @@
-From 5b971cb080d092a7b3545b47d91e5229bca797ff Mon Sep 17 00:00:00 2001
+From 9d747d30188503bda9f1075cb7dc2231092a99b0 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sun, 7 May 2017 10:30:01 -0500
 Subject: [PATCH] Add action bar support for title API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 965f4207..29bc604d 100644
+index 71fe947b..70cde9d2 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1218,6 +1218,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+@@ -1214,6 +1214,23 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
  
@@ -33,5 +33,5 @@ index 965f4207..29bc604d 100644
       * Resets the title displayed to the player. This will clear the displayed
       * title / subtitle and reset timings to their default values.
 -- 
-2.17.0
+2.21.0
 

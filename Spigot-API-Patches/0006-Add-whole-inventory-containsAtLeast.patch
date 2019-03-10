@@ -1,14 +1,14 @@
-From 0ac001aaeafee9db6adddbfe7d9f62fea3f41f21 Mon Sep 17 00:00:00 2001
+From 09c22e3a7273a9ce5bc35d61e08ad9fdec8f9c9e Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Wed, 26 Jul 2017 08:46:08 -0500
 Subject: [PATCH] Add whole-inventory containsAtLeast
 
 
 diff --git a/src/main/java/org/bukkit/inventory/Inventory.java b/src/main/java/org/bukkit/inventory/Inventory.java
-index 3275e172..268c1d5f 100644
+index bab561dc..856daf22 100644
 --- a/src/main/java/org/bukkit/inventory/Inventory.java
 +++ b/src/main/java/org/bukkit/inventory/Inventory.java
-@@ -242,6 +242,18 @@ public interface Inventory extends Iterable<ItemStack> {
+@@ -232,6 +232,18 @@ public interface Inventory extends Iterable<ItemStack> {
       */
      public boolean containsAtLeast(ItemStack item, int amount);
  
@@ -26,7 +26,7 @@ index 3275e172..268c1d5f 100644
 +
      /**
       * Returns a HashMap with all slots and ItemStacks in the inventory with
-      * given materialId.
+      * the given Material.
 -- 
-2.17.0
+2.21.0
 

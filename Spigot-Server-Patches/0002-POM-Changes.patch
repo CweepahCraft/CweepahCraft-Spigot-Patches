@@ -1,11 +1,11 @@
-From ee09c64243e56838c3968fa953f97a9bd3ee09f9 Mon Sep 17 00:00:00 2001
+From ce5a8ab096d1d4d9743fdd757535140cb98557b3 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:39:36 -0600
 Subject: [PATCH] POM Changes
 
 
 diff --git a/pom.xml b/pom.xml
-index e0b6eee4..7b58ffd2 100644
+index a985cf0c..bfb47e25 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,11 @@
@@ -16,15 +16,15 @@ index e0b6eee4..7b58ffd2 100644
 -    <artifactId>spigot</artifactId>
 +    <artifactId>cweepahcraft</artifactId>
      <packaging>jar</packaging>
-     <version>1.12.2-R0.1-SNAPSHOT</version>
+     <version>1.13.2-R0.1-SNAPSHOT</version>
 -    <name>Spigot</name>
 -    <url>http://www.spigotmc.org</url>
 +    <name>CweepahCraft</name>
 +    <url>https://www.cweepahcraft.net/</url>
  
      <properties>
-         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-@@ -21,8 +20,8 @@
+         <skipTests>true</skipTests>
+@@ -22,16 +21,16 @@
      </properties>
  
      <parent>
@@ -35,9 +35,8 @@ index e0b6eee4..7b58ffd2 100644
          <version>dev-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
-@@ -36,8 +35,8 @@
-             <scope>compile</scope>
-         </dependency>
+ 
+     <dependencies>
          <dependency>
 -            <groupId>org.spigotmc</groupId>
 -            <artifactId>spigot-api</artifactId>
@@ -46,7 +45,7 @@ index e0b6eee4..7b58ffd2 100644
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -117,8 +116,8 @@
+@@ -111,8 +110,8 @@
                      <execution>
                          <id>ex-spigot</id>
                          <configuration>
@@ -57,7 +56,7 @@ index e0b6eee4..7b58ffd2 100644
                              <descriptionProperty>spigot.desc</descriptionProperty>
                          </configuration>
                          <phase>initialize</phase>
-@@ -138,6 +137,18 @@
+@@ -132,6 +131,18 @@
                              <goal>describe</goal>
                          </goals>
                      </execution>
@@ -76,7 +75,7 @@ index e0b6eee4..7b58ffd2 100644
                  </executions>
              </plugin>
              <plugin>
-@@ -149,7 +160,7 @@
+@@ -143,7 +154,7 @@
                          <manifestEntries>
                              <Main-Class>org.bukkit.craftbukkit.Main</Main-Class>
                              <Implementation-Title>CraftBukkit</Implementation-Title>
@@ -86,5 +85,5 @@ index e0b6eee4..7b58ffd2 100644
                              <Specification-Title>Bukkit</Specification-Title>
                              <Specification-Version>${api.version}</Specification-Version>
 -- 
-2.17.0
+2.21.0
 

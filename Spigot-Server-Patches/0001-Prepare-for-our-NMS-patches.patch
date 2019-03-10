@@ -1,4 +1,4 @@
-From 6e8a1526d9592269b31d258ac971c061e3eff2f7 Mon Sep 17 00:00:00 2001
+From 4b91f1860ad82b25a0f62edea72e6bd61808ae0d Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 22 Aug 2017 15:40:26 -0500
 Subject: [PATCH] Prepare for our NMS patches
@@ -29,10 +29,10 @@ index 02401133..516739df 100755
      patch -d src/main/java/ "net/minecraft/server/$file" < "$patchFile"
  done
 diff --git a/makePatches.sh b/makePatches.sh
-index 3400e7e9..00be047f 100755
+index e2e1dbbc..ef0bb906 100755
 --- a/makePatches.sh
 +++ b/makePatches.sh
-@@ -5,10 +5,19 @@ then
+@@ -5,6 +5,13 @@ then
      echo "Please run this script again with the clean decompile sources as an argument. In most cases this will be ../work/decompile-XXXX"
      exit
  fi
@@ -45,14 +45,18 @@ index 3400e7e9..00be047f 100755
 +
  cb=src/main/java/net/minecraft/server
  nms="$1/net/minecraft/server"
+ show_diff_msg=true
+@@ -18,7 +25,9 @@ then
+     fi
+ fi
  
 -for file in $(/bin/ls $cb)
 +shift
 +
 +for file in $@
  do
-     echo "Diffing $file"
-     sed -i 's/\r//' "$nms/$file"
+     if [ "$show_diff_msg" = true ]
+     then
 -- 
-2.17.0
+2.21.0
 

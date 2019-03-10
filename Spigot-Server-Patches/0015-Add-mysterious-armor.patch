@@ -1,0 +1,637 @@
+From 11d796f16410db56add07dd5fc3735e5357113ae Mon Sep 17 00:00:00 2001
+From: Jacob Martin <jjm_223@hotmail.com>
+Date: Sun, 10 Mar 2019 13:04:52 -0500
+Subject: [PATCH] Add mysterious armor
+
+
+diff --git a/nms-patches/EnumArmorMaterial.patch b/nms-patches/EnumArmorMaterial.patch
+new file mode 100644
+index 00000000..94339cef
+--- /dev/null
++++ b/nms-patches/EnumArmorMaterial.patch
+@@ -0,0 +1,32 @@
++--- a/net/minecraft/server/EnumArmorMaterial.java
+++++ b/net/minecraft/server/EnumArmorMaterial.java
++@@ -6,16 +6,24 @@
++ 
++     LEATHER("leather", 5, new int[] { 1, 2, 3, 1}, 15, SoundEffects.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> {
++         return RecipeItemStack.a(Items.LEATHER);
++-    }), CHAIN("chainmail", 15, new int[] { 1, 4, 5, 2}, 12, SoundEffects.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> {
+++    }),
+++    CHAIN("chainmail", 15, new int[] { 1, 4, 5, 2}, 12, SoundEffects.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> {
++         return RecipeItemStack.a(Items.IRON_INGOT);
++-    }), IRON("iron", 15, new int[] { 2, 5, 6, 2}, 9, SoundEffects.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
+++    }),
+++    IRON("iron", 15, new int[] { 2, 5, 6, 2}, 9, SoundEffects.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
++         return RecipeItemStack.a(Items.IRON_INGOT);
++-    }), GOLD("gold", 7, new int[] { 1, 3, 5, 2}, 25, SoundEffects.ITEM_ARMOR_EQUIP_GOLD, 0.0F, () -> {
+++    }),
+++    GOLD("gold", 7, new int[] { 1, 3, 5, 2}, 25, SoundEffects.ITEM_ARMOR_EQUIP_GOLD, 0.0F, () -> {
++         return RecipeItemStack.a(Items.GOLD_INGOT);
++-    }), DIAMOND("diamond", 33, new int[] { 3, 6, 8, 3}, 10, SoundEffects.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, () -> {
+++    }),
+++    DIAMOND("diamond", 33, new int[] { 3, 6, 8, 3}, 10, SoundEffects.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, () -> {
++         return RecipeItemStack.a(Items.DIAMOND);
++-    }), TURTLE("turtle", 25, new int[] { 2, 5, 6, 2}, 9, SoundEffects.ITEM_ARMOR_EQUIP_TURTLE, 0.0F, () -> {
+++    }),
+++    TURTLE("turtle", 25, new int[] { 2, 5, 6, 2}, 9, SoundEffects.ITEM_ARMOR_EQUIP_TURTLE, 0.0F, () -> {
++         return RecipeItemStack.a(Items.SCUTE);
+++    }),
+++    MYSTERIOUS("mysterious", 66, new int[] { 6, 12, 16, 6 }, 20, SoundEffects.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F, () -> {
+++        return RecipeItemStack.a(Blocks.DIAMOND_BLOCK);
++     });
++ 
++     private static final int[] g = new int[] { 13, 15, 16, 11};
+diff --git a/nms-patches/IDynamicTexture.patch b/nms-patches/IDynamicTexture.patch
+new file mode 100644
+index 00000000..1711f8f8
+--- /dev/null
++++ b/nms-patches/IDynamicTexture.patch
+@@ -0,0 +1,10 @@
++--- a/net/minecraft/server/IDynamicTexture.java
+++++ b/net/minecraft/server/IDynamicTexture.java
++@@ -1,3 +1,6 @@
++ package net.minecraft.server;
++ 
++-public interface IDynamicTexture {}
+++public interface IDynamicTexture {
+++    // CweepahCraft - add method declaration for compilation of Item class.
+++    float nop(ItemStack item, WorldServer world, EntityLiving entity);
+++}
+diff --git a/nms-patches/Item.patch b/nms-patches/Item.patch
+new file mode 100644
+index 00000000..efba41f8
+--- /dev/null
++++ b/nms-patches/Item.patch
+@@ -0,0 +1,42 @@
++--- a/net/minecraft/server/Item.java
+++++ b/net/minecraft/server/Item.java
++@@ -3,6 +3,8 @@
++ import com.google.common.collect.HashMultimap;
++ import com.google.common.collect.Maps;
++ import com.google.common.collect.Multimap;
+++import net.cweepahcraft.item.ItemArmorMysterious;
+++
++ import java.util.Map;
++ import java.util.Random;
++ import java.util.UUID;
++@@ -36,7 +38,7 @@
++     private String name;
++ 
++     public static int getId(Item item) {
++-        return item == null ? 0 : IRegistry.ITEM.a((Object) item);
+++        return item == null ? 0 : IRegistry.ITEM.a(item);
++     }
++ 
++     public static Item getById(int i) {
++@@ -1042,6 +1044,12 @@
++         a("phantom_membrane", new Item((new Item.Info()).a(CreativeModeTab.k)));
++         a("nautilus_shell", new Item((new Item.Info()).a(CreativeModeTab.l)));
++         a("heart_of_the_sea", new Item((new Item.Info()).a(CreativeModeTab.l).a(EnumItemRarity.UNCOMMON)));
+++
+++        // CweepahCraft  - mysterious armor
+++        a("mysterious_helmet", new ItemArmorMysterious(EnumArmorMaterial.MYSTERIOUS, EnumItemSlot.HEAD, (new Item.Info()).a(CreativeModeTab.j)));
+++        a("mysterious_chestplate", new ItemArmorMysterious(EnumArmorMaterial.MYSTERIOUS, EnumItemSlot.CHEST, (new Item.Info()).a(CreativeModeTab.j)));
+++        a("mysterious_leggings", new ItemArmorMysterious(EnumArmorMaterial.MYSTERIOUS, EnumItemSlot.LEGS, (new Item.Info()).a(CreativeModeTab.j)));
+++        a("mysterious_boots", new ItemArmorMysterious(EnumArmorMaterial.MYSTERIOUS, EnumItemSlot.FEET, (new Item.Info()).a(CreativeModeTab.j)));
++     }
++ 
++     private static void b(Block block) {
++@@ -1069,7 +1077,7 @@
++             ((ItemBlock) item).a(Item.f, item);
++         }
++ 
++-        IRegistry.ITEM.a(minecraftkey, (Object) item);
+++        IRegistry.ITEM.a(minecraftkey, item);
++     }
++ 
++     public boolean a(Tag<Item> tag) {
+diff --git a/nms-patches/Items.patch b/nms-patches/Items.patch
+new file mode 100644
+index 00000000..cf75e00e
+--- /dev/null
++++ b/nms-patches/Items.patch
+@@ -0,0 +1,26 @@
++--- a/net/minecraft/server/Items.java
+++++ b/net/minecraft/server/Items.java
++@@ -315,6 +315,10 @@
++     public static final Item PHANTOM_MEMBRANE;
++     public static final Item NAUTILUS_SHELL;
++     public static final Item HEART_OF_THE_SEA;
+++    public static final Item MYSTERIOUS_HELMET;
+++    public static final Item MYSTERIOUS_CHESTPLATE;
+++    public static final Item MYSTERIOUS_LEGGINGS;
+++    public static final Item MYSTERIOUS_BOOTS;
++ 
++     private static Item get(String s) {
++         Item item = (Item) IRegistry.ITEM.get(new MinecraftKey(s));
++@@ -643,6 +647,12 @@
++             PHANTOM_MEMBRANE = get("phantom_membrane");
++             NAUTILUS_SHELL = get("nautilus_shell");
++             HEART_OF_THE_SEA = get("heart_of_the_sea");
+++
+++            // CweepahCraft - mysterious armor
+++            MYSTERIOUS_HELMET = get("mysterious_helmet");
+++            MYSTERIOUS_CHESTPLATE = get("mysterious_chestplate");
+++            MYSTERIOUS_LEGGINGS = get("mysterious_leggings");
+++            MYSTERIOUS_BOOTS = get("mysterious_boots");
++         }
++     }
++ }
+diff --git a/src/main/java/net/cweepahcraft/item/ItemArmorMysterious.java b/src/main/java/net/cweepahcraft/item/ItemArmorMysterious.java
+new file mode 100644
+index 00000000..ad070e45
+--- /dev/null
++++ b/src/main/java/net/cweepahcraft/item/ItemArmorMysterious.java
+@@ -0,0 +1,150 @@
++package net.cweepahcraft.item;
++
++import com.google.common.collect.Multimap;
++import net.minecraft.server.*;
++
++import static org.bukkit.craftbukkit.util.CraftMagicNumbers.NBT.*;
++
++public class ItemArmorMysterious extends ItemArmorColorable implements ServerSpecificItem {
++    private static final int DEFAULT_COLOR = 0;
++
++    public ItemArmorMysterious(ArmorMaterial material, EnumItemSlot slot, Info info) {
++        super(material, slot, info);
++    }
++
++    private Item getClientItem() {
++        switch (this.b) {
++            case HEAD:
++                return Items.LEATHER_HELMET;
++            case CHEST:
++                return Items.LEATHER_CHESTPLATE;
++            case LEGS:
++                return Items.LEATHER_LEGGINGS;
++            case FEET:
++                return Items.LEATHER_BOOTS;
++            default:
++                throw new IllegalStateException("Encountered an armor item that does not go on head, chest, legs, or feet!");
++        }
++    }
++
++    private boolean setItemAttributes(ItemStack dst) {
++        if (!dst.getOrCreateTag().hasKey("AttributeModifiers")) {
++            // Get default attribute modifiers for this armor item and slot.
++            Multimap<String, AttributeModifier> modifiers = a(this.b);
++            for (String name : modifiers.keySet()) {
++                for (AttributeModifier modifier : modifiers.get(name)) {
++                    dst.a(name, modifier, this.b);
++                }
++            }
++
++            return true;
++        }
++
++        return false;
++    }
++
++    @Override
++    public int f(ItemStack itemStack) {
++        NBTTagCompound tag = itemStack.b("display");
++        return tag != null && tag.hasKeyOfType("color", 99) ? tag.getInt("color") : DEFAULT_COLOR;
++    }
++
++    @Override
++    public boolean isApplicable(ItemStack itemStack) {
++        return true; // Always applicable for items of this type.
++    }
++
++    @Override
++    public ItemStack toClientStack(ItemStack itemStack) {
++        Item clientItem = this.getClientItem();
++        ItemStack clientStack = new ItemStack(clientItem);
++
++        clientStack.setCount(itemStack.getCount());
++        clientStack.setDamage(itemStack.getDamage() * clientItem.getMaxDurability() / this.getMaxDurability());
++
++        NBTTagCompound tag = itemStack.getTag();
++        if (tag == null) {
++            tag = new NBTTagCompound();
++        } else {
++            tag = tag.clone();
++        }
++        clientStack.setTag(tag);
++
++        if (setItemAttributes(clientStack)) {
++            tag.setBoolean("HasFakeCustomAttributes", true);
++        }
++
++        tag.setInt("ServerDamage", itemStack.getDamage());
++
++        if (!this.e(itemStack)) {
++            ((ItemArmorColorable) clientItem).a(clientStack, DEFAULT_COLOR);
++        }
++
++        return clientStack;
++    }
++
++    @Override
++    public ItemStack toServerStack(ItemStack itemStack) {
++        Item clientItem = itemStack.getItem();
++        ItemStack serverStack = new ItemStack(this);
++
++        serverStack.setCount(itemStack.getCount());
++
++        NBTTagCompound tag = itemStack.getTag();
++        if (tag == null) {
++            throw new IllegalStateException("For this method to be called, the item must have an NBT tag.");
++        } else {
++            tag = tag.clone();
++        }
++        serverStack.setTag(tag);
++
++        if (tag.hasKeyOfType("ServerDamage", TAG_INT)) {
++            serverStack.setDamage(tag.getInt("ServerDamage"));
++            tag.remove("ServerDamage");
++        } else {
++            serverStack.setDamage(itemStack.getDamage() * this.getMaxDurability() / clientItem.getMaxDurability());
++        }
++
++        if (tag.hasKeyOfType("HasFakeCustomAttributes", TAG_BYTE)) {
++            tag.remove("HasFakeCustomAttributes");
++            tag.remove("AttributeModifiers");
++        }
++
++        if (tag.hasKeyOfType("display", TAG_COMPOUND)) {
++            NBTTagCompound display = tag.getCompound("display");
++            if (display.hasKeyOfType("color", TAG_INT) && display.getInt("color") == DEFAULT_COLOR) {
++                display.remove("color");
++            }
++
++            if (display.isEmpty()) {
++                tag.remove("display");
++            }
++        }
++
++        return serverStack;
++    }
++
++    @Override
++    public IChatBaseComponent getPlayerFacingName() {
++        String name;
++
++        switch (this.b) {
++            case HEAD:
++                name = "Mysterious Helmet";
++                break;
++            case CHEST:
++                name = "Mysterious Chestplate";
++                break;
++            case LEGS:
++                name = "Mysterious Leggings";
++                break;
++            case FEET:
++                name = "Mysterious Boots";
++                break;
++            default:
++                throw new IllegalStateException("Encountered an armor item that does not go on head, chest, legs, or feet!");
++        }
++
++        return new ChatComponentText(name).setChatModifier(new ChatModifier().setItalic(false));
++    }
++}
+diff --git a/src/main/java/net/cweepahcraft/item/ServerSpecificItem.java b/src/main/java/net/cweepahcraft/item/ServerSpecificItem.java
+new file mode 100644
+index 00000000..a27ed320
+--- /dev/null
++++ b/src/main/java/net/cweepahcraft/item/ServerSpecificItem.java
+@@ -0,0 +1,11 @@
++package net.cweepahcraft.item;
++
++import net.minecraft.server.IChatBaseComponent;
++import net.minecraft.server.ItemStack;
++
++public interface ServerSpecificItem {
++    boolean isApplicable(ItemStack itemStack);
++    ItemStack toClientStack(ItemStack itemStack);
++    ItemStack toServerStack(ItemStack itemStack);
++    IChatBaseComponent getPlayerFacingName();
++}
+diff --git a/src/main/java/net/minecraft/server/DataConverterFlatten.java b/src/main/java/net/minecraft/server/DataConverterFlatten.java
+index 36aa6141..95a9ed3d 100644
+--- a/src/main/java/net/minecraft/server/DataConverterFlatten.java
++++ b/src/main/java/net/minecraft/server/DataConverterFlatten.java
+@@ -346,7 +346,11 @@ public class DataConverterFlatten extends DataFix {
+     private static final Set<String> b = (Set) DataConverterFlatten.a.keySet().stream().map((s) -> {
+         return s.substring(0, s.indexOf(46));
+     }).collect(Collectors.toSet());
+-    private static final Set<String> c = Sets.newHashSet(new String[] { "minecraft:bow", "minecraft:carrot_on_a_stick", "minecraft:chainmail_boots", "minecraft:chainmail_chestplate", "minecraft:chainmail_helmet", "minecraft:chainmail_leggings", "minecraft:diamond_axe", "minecraft:diamond_boots", "minecraft:diamond_chestplate", "minecraft:diamond_helmet", "minecraft:diamond_hoe", "minecraft:diamond_leggings", "minecraft:diamond_pickaxe", "minecraft:diamond_shovel", "minecraft:diamond_sword", "minecraft:elytra", "minecraft:fishing_rod", "minecraft:flint_and_steel", "minecraft:golden_axe", "minecraft:golden_boots", "minecraft:golden_chestplate", "minecraft:golden_helmet", "minecraft:golden_hoe", "minecraft:golden_leggings", "minecraft:golden_pickaxe", "minecraft:golden_shovel", "minecraft:golden_sword", "minecraft:iron_axe", "minecraft:iron_boots", "minecraft:iron_chestplate", "minecraft:iron_helmet", "minecraft:iron_hoe", "minecraft:iron_leggings", "minecraft:iron_pickaxe", "minecraft:iron_shovel", "minecraft:iron_sword", "minecraft:leather_boots", "minecraft:leather_chestplate", "minecraft:leather_helmet", "minecraft:leather_leggings", "minecraft:shears", "minecraft:shield", "minecraft:stone_axe", "minecraft:stone_hoe", "minecraft:stone_pickaxe", "minecraft:stone_shovel", "minecraft:stone_sword", "minecraft:wooden_axe", "minecraft:wooden_hoe", "minecraft:wooden_pickaxe", "minecraft:wooden_shovel", "minecraft:wooden_sword"});
++    private static final Set<String> c = Sets.newHashSet(new String[] { "minecraft:bow", "minecraft:carrot_on_a_stick", "minecraft:chainmail_boots", "minecraft:chainmail_chestplate", "minecraft:chainmail_helmet", "minecraft:chainmail_leggings", "minecraft:diamond_axe", "minecraft:diamond_boots", "minecraft:diamond_chestplate", "minecraft:diamond_helmet", "minecraft:diamond_hoe", "minecraft:diamond_leggings", "minecraft:diamond_pickaxe", "minecraft:diamond_shovel", "minecraft:diamond_sword", "minecraft:elytra", "minecraft:fishing_rod", "minecraft:flint_and_steel", "minecraft:golden_axe", "minecraft:golden_boots", "minecraft:golden_chestplate", "minecraft:golden_helmet", "minecraft:golden_hoe", "minecraft:golden_leggings", "minecraft:golden_pickaxe", "minecraft:golden_shovel", "minecraft:golden_sword", "minecraft:iron_axe", "minecraft:iron_boots", "minecraft:iron_chestplate", "minecraft:iron_helmet", "minecraft:iron_hoe", "minecraft:iron_leggings", "minecraft:iron_pickaxe", "minecraft:iron_shovel", "minecraft:iron_sword", "minecraft:leather_boots", "minecraft:leather_chestplate", "minecraft:leather_helmet", "minecraft:leather_leggings", "minecraft:shears", "minecraft:shield", "minecraft:stone_axe", "minecraft:stone_hoe", "minecraft:stone_pickaxe", "minecraft:stone_shovel", "minecraft:stone_sword", "minecraft:wooden_axe", "minecraft:wooden_hoe", "minecraft:wooden_pickaxe", "minecraft:wooden_shovel", "minecraft:wooden_sword",
++                                            "minecraft:mysterious_helmet",
++                                            "minecraft:mysterious_chestplate",
++                                            "minecraft:mysterious_leggings",
++                                            "minecraft:mysterious_boots"});
+ 
+     public DataConverterFlatten(Schema schema, boolean flag) {
+         super(schema, flag);
+diff --git a/src/main/java/net/minecraft/server/PacketDataSerializer.java b/src/main/java/net/minecraft/server/PacketDataSerializer.java
+index 7582151a..e4270f5b 100644
+--- a/src/main/java/net/minecraft/server/PacketDataSerializer.java
++++ b/src/main/java/net/minecraft/server/PacketDataSerializer.java
+@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
+ 
+ import org.bukkit.craftbukkit.inventory.CraftItemStack; // CraftBukkit
+ 
++import net.cweepahcraft.item.ServerSpecificItem; // CweepahCraft
++
+ public class PacketDataSerializer extends ByteBuf {
+ 
+     private final ByteBuf a;
+@@ -235,26 +237,53 @@ public class PacketDataSerializer extends ByteBuf {
+         }
+     }
+ 
++    // CweepahCraft - Returns the part of this item's ID that follows "minecraft:".
++    private String getServerItemKey(Item item) {
++        MinecraftKey key = IRegistry.ITEM.getKey(item);
++
++        if (key != null) {
++            return key.getKey();
++        } else {
++            throw new IllegalStateException("This item doesn't have a key in the registry!");
++        }
++    }
++
+     public PacketDataSerializer a(ItemStack itemstack) {
+         if (itemstack.isEmpty() || itemstack.getItem() == null) { // CraftBukkit - NPE fix itemstack.getItem()
+             this.writeBoolean(false);
+         } else {
+             this.writeBoolean(true);
+-            Item item = itemstack.getItem();
++            Item serverItem = itemstack.getItem();
+ 
+-            this.d(Item.getId(item));
+-            this.writeByte(itemstack.getCount());
+-            NBTTagCompound nbttagcompound = null;
+-
+-            if (item.usesDurability() || item.n()) {
++            if (serverItem.usesDurability() || serverItem.n()) {
+                 // Spigot start - filter
+                 itemstack = itemstack.cloneItemStack();
+                 CraftItemStack.setItemMeta(itemstack, CraftItemStack.getItemMeta(itemstack));
+                 // Spigot end
+-                nbttagcompound = itemstack.getTag();
+             }
+ 
+-            this.a(nbttagcompound);
++            // CweepahCraft start
++            if (serverItem instanceof ServerSpecificItem && ((ServerSpecificItem) serverItem).isApplicable(itemstack)) {
++                ServerSpecificItem serverSpecificItem = (ServerSpecificItem) serverItem;
++                ItemStack clientStack = serverSpecificItem.toClientStack(itemstack);
++
++                NBTTagCompound clientTag = clientStack.getOrCreateTag();
++
++                clientTag.setString("ServerId", getServerItemKey(serverItem));
++
++                NBTTagCompound display = clientTag.getCompound("display");
++                if (!display.hasKeyOfType("Name", 8)) {
++                    display.setString("Name", IChatBaseComponent.ChatSerializer.a(serverSpecificItem.getPlayerFacingName()));
++                    clientTag.set("display", display);
++                }
++
++                itemstack = clientStack;
++            }
++            // CweepahCraft end
++
++            this.d(Item.getId(itemstack.getItem())); // CweepahCraft - fetch ID off of the final ItemStack.
++            this.writeByte(itemstack.getCount());
++            this.a(itemstack.getTag()); // CweepahCraft - fetch tag off of the final ItemStack.
+         }
+ 
+         return this;
+@@ -268,7 +297,28 @@ public class PacketDataSerializer extends ByteBuf {
+             byte b0 = this.readByte();
+             ItemStack itemstack = new ItemStack(Item.getById(i), b0);
+ 
+-            itemstack.setTag(this.j());
++            // CweepahCraft - start
++            NBTTagCompound compound = this.j();
++
++            itemstack.setTag(compound);
++
++            if (compound != null && compound.hasKeyOfType("ServerId", 8)) {
++                Item serverItem = IRegistry.ITEM.get(new MinecraftKey(compound.getString("ServerId")));
++                if (serverItem instanceof ServerSpecificItem) {
++                    compound.remove("ServerId");
++
++                    NBTTagCompound display = compound.getCompound("display");
++                    if (display.hasKeyOfType("Name", 8)) {
++                        if (display.getString("Name").equals(((ServerSpecificItem) serverItem).getPlayerFacingName())) {
++                            display.remove("Name");
++                        }
++                    }
++
++                    itemstack = ((ServerSpecificItem) serverItem).toServerStack(itemstack);
++                }
++            }
++            // CweepahCraft end
++
+             // CraftBukkit start
+             if (itemstack.getTag() != null) {
+                 CraftItemStack.setItemMeta(itemstack, CraftItemStack.getItemMeta(itemstack));
+diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java
+index 52041cae..b54578aa 100644
+--- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java
++++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemFactory.java
+@@ -90,6 +90,10 @@ public final class CraftItemFactory implements ItemFactory {
+         case LEATHER_CHESTPLATE:
+         case LEATHER_LEGGINGS:
+         case LEATHER_BOOTS:
++        case MYSTERIOUS_HELMET:
++        case MYSTERIOUS_CHESTPLATE:
++        case MYSTERIOUS_LEGGINGS:
++        case MYSTERIOUS_BOOTS:
+             return meta instanceof CraftMetaLeatherArmor ? meta : new CraftMetaLeatherArmor(meta);
+         case POTION:
+         case SPLASH_POTION:
+diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java
+index 2ef4ac64..6aa174ca 100644
+--- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java
++++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftItemStack.java
+@@ -352,6 +352,10 @@ public final class CraftItemStack extends ItemStack {
+             case LEATHER_CHESTPLATE:
+             case LEATHER_LEGGINGS:
+             case LEATHER_BOOTS:
++            case MYSTERIOUS_HELMET:
++            case MYSTERIOUS_CHESTPLATE:
++            case MYSTERIOUS_LEGGINGS:
++            case MYSTERIOUS_BOOTS:
+                 return new CraftMetaLeatherArmor(item.getTag());
+             case POTION:
+             case SPLASH_POTION:
+diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java
+index f321d854..863d0c25 100644
+--- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java
++++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaLeatherArmor.java
+@@ -75,6 +75,10 @@ class CraftMetaLeatherArmor extends CraftMetaItem implements LeatherArmorMeta {
+             case LEATHER_CHESTPLATE:
+             case LEATHER_LEGGINGS:
+             case LEATHER_BOOTS:
++            case MYSTERIOUS_HELMET:
++            case MYSTERIOUS_CHESTPLATE:
++            case MYSTERIOUS_LEGGINGS:
++            case MYSTERIOUS_BOOTS:
+                 return true;
+             default:
+                 return false;
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_boots.json b/src/main/resources/assets/minecraft/recipes/mysterious_boots.json
+new file mode 100644
+index 00000000..0bf25d61
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_boots.json
+@@ -0,0 +1,28 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_boots"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:dragon_head"
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_boots"
++  }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_chestplate.json b/src/main/resources/assets/minecraft/recipes/mysterious_chestplate.json
+new file mode 100644
+index 00000000..842455e5
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_chestplate.json
+@@ -0,0 +1,28 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_chestplate"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:dragon_head"
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_chestplate"
++  }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_helmet.json b/src/main/resources/assets/minecraft/recipes/mysterious_helmet.json
+new file mode 100644
+index 00000000..1660fc8d
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_helmet.json
+@@ -0,0 +1,28 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_helmet"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:dragon_head"
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_helmet"
++  }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/minecraft/recipes/mysterious_leggings.json b/src/main/resources/assets/minecraft/recipes/mysterious_leggings.json
+new file mode 100644
+index 00000000..53b946f4
+--- /dev/null
++++ b/src/main/resources/assets/minecraft/recipes/mysterious_leggings.json
+@@ -0,0 +1,28 @@
++{
++  "type": "crafting_shaped",
++  "pattern": [
++    "TBT",
++    "BDB",
++    "SHS"
++  ],
++  "key": {
++    "T": {
++      "item": "minecraft:totem_of_undying"
++    },
++    "B": {
++      "item": "minecraft:diamond_block"
++    },
++    "D": {
++      "item": "minecraft:diamond_leggings"
++    },
++    "S": {
++      "item": "minecraft:nether_star"
++    },
++    "H": {
++      "item": "minecraft:dragon_head"
++    }
++  },
++  "result": {
++    "item": "minecraft:mysterious_leggings"
++  }
++}
+\ No newline at end of file
+diff --git a/src/test/java/org/bukkit/LegacyTest.java b/src/test/java/org/bukkit/LegacyTest.java
+index b441d40d..c5eacc23 100644
+--- a/src/test/java/org/bukkit/LegacyTest.java
++++ b/src/test/java/org/bukkit/LegacyTest.java
+@@ -33,7 +33,8 @@ public class LegacyTest extends AbstractTestingBase {
+             Material.ACACIA_WOOD, Material.BIRCH_WOOD, Material.DARK_OAK_WOOD, Material.JUNGLE_WOOD, Material.OAK_WOOD, Material.SPRUCE_WOOD,
+             Material.TUBE_CORAL_WALL_FAN, Material.BRAIN_CORAL_WALL_FAN, Material.BUBBLE_CORAL_WALL_FAN, Material.FIRE_CORAL_WALL_FAN, Material.HORN_CORAL_WALL_FAN, Material.DEAD_TUBE_CORAL_WALL_FAN, Material.DEAD_BRAIN_CORAL_WALL_FAN,
+             Material.DEAD_BUBBLE_CORAL_WALL_FAN, Material.DEAD_FIRE_CORAL_WALL_FAN, Material.DEAD_HORN_CORAL_WALL_FAN, Material.DEAD_TUBE_CORAL_FAN, Material.DEAD_BRAIN_CORAL_FAN, Material.DEAD_BUBBLE_CORAL_FAN, Material.DEAD_FIRE_CORAL_FAN,
+-            Material.DEAD_HORN_CORAL_FAN, Material.DEAD_BRAIN_CORAL, Material.DEAD_BUBBLE_CORAL, Material.DEAD_FIRE_CORAL, Material.DEAD_HORN_CORAL, Material.DEAD_TUBE_CORAL,
++            Material.DEAD_HORN_CORAL_FAN, Material.DEAD_BRAIN_CORAL, Material.DEAD_BUBBLE_CORAL, Material.DEAD_FIRE_CORAL, Material.DEAD_HORN_CORAL, Material.DEAD_TUBE_CORAL, Material.MYSTERIOUS_HELMET, Material.MYSTERIOUS_CHESTPLATE,
++            Material.MYSTERIOUS_LEGGINGS, Material.MYSTERIOUS_BOOTS,
+             //
+             Material.LEGACY_AIR, Material.LEGACY_DEAD_BUSH, Material.LEGACY_BURNING_FURNACE, Material.LEGACY_WALL_SIGN, Material.LEGACY_REDSTONE_TORCH_OFF, Material.LEGACY_SKULL, Material.LEGACY_REDSTONE_COMPARATOR_ON, Material.LEGACY_WALL_BANNER, Material.LEGACY_MONSTER_EGG));
+ 
+-- 
+2.21.0
+

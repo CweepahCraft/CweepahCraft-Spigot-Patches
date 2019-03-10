@@ -1,37 +1,37 @@
-From 6c65b4a303e2a4f98a0246f85c8c45dcbcc1cf47 Mon Sep 17 00:00:00 2001
+From 4d9e79892f733df57ba4ae8aa2fdcb6f38eaec6a Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 18:52:30 -0600
 Subject: [PATCH] Fix piston dupe glitch.
 
 
 diff --git a/src/main/java/net/minecraft/server/BlockPiston.java b/src/main/java/net/minecraft/server/BlockPiston.java
-index 0f90172f..f8e14d94 100644
+index dbe0ff33..08a0fe35 100644
 --- a/src/main/java/net/minecraft/server/BlockPiston.java
 +++ b/src/main/java/net/minecraft/server/BlockPiston.java
-@@ -289,14 +289,6 @@ public class BlockPiston extends BlockDirectional {
+@@ -288,14 +288,6 @@ public class BlockPiston extends BlockDirectional {
              return false;
          } else {
-             List list = pistonextendschecker.getMovedBlocks();
--            ArrayList arraylist = Lists.newArrayList();
+             List<BlockPosition> list = pistonextendschecker.getMovedBlocks();
+-            List<IBlockData> list1 = Lists.newArrayList();
 -
 -            for (int i = 0; i < list.size(); ++i) {
--                BlockPosition blockposition1 = (BlockPosition) list.get(i);
+-                BlockPosition blockposition2 = (BlockPosition) list.get(i);
 -
--                arraylist.add(world.getType(blockposition1).c(world, blockposition1));
+-                list1.add(world.getType(blockposition2));
 -            }
 -
-             List list1 = pistonextendschecker.getBrokenBlocks();
-             int j = list.size() + list1.size();
+             List<BlockPosition> list2 = pistonextendschecker.getBrokenBlocks();
+             int j = list.size() + list2.size();
              IBlockData[] aiblockdata = new IBlockData[j];
 @@ -363,7 +355,7 @@ public class BlockPiston extends BlockDirectional {
-                 world.setTypeAndData(blockposition2, Blocks.AIR.getBlockData(), 2);
-                 blockposition2 = blockposition2.shift(enumdirection1);
-                 world.setTypeAndData(blockposition2, Blocks.PISTON_EXTENSION.getBlockData().set(BlockPiston.FACING, enumdirection), 4);
--                world.setTileEntity(blockposition2, BlockPistonMoving.a((IBlockData) arraylist.get(k), enumdirection, flag, false));
-+                world.setTileEntity(blockposition2, BlockPistonMoving.a(iblockdata, enumdirection, flag, false));
+                 blockposition3 = blockposition3.shift(enumdirection1);
+                 set.remove(blockposition3);
+                 world.setTypeAndData(blockposition3, (IBlockData) Blocks.MOVING_PISTON.getBlockData().set(BlockPiston.FACING, enumdirection), 68);
+-                world.setTileEntity(blockposition3, BlockPistonMoving.a((IBlockData) list1.get(k), enumdirection, flag, false));
++                world.setTileEntity(blockposition3, BlockPistonMoving.a(iblockdata, enumdirection, flag, false));
                  --j;
                  aiblockdata[j] = iblockdata;
              }
 -- 
-2.17.0
+2.21.0
 

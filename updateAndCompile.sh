@@ -5,6 +5,7 @@ rm -f cweepahcraft-*.jar
 
 cd ../
 root=`pwd`
+MAVEN_CMD="mvn clean install -P development"
 
 cd "$root/Bukkit/"
 git fetch -a
@@ -12,7 +13,7 @@ git checkout -f master
 git reset --hard origin/master
 git checkout -f spigot
 git reset --hard origin/master
-mvn clean install
+eval $MAVEN_CMD
 
 cd "$root/CraftBukkit/"
 git fetch -a
@@ -20,10 +21,10 @@ git checkout -f master
 git reset --hard origin/master
 git checkout -f patched
 git reset --hard origin/master
-./applyPatches.sh ../work/decompile-cf6b1333
+./applyPatches.sh ../work/decompile-56ba149d
 git add .
 git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
-mvn clean install
+eval $MAVEN_CMD
 
 cd "$root/Spigot/"
 git checkout -f master
@@ -42,10 +43,10 @@ cd "$root/Spigot/"
 ./applyPatches.sh
 
 cd "$root/Spigot/Spigot-API/"
-mvn clean install
+eval $MAVEN_CMD
 
 cd "$root/Spigot/Spigot-Server/"
-mvn clean install
+eval $MAVEN_CMD
 
 if [ ! -d "$root/CweepahCraft/CweepahCraft-API/" ]; then
 	cp -r "$root/Spigot/Spigot-API" "$root/CweepahCraft/"
@@ -63,31 +64,31 @@ if [ ! -d "$root/CweepahCraft/CweepahCraft-Server/" ]; then
 	cp -r "$root/Spigot/Spigot-Server" "$root/CweepahCraft/"
 	mv "$root/CweepahCraft/Spigot-Server" "$root/CweepahCraft/CweepahCraft-Server"
 	cd "$root/CweepahCraft/CweepahCraft-Server/"
-	git remote set-url upstream ../../Spigot/Spigot-Server/
+	git remote set-url origin ../../Spigot/Spigot-Server/
 fi
 
 cd "$root/CweepahCraft/CweepahCraft-Server/"
-git fetch -a upstream
+git fetch -a origin
 git branch premaster || true
 git checkout -f premaster
-git reset --hard upstream/master
+git reset --hard origin/master
 rm nms-patches/*
 git add .
-git commit -m "Deleted old nms-patches on `date '+%Y/%m/%d %H:%M%S'`"
+git commit -m "Deleted old nms-patches on `date '+%Y/%m/%d %H:%M%:S'`"
 git checkout -f master
 git reset --hard premaster
 git am -3 ../Spigot-Server-Patches/*.patch
 git branch patched || true
 git checkout -f patched
 git reset --hard master
-./applyPatches.sh ../../work/decompile-cf6b1333
+./applyPatches.sh ../../work/decompile-latest
 git add .
 git commit -m "Applied patches on `date '+%Y/%m/%d %H:%M:%S'`"
 
 cd "$root/CraftBukkit/"
 git checkout -f master
 cd "$root/CweepahCraft/"
-mvn clean install
+eval $MAVEN_CMD
 
 cp ./CweepahCraft-Server/target/cweepahcraft-*.jar ./
-rename -v 's/.*(cweepahcraft-[0-9,\.]+).*(jar)/$1.$2/' cweepahcraft-*.jar
+mv -v cweepahcraft-*.jar $(ls cweepahcraft-*.jar | sed -r 's/.*(cweepahcraft-[0-9,\.]+).*(jar)/\1.\2/')

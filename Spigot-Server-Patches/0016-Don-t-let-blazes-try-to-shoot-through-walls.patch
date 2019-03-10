@@ -1,4 +1,4 @@
-From 0c261babdcfd4e2ad29e7569755d337638131d76 Mon Sep 17 00:00:00 2001
+From 75131b7aa733fae2370ab4d9f87e99a3c1d4a9f3 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 26 Aug 2017 10:14:10 -0500
 Subject: [PATCH] Don't let blazes try to shoot through walls
@@ -6,21 +6,21 @@ Subject: [PATCH] Don't let blazes try to shoot through walls
 
 diff --git a/nms-patches/EntityBlaze.patch b/nms-patches/EntityBlaze.patch
 new file mode 100644
-index 00000000..5af2186e
+index 00000000..e8b09b49
 --- /dev/null
 +++ b/nms-patches/EntityBlaze.patch
 @@ -0,0 +1,11 @@
 +--- a/net/minecraft/server/EntityBlaze.java
 ++++ b/net/minecraft/server/EntityBlaze.java
-+@@ -167,7 +167,7 @@
++@@ -163,7 +163,7 @@
 +                 }
 + 
 +                 this.a.getControllerMove().a(entityliving.locX, entityliving.locY, entityliving.locZ, 1.0D);
-+-            } else if (d0 < this.f() * this.f()) {
-++            } else if (d0 < this.f() * this.f() && this.a.hasLineOfSight(entityliving)) {
++-            } else if (d0 < this.g() * this.g()) {
+++            } else if (d0 < this.g() * this.g() && this.a.hasLineOfSight(entityliving)) {
 +                 double d1 = entityliving.locX - this.a.locX;
-+                 double d2 = entityliving.getBoundingBox().b + (double) (entityliving.length / 2.0F) - (this.a.locY + (double) (this.a.length / 2.0F));
++                 double d2 = entityliving.getBoundingBox().minY + (double) (entityliving.length / 2.0F) - (this.a.locY + (double) (this.a.length / 2.0F));
 +                 double d3 = entityliving.locZ - this.a.locZ;
 -- 
-2.17.0
+2.21.0
 

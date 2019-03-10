@@ -1,14 +1,14 @@
-From fb92b7d409da44f7aed78740274547b6d05daf19 Mon Sep 17 00:00:00 2001
+From 60b9f651df8cb9e518acbaee1aaf0a6d5b725a50 Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Tue, 27 Dec 2016 12:31:46 -0600
 Subject: [PATCH] Hopper toggling API
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index eb6b7976..733597c0 100644
+index d8014f14..8ac7fb3d 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1116,6 +1116,14 @@ public final class Bukkit {
+@@ -1191,6 +1191,14 @@ public final class Bukkit {
          return server.createBossBar(title, color, style, flags);
      }
  
@@ -21,15 +21,15 @@ index eb6b7976..733597c0 100644
 +    }
 +
      /**
-      * Gets an entity on the server by its UUID
-      *
+      * Creates a boss bar instance to display to players. The progress defaults
+      * to 1.0.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 83b66361..5afd92b0 100644
+index fac90a48..6df5ba95 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -911,6 +911,10 @@ public interface Server extends PluginMessageRecipient {
+@@ -1048,6 +1048,10 @@ public interface Server extends PluginMessageRecipient {
       */
-     BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags);
+     boolean removeBossBar(NamespacedKey key);
  
 +    boolean isHopperEnabled();
 +
@@ -39,5 +39,5 @@ index 83b66361..5afd92b0 100644
       * Gets an entity on the server by its UUID
       *
 -- 
-2.17.0
+2.21.0
 

@@ -1,24 +1,24 @@
-From 6e457c95dc36a539ffc56a911b1bd32430fd2ef1 Mon Sep 17 00:00:00 2001
+From b35d4847c005e2e2153b5afb6368d4f35fc3f45d Mon Sep 17 00:00:00 2001
 From: Jacob Martin <jjm_223@hotmail.com>
 Date: Sat, 19 Aug 2017 18:54:15 -0500
 Subject: [PATCH] Add mysterious armor
 
 
 diff --git a/src/main/java/org/bukkit/Material.java b/src/main/java/org/bukkit/Material.java
-index fcc76e19..38f252f0 100644
+index 387a0d7c..18582836 100644
 --- a/src/main/java/org/bukkit/Material.java
 +++ b/src/main/java/org/bukkit/Material.java
-@@ -536,6 +536,10 @@ public enum Material {
-     RECORD_10(2265, 1),
-     RECORD_11(2266, 1),
-     RECORD_12(2267, 1),
+@@ -1208,6 +1208,10 @@ public enum Material implements Keyed {
+      * BlockData: {@link Snowable}
+      */
+     MYCELIUM(9913, Snowable.class),
 +    MYSTERIOUS_HELMET(31996, 1, 726),
 +    MYSTERIOUS_CHESTPLATE(31997, 1, 1056),
 +    MYSTERIOUS_LEGGINGS(31998, 1, 990),
-+    MYSTERIOUS_BOOTS(31999, 1, 858)
-     ;
- 
-     private final int id;
++    MYSTERIOUS_BOOTS(31999, 1, 858),
+     NAME_TAG(30731),
+     NAUTILUS_SHELL(19989),
+     NETHERRACK(23425),
 -- 
-2.17.0
+2.21.0
 
